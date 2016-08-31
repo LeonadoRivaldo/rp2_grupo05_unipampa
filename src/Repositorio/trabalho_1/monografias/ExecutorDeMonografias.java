@@ -116,6 +116,7 @@ public class ExecutorDeMonografias {
         System.out.println("===============================================");
         String titulo = PreencheMonografia.preencheTitulo();
         //PreencheMonografia.preencheAutor());
+        
         //monografia.setTipo(PreencheMonografia.preencheTipo());
         //monografia.setInstituicao(PreencheMonografia.preencheInstituicao());
         //monografia.setOrientador(PreencheMonografia.preencheOrientador());
