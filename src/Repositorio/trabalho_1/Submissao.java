@@ -18,6 +18,13 @@ public abstract class Submissao {
     protected List<String> autores;
     protected int MAX_AUTORES;
 
+    public Submissao(String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES) {
+        this.tituloSubmissao = tituloSubmissao;
+        this.situacaoSubmissao = situacaoSubmissao;
+        this.autores = autores;
+        this.MAX_AUTORES = MAX_AUTORES;
+    }
+
     /**
      * @return the tituloSubmissao
      */

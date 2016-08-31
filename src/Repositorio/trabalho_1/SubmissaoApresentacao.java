@@ -5,15 +5,24 @@
  */
 package Repositorio.trabalho_1;
 
+import java.util.List;
+
 /**
  *
  * @author leona_000
  */
 public abstract class SubmissaoApresentacao extends Submissao {
-    
+
     protected String resumo;
     protected String abstrac;
     protected int duracao;
+
+    public SubmissaoApresentacao(String resumo, String abstrac, int duracao, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES) {
+        super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES);
+        this.resumo = resumo;
+        this.abstrac = abstrac;
+        this.duracao = duracao;
+    }
 
     /**
      * @return the resumo
@@ -56,7 +65,5 @@ public abstract class SubmissaoApresentacao extends Submissao {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-    
-    
-    
+
 }
