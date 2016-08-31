@@ -1,83 +1,23 @@
 package Repositorio.trabalho_1.palestra;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.SubmissaoApresentacao;
+import java.util.List;
+
 /**
  *
  * @author luh-l
  */
-public class Palestra {
+public class Palestra extends SubmissaoApresentacao {
 
-    private String titulo;
-    private String situacao;
-    private String autor;
-    private String resumo;
-    private String Abstract;
-    private int duracao;
-    private String curriculo;
    
+    private String curriculo;
 
-    public Palestra() {
-
-    }
-    
-
-    public Palestra(String titulo, String autor, String resumo, String Abstract, int duracao, String curriculo) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.resumo = resumo;
-        this.Abstract = Abstract;
-        this.duracao = duracao;
+    public Palestra(String curriculo, String resumo, String abstrac, int duracao, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES) {
+        super(resumo, abstrac, duracao, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES);
         this.curriculo = curriculo;
-
     }
-
-    public String getTitulo() { 
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) { 
-        this.titulo = titulo;
-    }
-
-    public String getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getResumo() {
-        return resumo;
-    }
-
-    public void setResumo(String resumo) {
-        this.resumo = resumo;
-    }
-
-    public String getabstract() {
-        return Abstract;
-    }
-
-    public void setabstract(String Abstract) {
-        this.Abstract = Abstract;
-    }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {  
-        this.duracao = duracao;
-    }
-
+   
     public String getCurriculo() {
         return curriculo;
     }

@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class ClassePrincipalResumo {
 
     private static ControladorResumo resumo = new ControladorResumo();
+    
+    public static void main(String[] args) {
+        principal();
+    }
 
     public static void principal() {
 

@@ -37,16 +37,18 @@ public class ControleDePalestras {
        String curriculo*/
        switch (indice) {
            case 1:
-               palestra.setTitulo(valor);
+               palestra.setTituloSubmissao(valor);
              break;
            case 2:
-               palestra.setAutor(valor);
+               ArrayList<String> vvv = new ArrayList();
+               vvv.add(valor);
+               palestra.setAutor(vvv);
                break;
            case 3:
                palestra.setResumo(valor);
                break;
            case 4:
-               palestra.setabstract(valor);
+               palestra.setAbstrac(valor);
                break;
            case 5:
                palestra.setDuracao(Integer.parseInt(valor));

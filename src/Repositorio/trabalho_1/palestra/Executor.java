@@ -1,5 +1,7 @@
 package Repositorio.trabalho_1.palestra;
 
+import Repositorio.trabalho_1.Situacao;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -22,19 +24,26 @@ public class Executor {
      */
     public static Palestra criar() {
         Scanner entrada = new Scanner(System.in);
-        Palestra palestra = new Palestra();
+        
         System.out.println("Qual o titulo da sua Palestra: ");
-        palestra.setTitulo(entrada.nextLine());
+        String tituloSubmissao;
+        tituloSubmissao = (entrada.nextLine());
         System.out.println("Qual o nome do Autor: ");
-        palestra.setAutor(entrada.nextLine());
+        ArrayList<String> autores = new ArrayList();       
+        autores.add(entrada.nextLine());
         System.out.println("Escreva um resumo: ");
-        palestra.setResumo(entrada.nextLine());
+        String resumo;
+        resumo = (entrada.nextLine());
         System.out.println("escreva seu abstract: ");
-        palestra.setabstract(entrada.nextLine());
+        String abstrac;
+        abstrac = (entrada.nextLine());
         System.out.println("Digite seu curriculo: ");
-        palestra.setCurriculo(entrada.nextLine());
+        String curriculo;
+        curriculo = (entrada.nextLine());
         System.out.println("Qual o tempo de duracao da palestra em minutos: ");
-        palestra.setDuracao(entrada.nextInt());
+        int duracao;
+        duracao = (entrada.nextInt());
+        Palestra palestra = new Palestra(curriculo, resumo, abstrac, duracao, tituloSubmissao, Situacao.sobAvaliacao, autores, 1);
         return palestra;
 
     }
