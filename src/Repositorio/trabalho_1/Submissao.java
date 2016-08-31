@@ -109,10 +109,6 @@ public abstract class Submissao {
     public void setMAX_AUTORES(int MAX_AUTORES) {
         this.MAX_AUTORES = MAX_AUTORES;
     }
-
-    protected enum Situacao {
-    };
-
     /**
      * Estruturoda "\nNomeDoAtributo: " + atributo
      *
