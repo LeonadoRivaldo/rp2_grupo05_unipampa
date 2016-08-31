@@ -14,6 +14,48 @@ public abstract class SubmissaoApresentacao extends Submissao {
     protected String resumo;
     protected String abstrac;
     protected int duracao;
+
+    /**
+     * @return the resumo
+     */
+    public String getResumo() {
+        return resumo;
+    }
+
+    /**
+     * @param resumo the resumo to set
+     */
+    public void setResumo(String resumo) {
+        this.resumo = resumo;
+    }
+
+    /**
+     * @return the abstrac
+     */
+    public String getAbstrac() {
+        return abstrac;
+    }
+
+    /**
+     * @param abstrac the abstrac to set
+     */
+    public void setAbstrac(String abstrac) {
+        this.abstrac = abstrac;
+    }
+
+    /**
+     * @return the duracao
+     */
+    public int getDuracao() {
+        return duracao;
+    }
+
+    /**
+     * @param duracao the duracao to set
+     */
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
     
     
     
