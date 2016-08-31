@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repositorio.trabalho_1.artigos;
-
-import trabalho_1.SubmissaoCientificia;
+package trabalho_1.artigos;
 
 
 
@@ -13,8 +11,10 @@ import trabalho_1.SubmissaoCientificia;
  *
  * @author Amanda Lopes
  */
-public class Artigo extends SubmissaoCientificia {
+public class Artigo {
 
+    private String titulo;
+    private String situacao = "Em Avaliação";
     private String[] autor;
     private String[] instituicao;
     private String[] palavrachave;
@@ -26,6 +26,7 @@ public class Artigo extends SubmissaoCientificia {
 }
   
  public Artigo(String titulo, String[] autor, String[] instituicao, String[] palavrachave, String resumo, String Abstract){
+    this.titulo = titulo;
     this.autor = autor;
     this.instituicao = instituicao;
     this.palavrachave = palavrachave;

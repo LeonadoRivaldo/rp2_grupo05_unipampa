@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho_1.monografias;
+package Repositorio.trabalho_1.monografias;
 
 import java.util.Scanner;
 

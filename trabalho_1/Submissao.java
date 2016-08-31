@@ -14,6 +14,7 @@ public abstract class Submissao {
     
     protected String tituloSubmissao;
     protected Situacao situacaoSubmissao;
+    protected String[] autor;
     
     
     

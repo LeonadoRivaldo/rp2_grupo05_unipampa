@@ -1,4 +1,4 @@
-package trabalho_1.minicurso;
+package Repositorio.trabalho_1.minicurso;
 
 import java.util.ArrayList;
 

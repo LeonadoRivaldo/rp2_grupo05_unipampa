@@ -1,4 +1,4 @@
-package trabalho_1.minicurso;
+package Repositorio.trabalho_1.minicurso;
 
 /**
  * Classe para objetos do tipo Minicurso que contem os atributos e operações do

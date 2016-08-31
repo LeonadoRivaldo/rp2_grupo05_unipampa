@@ -1,4 +1,4 @@
-package trabalho_1.palestra;
+package Repositorio.trabalho_1.palestra;
 
 import java.util.Scanner;
 

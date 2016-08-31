@@ -1,11 +1,11 @@
-package trabalho_1;
+package Repositorio.trabalho_1;
 
 import java.util.Scanner;
-import trabalho_1.minicurso.*;
-import trabalho_1.artigos.*;
-import trabalho_1.monografias.*;
-import trabalho_1.palestra.*;
-import trabalho_1.resumo.*;
+import Repositorio.trabalho_1.minicurso.*;
+import Repositorio.trabalho_1.artigos.*;
+import Repositorio.trabalho_1.monografias.*;
+import Repositorio.trabalho_1.palestra.*;
+import Repositorio.trabalho_1.resumo.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -49,7 +49,7 @@ public class MainController {
         NovoResumoPrincipal resumo = new NovoResumoPrincipal();
         Executor palestra = new Executor();
         PMinicurso minicurso = new PMinicurso();
-        ExecutarArtigos artigos = new ExecutarArtigos();
+        Executar artigos = new ExecutarArtigos();
         Scanner entrada = new Scanner(System.in);
         int opcao = -1;
 
