@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package Repositorio.trabalho_1.monografias;
+
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author leona_000
@@ -12,36 +15,44 @@ import java.util.ArrayList;
 public class ControllerDeMonografias {
 
     ArrayList<Monografia> monografias = new ArrayList<Monografia>();
+
     /**
      * inclui uma monografia na biblioteca
+     *
      * @param m
-     * @return 
+     * @return
      */
     public boolean incluir(Monografia m) {
         monografias.add(m);
         return true;
     }
+
     /**
      * faz consulta utilizando uma lista enumerada, e seleciona qual item da
      * lista quer mostrar
+     *
      * @param indice
-     * @return 
+     * @return
      */
     public Monografia consultar(int indice) {
         return monografias.get(indice);
     }
+
     /**
      * funçao para exlcuir uma monografia
+     *
      * @param indice
-     * @return 
+     * @return
      */
     public boolean excluir(int indice) {
         monografias.remove(indice);
         return true;
     }
+
     /**
-     * <p>metodo que recebe um inteiro que representa um atributo da classe,
-     * o valor para modificar o objeto e o objeto a ser modificado</p>
+     * <p>
+     * metodo que recebe um inteiro que representa um atributo da classe, o
+     * valor para modificar o objeto e o objeto a ser modificado</p>
      * <i>
      * Titulo = 1<br/>
      * tipo = 2<br/>
@@ -55,23 +66,29 @@ public class ControllerDeMonografias {
      * resumo = 10<br/>
      * Abstract = 11<br/>
      * </i>
+     *
      * @param atributo
      * @param valor
-     * @param monografia 
+     * @param monografia
      */
     public boolean editar(int atributo, String valor, Monografia monografia) {
         switch (atributo) {
             case 1:
-                monografia.setTitulo(valor);
+                monografia.setTituloSubmissao(valor);
                 break;
-            case 2:
-                monografia.setTipo(valor);
-                break;
+            /*  case 2:
+             monografia.setTipo(valor);
+             break;
+             */
             case 3:
-                monografia.setAutor(valor);
+                List<String> autor = new ArrayList<String>();
+                autor.add(valor);
+                monografia.setAutor(autor);
                 break;
             case 4:
-                monografia.setInstituicao(valor);
+                List<String> insti = new ArrayList<String>();
+                insti.add(valor);
+                monografia.setInstituicao(insti);
                 break;
             case 5:
                 monografia.setOrientador(valor);
@@ -82,32 +99,36 @@ public class ControllerDeMonografias {
             case 7:
                 monografia.setAno(Integer.parseInt(valor));
                 break;
-            case  8:
+            case 8:
                 monografia.setNumeroDePaginas(Integer.parseInt(valor));
                 break;
-            case  9:
-                String[] palavras = valor.split(" ");
-                monografia.setPalavrasChaves(palavras);
+            case 9:
+                String[] p = valor.split(" ");
+                List<String> palavras = new ArrayList<>();
+                for (String pala : p) {
+                    palavras.add(pala);
+                }
+                monografia.setPalavrasChave(palavras);
                 break;
-            case  10:
+            case 10:
                 monografia.setResumo(valor);
                 break;
-            case  11:
+            case 11:
                 monografia.setAbstract(valor);
                 break;
         }
         return true;
     }
+
     /**
      * Função para criar o objeto monografia
+     *
      * @param monografia
-     * @return 
+     * @return
      */
     public boolean criar(Monografia monografia) {
         incluir(monografia);
         return true;
     }
-
-
 
 }

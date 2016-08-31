@@ -6,6 +6,7 @@
 package Repositorio.trabalho_1.monografias;
 
 import Repositorio.trabalho_1.monografias.ControllerDeMonografias;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -21,17 +22,17 @@ public class ExecutorDeMonografias {
      */
     private static void exibir(Monografia monografia) {
         System.out.println("===================================================");
-        System.out.println("Titulo: " + monografia.getTitulo());
-        System.out.println("Situacao: " + monografia.getSituacao());
-        System.out.println("Tipo: " + monografia.getTipo());
-        System.out.println("Autor: " + monografia.getAutor());
-        System.out.println("Instituição: " + monografia.getInstituicao());
+        System.out.println("Titulo: " + monografia.getTituloSubmissao());
+        System.out.println("Situacao: " + monografia.getSituacaoSubmissao());
+        //System.out.println("Tipo: " + monografia.getTipo());
+        System.out.println("Autor: " + monografia.getAutor().get(0));
+        System.out.println("Instituição: " + monografia.getInstituicao().get(0));
         System.out.println("Orientador: " + monografia.getOrientador());
         System.out.println("Curso: " + monografia.getCurso());
         System.out.println("Ano: " + monografia.getAno());
         System.out.println("Numero De Paginas: " + monografia.getNumeroDePaginas());
         System.out.print("Palavras-chaves: ");
-        String[] palavras = monografia.getPalavrasChaves();
+        List<String> palavras = monografia.getPalavrasChave();
         for (String palavra : palavras) {
             System.out.print(palavra + ", ");
         }
@@ -42,25 +43,26 @@ public class ExecutorDeMonografias {
 
     /**
      * permite o usuario a selecionar qual atributo ele quer editar
+     *
      * @param monografia
-     * @return 
+     * @return
      */
     private static int editarMonografia(Monografia monografia) {
         Scanner entrada = new Scanner(System.in);
         int in = -1;
         do {
             System.out.println("===================================================");
-            System.out.println("1-Titulo: " + monografia.getTitulo());
+            System.out.println("1-Titulo: " + monografia.getTituloSubmissao());
             //System.out.println("2-Situacao: " + monografia.getSituacao());
-            System.out.println("2-Tipo: " + monografia.getTipo());
-            System.out.println("3-Autor: " + monografia.getAutor());
-            System.out.println("4-Instituição: " + monografia.getInstituicao());
+            //System.out.println("2-Tipo: " + monografia.getTipo());
+            System.out.println("3-Autor: " + monografia.getAutor().get(0));
+            System.out.println("4-Instituição: " + monografia.getInstituicao().get(0));
             System.out.println("5-Orientador: " + monografia.getOrientador());
             System.out.println("6-Curso: " + monografia.getCurso());
             System.out.println("7-Ano: " + monografia.getAno());
             System.out.println("8-Numero De Paginas: " + monografia.getNumeroDePaginas());
             System.out.print("9-Palavras-chaves: ");
-            String[] palavras = monografia.getPalavrasChaves();
+            List<String> palavras = monografia.getPalavrasChave();
             for (String palavra : palavras) {
                 System.out.print(palavra + ", ");
             }
@@ -92,7 +94,7 @@ public class ExecutorDeMonografias {
             int i = 0;
             for (Monografia monografia : c.monografias) {
                 i++;
-                System.out.println(i + "- " + monografia.getTitulo());
+                System.out.println(i + "- " + monografia.getTituloSubmissao());
             }
             System.out.println("------------------------------");
             System.out.println(frase);
@@ -110,21 +112,21 @@ public class ExecutorDeMonografias {
      * @return objeto monografia
      */
     public static Monografia criaMonografia() {
-        Monografia monografia = new Monografia();
+        //Monografia monografia = new Monografia();
         System.out.println("===============================================");
-        monografia.setTitulo(PreencheMonografia.preencheTitulo());
-        monografia.setAutor(PreencheMonografia.preencheAutor());
-        monografia.setTipo(PreencheMonografia.preencheTipo());
-        monografia.setInstituicao(PreencheMonografia.preencheInstituicao());
-        monografia.setOrientador(PreencheMonografia.preencheOrientador());
-        monografia.setCurso(PreencheMonografia.preencheCurso());
-        monografia.setAno(Integer.parseInt(PreencheMonografia.preencheAno()));
-        monografia.setNumeroDePaginas(Integer.parseInt(PreencheMonografia.preencheNroPaginas()));
-        monografia.setPalavrasChaves(PreencheMonografia.preenchePalavrasChaves());
-        monografia.setResumo(PreencheMonografia.preencheResumo());
-        monografia.setAbstract(PreencheMonografia.preencheAbstract());
+        String titulo = PreencheMonografia.preencheTitulo();
+        //PreencheMonografia.preencheAutor());
+        //monografia.setTipo(PreencheMonografia.preencheTipo());
+        //monografia.setInstituicao(PreencheMonografia.preencheInstituicao());
+        //monografia.setOrientador(PreencheMonografia.preencheOrientador());
+        //monografia.setCurso(PreencheMonografia.preencheCurso());
+        //monografia.setAno(Integer.parseInt(PreencheMonografia.preencheAno()));
+        //monografia.setNumeroDePaginas(Integer.parseInt(PreencheMonografia.preencheNroPaginas()));
+        //monografia.setPalavrasChaves(PreencheMonografia.preenchePalavrasChaves());
+        //monografia.setResumo(PreencheMonografia.preencheResumo());
+        //monografia.setAbstract(PreencheMonografia.preencheAbstract());
         System.out.println("===============================================");
-        return monografia;
+        return null;
     }
 
     public static void msg(String s) {
@@ -137,15 +139,17 @@ public class ExecutorDeMonografias {
         resumo += "in ligula est, placerat quis maximus vel, imperdiet eu sapien.\n";
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
         resumo += "enim ultrices, in interdum lacus blandit. Class aptent taciti.\n";
-        controle.incluir(new Monografia("Monografia 1", "Graduação", "Leonardo", "Unipampa", "Aline", "ES", 2020, 200, palavras, resumo, resumo + " Abstract!"));
-        controle.incluir(new Monografia("Monografia 2", "Especialização", "Amanda", "Unipampa", "Aline", "ES", 2022, 150, palavras, resumo + "resumo2", resumo + "Abstract2"));
-        controle.incluir(new Monografia("Monografia 3", "Mestrado", "Leonardo", "MIT", "Jhon stuart", "ES", 2030, 350, palavras, resumo + "resumo3", resumo + "Abstract3"));
-        controle.incluir(new Monografia("Monografia 4", "Doutorado", "Amanda", "Oxford", "Jhon lenon", "ES", 2031, 450, palavras, resumo + "resumo4", resumo + "Abstract4"));
+        //controle.incluir(new Monografia("Monografia 1", "Graduação", "Leonardo", "Unipampa", "Aline", "ES", 2020, 200, palavras, resumo, resumo + " Abstract!"));
+        //controle.incluir(new Monografia("Monografia 2", "Especialização", "Amanda", "Unipampa", "Aline", "ES", 2022, 150, palavras, resumo + "resumo2", resumo + "Abstract2"));
+        //controle.incluir(new Monografia("Monografia 3", "Mestrado", "Leonardo", "MIT", "Jhon stuart", "ES", 2030, 350, palavras, resumo + "resumo3", resumo + "Abstract3"));
+        //controle.incluir(new Monografia("Monografia 4", "Doutorado", "Amanda", "Oxford", "Jhon lenon", "ES", 2031, 450, palavras, resumo + "resumo4", resumo + "Abstract4"));
     }
+
     /**
      * pega o novo valor que o usuario quer para preencher o novo objeto
+     *
      * @param atributo
-     * @return 
+     * @return
      */
     public static String PegarValor(int atributo) {
         switch (atributo) {

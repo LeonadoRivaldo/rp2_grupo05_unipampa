@@ -5,130 +5,31 @@
  */
 package Repositorio.trabalho_1.monografias;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.SubmissaoCientificia;
+import java.util.List;
+
 /**
  *
  * @author leona_000
  */
-public class Monografia {
+public class Monografia extends SubmissaoCientificia {
 
-    //atributos
-    private String titulo;
-    private String situacao = "Sob avaliação";
-    private String tipo;
-    private String autor;
-    private String instituicao;
     private String orientador;
     private String curso;
     private int ano;
     private int numeroDePaginas;
-    private String[] palavrasChaves;
     private String resumo;
     private String Abstract;
     
-    /**
-     * construtor simples 
-     */
-    public Monografia(){
-    }
-    
-    /**
-     * construtur completo
-     * @param titulo
-     * @param tipo
-     * @param autor
-     * @param instituicao
-     * @param orientador
-     * @param curso
-     * @param ano
-     * @param numeroDePaginas
-     * @param palavrasChaves
-     * @param resumo
-     * @param Abstract 
-     */
-    public Monografia(String titulo, String tipo, String autor, String instituicao, String orientador, String curso, int ano, int numeroDePaginas, String[] palavrasChaves, String resumo, String Abstract) {
-        this.titulo = titulo;
-        this.tipo = tipo;
-        this.autor = autor;
-        this.instituicao = instituicao;
+    public Monografia(String orientador, String curso, int ano, int numeroDePaginas, String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
+        super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         this.orientador = orientador;
         this.curso = curso;
         this.ano = ano;
         this.numeroDePaginas = numeroDePaginas;
-        this.palavrasChaves = palavrasChaves;
         this.resumo = resumo;
         this.Abstract = Abstract;
-    }
-
-    /**
-     * Recupera a informação do titulo da monografia
-     *
-     * @return uma string que contem o titulo
-     */
-    public String getTitulo() {
-        return this.titulo;
-    }
-
-    /**
-     * @param titulo the titulo to set
-     */
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    /**
-     * @return the situacao
-     */
-    public String getSituacao() {
-        return situacao;
-    }
-
-    /**
-     * @param situacao the situacao to set
-     */
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * @return the autor
-     */
-    public String getAutor() {
-        return autor;
-    }
-
-    /**
-     * @param autor the autor to set
-     */
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    /**
-     * @return the instituicao
-     */
-    public String getInstituicao() {
-        return instituicao;
-    }
-
-    /**
-     * @param instituicao the instituicao to set
-     */
-    public void setInstituicao(String instituicao) {
-        this.instituicao = instituicao;
     }
 
     /**
@@ -185,20 +86,6 @@ public class Monografia {
      */
     public void setNumeroDePaginas(int numeroDePaginas) {
         this.numeroDePaginas = numeroDePaginas;
-    }
-
-    /**
-     * @return the palavrasChaves
-     */
-    public String[] getPalavrasChaves() {
-        return palavrasChaves;
-    }
-
-    /**
-     * @param palavrasChaves the palavrasChaves to set
-     */
-    public void setPalavrasChaves(String[] palavrasChaves) {
-        this.palavrasChaves = palavrasChaves;
     }
 
     /**
