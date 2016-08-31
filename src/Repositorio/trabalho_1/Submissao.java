@@ -12,11 +12,10 @@ import java.util.List;
  * @author leona_000
  */
 public abstract class Submissao {
-    
-    
+
     protected String tituloSubmissao;
     protected Situacao situacaoSubmissao;
-    protected List<String> autor;
+    protected List<String> autores;
     protected int MAX_AUTORES;
 
     /**
@@ -51,14 +50,43 @@ public abstract class Submissao {
      * @return the autor
      */
     public List<String> getAutor() {
-        return autor;
+        return autores;
     }
 
     /**
-     * @param autor the autor to set
+     * @param autores the autor to set
+     * @return true quando a lista de autores é menor q o maximo / false quando
+     * a lista é maior
      */
-    public void setAutor(List<String> autor) {
-        this.autor = autor;
+    public boolean setAutor(List<String> autores) {
+        if (this.MAX_AUTORES > autores.size()) {
+            this.autores = autores;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Adiciona um autor sempre q lista de autores não estiver cheia
+     *
+     * @param autor
+     * @return
+     */
+    public boolean addAutor(String autor) {
+        if (this.MAX_AUTORES > this.autores.size()) {
+            this.autores.add(autor);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isAutor(String procuraAutor) {
+        for (String autor : autores) {
+            if (autor.equalsIgnoreCase(procuraAutor)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -74,19 +102,25 @@ public abstract class Submissao {
     public void setMAX_AUTORES(int MAX_AUTORES) {
         this.MAX_AUTORES = MAX_AUTORES;
     }
-    
-    
-    
-    protected enum Situacao{};
-    
-    
-    
+
+    protected enum Situacao {
+    };
+
     /**
-     * Estruturoda "\nNomeDoAtributo: " + atributo 
-     * @return 
+     * Estruturoda "\nNomeDoAtributo: " + atributo
+     *
+     * @return
      */
-    public String toString(){
-        return "\nTitulo: " + getTituloSubmissao() + "\nSituacao: " + getSituacaoSubmissao().name();
+    @Override
+    public String toString() {
+        String string = "";
+        string += "\nTitulo: " + getTituloSubmissao();
+        string += "\nSituacao: " + getSituacaoSubmissao().name();
+        string += "\nAutores: ";
+        for (String s : autores) {
+            string += s + ", ";
+        }
+        return string;
     }
-    
+
 }
