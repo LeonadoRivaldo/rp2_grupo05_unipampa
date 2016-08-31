@@ -1,19 +1,21 @@
 package Repositorio.trabalho_1.resumo;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class ClassePrincipalResumo {
-    public static void main(String[] args) {
-        ControladorResumo resumo = new ControladorResumo();
+
+    private static ControladorResumo resumo = new ControladorResumo();
+
+    public static void principal() {
+
         String titulo = null;
         int situacao;
         String autor;
         String instituicao;
         String palavrachave;
         Scanner e = new Scanner(System.in);
-      
-        
+
         int n = 0;
         do {
             System.out.println("===============================================");
