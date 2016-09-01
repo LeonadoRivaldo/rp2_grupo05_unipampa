@@ -114,9 +114,8 @@ public class ExecutorDeMonografias {
     public static Monografia criaMonografia() {
         //Monografia monografia = new Monografia();
         System.out.println("===============================================");
-        String titulo = PreencheMonografia.preencheTitulo();
-        //PreencheMonografia.preencheAutor());
-        
+        String tituloSubmissao = PreencheMonografia.preencheTitulo();
+        List<String> autores = PreencheMonografia.preencheAutor();
         //monografia.setTipo(PreencheMonografia.preencheTipo());
         //monografia.setInstituicao(PreencheMonografia.preencheInstituicao());
         //monografia.setOrientador(PreencheMonografia.preencheOrientador());
@@ -126,6 +125,20 @@ public class ExecutorDeMonografias {
         //monografia.setPalavrasChaves(PreencheMonografia.preenchePalavrasChaves());
         //monografia.setResumo(PreencheMonografia.preencheResumo());
         //monografia.setAbstract(PreencheMonografia.preencheAbstract());
+    String orientador;
+    String curso;
+    int ano;
+    int numeroDePaginas;
+    String resumo;
+    String Abstract;
+    
+    String situacaoSubmissao;
+    int MAX_AUTORES;
+    List<String> instituicoes;
+    List<String> palavrasChave;
+    int MAX_PALAVRASCHAVES;
+    int MAX_INSTITUICOES; 
+    
         System.out.println("===============================================");
         return null;
     }
@@ -171,7 +184,7 @@ public class ExecutorDeMonografias {
             case 8:
                 return PreencheMonografia.preencheNroPaginas();
             case 9:
-                String[] palavras = PreencheMonografia.preenchePalavrasChaves();
+                List<String> palavras = PreencheMonografia.preenchePalavrasChaves();
                 String frase = "";
                 for (String s : palavras) {
                     frase += s + " ";

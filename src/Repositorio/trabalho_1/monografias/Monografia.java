@@ -21,7 +21,23 @@ public class Monografia extends SubmissaoCientificia {
     private int numeroDePaginas;
     private String resumo;
     private String Abstract;
-    
+    /**
+     * 
+     * @param orientador
+     * @param curso
+     * @param ano
+     * @param numeroDePaginas
+     * @param resumo
+     * @param Abstract
+     * @param tituloSubmissao
+     * @param situacaoSubmissao
+     * @param autores
+     * @param MAX_AUTORES
+     * @param instituicoes
+     * @param palavrasChave
+     * @param MAX_PALAVRASCHAVES
+     * @param MAX_INSTITUICOES 
+     */
     public Monografia(String orientador, String curso, int ano, int numeroDePaginas, String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         this.orientador = orientador;
