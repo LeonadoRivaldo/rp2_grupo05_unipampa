@@ -55,7 +55,7 @@ public class Executor {
         System.out.println("==================================");
         Scanner entrada = new Scanner(System.in);
         for (int i = 0; i < controle.palestras.size(); i++) {
-            System.out.println((i + 1) + "-" + controle.palestras.get(i).getTitulo());
+            System.out.println((i + 1) + "-" + controle.palestras.get(i).getTituloSubmissao());
         }
         System.out.println("----------------------------------");
         System.out.print(frase);
@@ -69,10 +69,10 @@ public class Executor {
      */
     private static void exibir(Palestra palestra) {
         System.out.println("==================================");
-        System.out.println("titulo: " + palestra.getTitulo());
+        System.out.println("titulo: " + palestra.getTituloSubmissao());
         System.out.println("autor: " + palestra.getAutor());
         System.out.println("resumo: " + palestra.getResumo());
-        System.out.println("Abstract: " + palestra.getabstract());
+        System.out.println("Abstract: " + palestra.getAbstrac());
         System.out.println("duracao: " + palestra.getDuracao());
         System.out.println("curriculo: " + palestra.getCurriculo());
         System.out.println("==================================");
@@ -81,7 +81,7 @@ public class Executor {
     private static int editarpalestra(Palestra palestra) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("==================================");
-        System.out.println("1-titulo: " + palestra.getTitulo());
+        System.out.println("1-titulo: " + palestra.getTituloSubmissao());
         System.out.println("2-autor: " + palestra.getAutor());
         System.out.println("3-resumo: " + palestra.getResumo());
         System.out.println("4-Abstract: " + palestra.getabstract());
