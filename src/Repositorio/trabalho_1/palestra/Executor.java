@@ -24,12 +24,12 @@ public class Executor {
      */
     public static Palestra criar() {
         Scanner entrada = new Scanner(System.in);
-        
+
         System.out.println("Qual o titulo da sua Palestra: ");
         String tituloSubmissao;
         tituloSubmissao = (entrada.nextLine());
         System.out.println("Qual o nome do Autor: ");
-        ArrayList<String> autores = new ArrayList();       
+        ArrayList<String> autores = new ArrayList();
         autores.add(entrada.nextLine());
         System.out.println("Escreva um resumo: ");
         String resumo;
@@ -82,9 +82,9 @@ public class Executor {
         Scanner entrada = new Scanner(System.in);
         System.out.println("==================================");
         System.out.println("1-titulo: " + palestra.getTituloSubmissao());
-        System.out.println("2-autor: " + palestra.getAutor());
+        System.out.println("2-autor: " + palestra.getAutor().get(0));
         System.out.println("3-resumo: " + palestra.getResumo());
-        System.out.println("4-Abstract: " + palestra.getabstract());
+        System.out.println("4-Abstract: " + palestra.getAbstrac());
         System.out.println("5-duracao: " + palestra.getDuracao());
         System.out.println("6-curriculo: " + palestra.getCurriculo());
         System.out.println("==================================");
@@ -127,8 +127,10 @@ public class Executor {
 
     public void menu() {
         Scanner entrada = new Scanner(System.in);
-        c.incluir(new Palestra("arroz", "lucielee", "alheejds", "lalala", 46, "ES"));
-        c.incluir(new Palestra("batata", "frita", "hahaha", "hyshys", 37, "es"));
+        ArrayList<String> autores = new ArrayList();
+        autores.add("Colega Amanda");
+        c.incluir(new Palestra("CC", "doce", "jdhk", 35, "Palestra2", Situacao.sobAvaliacao, autores, 1));
+        c.incluir(new Palestra("ES", "comida", "gfgjjk", 50, "Palestra1", Situacao.sobAvaliacao, autores, 1));
 
         int opcao = 0;
         do {
@@ -166,7 +168,8 @@ public class Executor {
 
     }
 
-    /* public static void main(String[] args) {
-     menu();
-     }*/
+    public static void main(String[] args) {
+        Executor e = new Executor();
+        e.menu();
+    }
 }

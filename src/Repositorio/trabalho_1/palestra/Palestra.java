@@ -12,7 +12,17 @@ public class Palestra extends SubmissaoApresentacao {
 
    
     private String curriculo;
-
+/**
+ * 
+ * @param curriculo
+ * @param resumo
+ * @param abstrac
+ * @param duracao
+ * @param tituloSubmissao
+ * @param situacaoSubmissao
+ * @param autores
+ * @param MAX_AUTORES 
+ */
     public Palestra(String curriculo, String resumo, String abstrac, int duracao, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES) {
         super(resumo, abstrac, duracao, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES);
         this.curriculo = curriculo;

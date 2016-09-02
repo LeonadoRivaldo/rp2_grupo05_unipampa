@@ -66,7 +66,7 @@ public abstract class Submissao {
      * a lista é maior
      */
     public boolean setAutor(List<String> autores) {
-        if (this.MAX_AUTORES > autores.size()) {
+        if (this.MAX_AUTORES >= autores.size()) {
             this.autores = autores;
             return true;
         }
