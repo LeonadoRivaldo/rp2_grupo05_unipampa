@@ -70,7 +70,7 @@ public class Executor {
     private static void exibir(Palestra palestra) {
         System.out.println("==================================");
         System.out.println("titulo: " + palestra.getTituloSubmissao());
-        System.out.println("autor: " + palestra.getAutor());
+        System.out.println("autor: " + palestra.getAutor().get(0));
         System.out.println("resumo: " + palestra.getResumo());
         System.out.println("Abstract: " + palestra.getAbstrac());
         System.out.println("duracao: " + palestra.getDuracao());
@@ -124,6 +124,11 @@ public class Executor {
         }
         return null;
     }
+    
+    public static void msg(String s) {
+        System.out.println("\n=============================\n" + s + "\n=============================\n");
+    }
+
 
     public void menu() {
         Scanner entrada = new Scanner(System.in);
@@ -149,18 +154,21 @@ public class Executor {
                     break;
                 case 1:
                     c.incluir(criar());
+                    msg("PALETRA INCLUIDA");
                     break;
                 case 2:
                     exibir(c.consultar(consultarP(c, "Qual palestra voce quer visualizar: ")));
                     break;
                 case 3:
                     c.excluir(consultarP(c, "Qual palestra voce quer excluir: "));
+                    msg("PALESTRA EXCLUIDA");
                     break;
                 case 4:
                     int indice = consultarP(c, "Qual palestra voce quer editar: ");
                     Palestra palestra = c.consultar(indice);
                     int atributo = editarpalestra(palestra);
                     c.editar(atributo, pegarvalor(atributo), palestra);
+                    msg("PALESTRA EDITADA");
                     break;
             }
 
