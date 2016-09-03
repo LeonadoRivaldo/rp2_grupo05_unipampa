@@ -6,6 +6,7 @@
 package Repositorio.trabalho_1.artigos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,49 +15,57 @@ import java.util.Scanner;
  */
 public class ControleDeArtigos {
 
-  
     ArrayList<Artigo> artigos = new ArrayList<Artigo>();
+
     /**
      * Método para incluir um artigo
      */
-    
-    public void incluir(Artigo artigo){
+
+    public void incluir(Artigo artigo) {
         artigos.add(artigo);
     }
-    
+
     /**
      * Método para consultar um artigo
      */
-    public Artigo consultar(int y){
-          return artigos.get(y);
-           
-     }
-    
+    public Artigo consultar(int y) {
+        return artigos.get(y);
+
+    }
+
     /**
-     * Método para editar uma artigo
-     * 1 - String titulo,
-     * 2 - String[] autor,
-     * 3 - String[] instituicao, 
-     * 4 - String[] palavrachave, 
-     * 5 - String resumo,
-     * 6 - String Abstract
+     * Método para editar uma artigo 1 - String titulo, 2 - String[] autor, 3 -
+     * String[] instituicao, 4 - String[] palavrachave, 5 - String resumo, 6 -
+     * String Abstract
      */
-    public void editar(int atributo, String valor, Artigo artigo ){
-        switch(atributo) {
+    public void editar(int atributo, String valor, Artigo artigo) {
+        switch (atributo) {
             case 1:
-                artigo.setTitulo(valor);
+                artigo.setTituloSubmissao(valor);
                 break;
             case 2:
                 String[] autor = valor.split(" ");
-                artigo.setAutor(autor);
+                List<String> autores = new ArrayList();
+                for (String a : autor) {
+                    autores.add(a);
+                }
+                artigo.setAutor(autores);
                 break;
             case 3:
                 String[] instituicao = valor.split(" ");
-                artigo.setInstituicao(instituicao);
+                List<String> instituicoes = new ArrayList();
+                for (String inst : instituicao) {
+                    instituicoes.add(inst);
+                }
+                artigo.setInstituicao(instituicoes);
                 break;
             case 4:
                 String[] palavrachave = valor.split(" ");
-                artigo.setPalavrachave(palavrachave);
+                List<String> palavras = new ArrayList();
+                for (String p : palavrachave) {
+                    palavras.add(p);
+                }
+                artigo.setPalavrasChave(palavras);
                 break;
             case 5:
                 artigo.setResumo(valor);
@@ -65,15 +74,15 @@ public class ControleDeArtigos {
                 artigo.setAbstract(valor);
                 break;
         }
-        
+
     }
+
     /**
      * Método para excluir uma artigo
      */
-    public void excluir(int y){
-         artigos.remove(y);
-        
+    public void excluir(int y) {
+        artigos.remove(y);
+
     }
-  
-    
+
 }

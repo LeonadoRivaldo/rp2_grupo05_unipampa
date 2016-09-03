@@ -26,19 +26,23 @@ public abstract class Submissao {
         this.MAX_AUTORES = MAX_AUTORES;
     }
 
-    public boolean verificaSituacao(String situacao) {
-        return situacao.equalsIgnoreCase(Situacao.aprovado.getNome())||
-               situacao.equalsIgnoreCase(Situacao.reprovado.getNome())||
-               situacao.equalsIgnoreCase(Situacao.sobAvaliacao.getNome());
-
+    public static Situacao verificaSituacao(String situacao) {
+        if (situacao.equalsIgnoreCase(Situacao.aprovado.getNome())) {
+            return Situacao.aprovado;
+        } else if (situacao.equalsIgnoreCase(Situacao.sobAvaliacao.getNome())) {
+            return Situacao.sobAvaliacao;
+        } else if (situacao.equalsIgnoreCase(Situacao.reprovado.getNome())) {
+            return Situacao.reprovado;
+        }
+        return null;
     }
 
     public boolean verificaTipo(String tipo) {
-        return tipo.equalsIgnoreCase(Tipo.doutorado.getNome()) || 
-               tipo.equalsIgnoreCase(Tipo.graduacao.getNome()) ||
-               tipo.equalsIgnoreCase(Tipo.especializacao.getNome())||
-               tipo.equalsIgnoreCase(Tipo.mestrado.getNome());
-       
+        return tipo.equalsIgnoreCase(Tipo.doutorado.getNome())
+                || tipo.equalsIgnoreCase(Tipo.graduacao.getNome())
+                || tipo.equalsIgnoreCase(Tipo.especializacao.getNome())
+                || tipo.equalsIgnoreCase(Tipo.mestrado.getNome());
+
     }
 
     /**

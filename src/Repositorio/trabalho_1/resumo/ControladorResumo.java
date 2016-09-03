@@ -10,10 +10,13 @@ public class ControladorResumo {
 
     private static ArrayList<Resumo> resumos = new ArrayList();
 
+    public ArrayList<Resumo> getResumos() {
+        return resumos;
+    }
     Resumo open;
 
-    public void incluir(String titulo, int situacao, String autor, String instituicao, ArrayList<String> palavraschave) {
-      open=new Resumo(titulo, Situacao.sobAvaliacao, palavraschave, situacao, palavraschave, palavraschave, situacao, situacao);
+    public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
+        open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
         resumos.add(open);
     }
 
@@ -57,7 +60,7 @@ public class ControladorResumo {
             case 1:
                 resumo.setTituloSubmissao(valor);
                 break;
-            
+
             case 2:
                 List<String> autor = new ArrayList<String>();
                 autor.add(valor);
@@ -69,16 +72,16 @@ public class ControladorResumo {
                 resumo.setInstituicao(insti);
                 break;
             case 4:
-                 String[] p = valor.split(" ");
+                String[] p = valor.split(" ");
                 List<String> palavras = new ArrayList<>();
                 for (String pala : p) {
                     palavras.add(pala);
                 }
                 resumo.setPalavrasChave(palavras);
                 break;
-          
+
         }
         return true;
     }
 
-    }
+}
