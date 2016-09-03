@@ -25,7 +25,7 @@ public class ExecutorDeMonografias {
     private static void exibir(Monografia monografia) {
         System.out.println("===================================================");
         System.out.println("Titulo: " + monografia.getTituloSubmissao());
-        System.out.println("Situacao: " + monografia.getSituacaoSubmissao());
+        System.out.println("Situacao: " + monografia.getSituacaoSubmissao().getNome());
         //System.out.println("Tipo: " + monografia.getTipo());
         System.out.println("Autor: " + monografia.getAutor().get(0));
         System.out.println("Instituição: " + monografia.getInstituicao().get(0));
@@ -55,56 +55,95 @@ public class ExecutorDeMonografias {
         do {
             System.out.println("===================================================");
             System.out.println("1-Titulo: " + monografia.getTituloSubmissao());
-            //System.out.println("2-Situacao: " + monografia.getSituacao());
-            //System.out.println("2-Tipo: " + monografia.getTipo());
-            System.out.println("3-Autor: " + monografia.getAutor().get(0));
-            System.out.println("4-Instituição: " + monografia.getInstituicao().get(0));
-            System.out.println("5-Orientador: " + monografia.getOrientador());
-            System.out.println("6-Curso: " + monografia.getCurso());
-            System.out.println("7-Ano: " + monografia.getAno());
-            System.out.println("8-Numero De Paginas: " + monografia.getNumeroDePaginas());
-            System.out.print("9-Palavras-chaves: ");
+            System.out.println("2-Situacao: " + monografia.getSituacaoSubmissao().getNome());
+            System.out.println("3-Tipo: //TODO!");
+            System.out.println("4-Autor: " + monografia.getAutor().get(0));
+            System.out.println("5-Instituição: " + monografia.getInstituicao().get(0));
+            System.out.println("6-Orientador: " + monografia.getOrientador());
+            System.out.println("7-Curso: " + monografia.getCurso());
+            System.out.println("8-Ano: " + monografia.getAno());
+            System.out.println("9-Numero De Paginas: " + monografia.getNumeroDePaginas());
+            System.out.print("10-Palavras-chaves: ");
             List<String> palavras = monografia.getPalavrasChave();
             for (String palavra : palavras) {
                 System.out.print(palavra + ", ");
             }
             System.out.println("");
-            System.out.println("10-Resumo: " + monografia.getResumo());
-            System.out.println("11-Abstract: " + monografia.getAbstract());
+            System.out.println("11-Resumo: " + monografia.getResumo());
+            System.out.println("12-Abstract: " + monografia.getAbstract());
             System.out.println("===================================================");
             System.out.print("Qual atributo você quer editar: ");
             in = entrada.nextInt();
-            if (in > 11 || in < 1) {
+            if (in > 12 || in < 1) {
                 msg("digito invalido");
             }
-        } while (in > 11 || in < 1);
+        } while (in > 12 || in < 1);
         return in;
     }
 
     /**
      * Consulta monografias
      *
-     * @param c
-     * @param frase
+     * @param c controler de monografia
+     * @param frase String que vai aparecer para o usuario
      * @return
      */
     public static int ConsultarMonografia(ControllerDeMonografias c, String frase) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("==============================");
-        int in = -1;
-        do {
-            int i = 0;
+        int in = -1, i = 0;
+        String pesquisa = "";
+        System.out.println("Pesquisa por titulo ou consulta em lista? (pesquisa/lista)");
+        pesquisa = entrada.nextLine();
+        if (pesquisa.equalsIgnoreCase("lista")) {
+            System.out.println("--------------------------------------------");
             for (Monografia monografia : c.monografias) {
                 i++;
                 System.out.println(i + "- " + monografia.getTituloSubmissao());
+                if (i % 10 == 0) {
+                    do {
+                        System.out.println("------------------------------");
+                        System.out.print(frase + " ou -1 para continuar:");
+                        in = entrada.nextInt();
+                        System.out.println("------------------------------");
+                        if (in == -1) {
+                            break;
+                        }
+                    } while (in < 1 || in > i);
+                    if (in != -1) {
+                        break;
+                    }
+                }
             }
-            System.out.println("------------------------------");
-            System.out.println(frase);
-            in = entrada.nextInt();
-            if (in < 1 || in > c.monografias.size()) {
-                msg("digito invalido");
+            do {
+                if (i == c.monografias.size()) {
+                    System.out.println("fim da lista!");
+                    System.out.println("------------------------------");
+                    System.out.print(frase + ": ");
+                    in = entrada.nextInt();
+                }
+            } while (in < 1 || in > c.monografias.size());
+        } else {
+            System.out.println("--------------------------------------------");
+            String autor = PreencheMonografia.preencheAutor().get(0);
+            i = 0;
+            for (Monografia monografia : c.monografias) {
+                List<String> autores = monografia.getAutor();
+                for (String a : autores) {
+                    if (a.contains(autor)) {
+                        i++;
+                        int pos = c.monografias.indexOf(monografia);
+                        System.out.println(pos + "- " + monografia.getTituloSubmissao());
+                        break;
+                    }
+                }
             }
-        } while (in < 1 || in > c.monografias.size());
+            do {
+                System.out.println("------------------------------");
+                System.out.print(frase + ": ");
+                in = entrada.nextInt();
+            } while (in < 1 || in > c.monografias.size());
+        }
         return --in;
     }
 
@@ -114,11 +153,10 @@ public class ExecutorDeMonografias {
      * @return objeto monografia
      */
     public static Monografia criaMonografia() {
-        //Monografia monografia = new Monografia();
         System.out.println("===============================================");
         String tituloSubmissao = PreencheMonografia.preencheTitulo();
         List<String> autores = PreencheMonografia.preencheAutor();
-        String tipo  = PreencheMonografia.preencheTipo();
+        String tipo = PreencheMonografia.preencheTipo();
         String instituicao = PreencheMonografia.preencheInstituicao();
         List<String> instituicoes = new ArrayList();
         instituicoes.add(instituicao);
@@ -127,14 +165,14 @@ public class ExecutorDeMonografias {
         int ano = Integer.parseInt(PreencheMonografia.preencheAno());
         int numeroDePaginas = Integer.parseInt(PreencheMonografia.preencheNroPaginas());
         List<String> palavrasChave = PreencheMonografia.preenchePalavrasChaves();
-        String resumo  = PreencheMonografia.preencheResumo();
+        String resumo = PreencheMonografia.preencheResumo();
         String Abstract = PreencheMonografia.preencheAbstract();
         Situacao situacaoSubmissao = Situacao.sobAvaliacao;
         int MAX_AUTORES = 1;
-        int MAX_PALAVRASCHAVES= 4;
+        int MAX_PALAVRASCHAVES = 4;
         int MAX_INSTITUICOES = 1;
-        Monografia monografia = new Monografia(tipo, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         System.out.println("===============================================");
+        Monografia monografia = new Monografia(tipo, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         return monografia;
     }
 
@@ -144,18 +182,22 @@ public class ExecutorDeMonografias {
 
     public static void baseDeDados(ControllerDeMonografias controle) {
         List<String> palavras = new ArrayList();
+        List<String> palavras1 = new ArrayList();
+        List<String> palavras2 = new ArrayList();
         palavras.add("Um");
         palavras.add("Doi");
         palavras.add("tres");
         palavras.add("quatro");
+        palavras1.add("tres");
+        palavras2.add("quatro");
         String resumo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit\n";
         resumo += "in ligula est, placerat quis maximus vel, imperdiet eu sapien.\n";
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
         resumo += "enim ultrices, in interdum lacus blandit. Class aptent taciti.\n";
-        //controle.incluir(new Monografia("Monografia 1", "Graduação", "Leonardo", "Unipampa", "Aline", "ES", 2020, 200, palavras, resumo, resumo + " Abstract!"));
-        //controle.incluir(new Monografia("Monografia 2", "Especialização", "Amanda", "Unipampa", "Aline", "ES", 2022, 150, palavras, resumo + "resumo2", resumo + "Abstract2"));
-        //controle.incluir(new Monografia("Monografia 3", "Mestrado", "Leonardo", "MIT", "Jhon stuart", "ES", 2030, 350, palavras, resumo + "resumo3", resumo + "Abstract3"));
-        //controle.incluir(new Monografia("Monografia 4", "Doutorado", "Amanda", "Oxford", "Jhon lenon", "ES", 2031, 450, palavras, resumo + "resumo4", resumo + "Abstract4"));
+        for (int i = 0; i < 50; i++) {
+            controle.incluir(new Monografia(("Graduacao" + i), "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, i, palavras1, palavras2, 4, 1));
+
+        }
     }
 
     /**
@@ -169,34 +211,36 @@ public class ExecutorDeMonografias {
             case 1:
                 return PreencheMonografia.preencheTitulo();
             case 2:
-                List<String> autores = PreencheMonografia.preencheAutor();
-                String frase1 = "";
-                for (String s : autores) {
-                    frase1 += s + " ";
-                }
-                return frase1;
+                return PreencheMonografia.preencheSituacao();
             case 3:
                 return PreencheMonografia.preencheTipo();
             case 4:
-                return PreencheMonografia.preencheInstituicao();
+                List<String> autores = PreencheMonografia.preencheAutor();
+                String frase1 = "";
+                for (String s : autores) {
+                    frase1 += s + "-";
+                }
+                return frase1;
             case 5:
-                return PreencheMonografia.preencheOrientador();
+                return PreencheMonografia.preencheInstituicao();
             case 6:
-                return PreencheMonografia.preencheCurso();
+                return PreencheMonografia.preencheOrientador();
             case 7:
-                return PreencheMonografia.preencheAno();
+                return PreencheMonografia.preencheCurso();
             case 8:
-                return PreencheMonografia.preencheNroPaginas();
+                return PreencheMonografia.preencheAno();
             case 9:
+                return PreencheMonografia.preencheNroPaginas();
+            case 10:
                 List<String> palavras = PreencheMonografia.preenchePalavrasChaves();
                 String frase = "";
                 for (String s : palavras) {
-                    frase += s + " ";
+                    frase += s + "-";
                 }
                 return frase;
-            case 10:
-                return PreencheMonografia.preencheAbstract();
             case 11:
+                return PreencheMonografia.preencheAbstract();
+            case 12:
                 return PreencheMonografia.preencheAbstract();
         }
         return null;
@@ -214,7 +258,7 @@ public class ExecutorDeMonografias {
             System.out.println("###################################################");
             System.out.println("Gerenciamento de monograficas");
             System.out.println("1- incluir");
-            System.out.println("2- consular");
+            System.out.println("2- consultar");
             System.out.println("3- excluir");
             System.out.println("4- editar");
             System.out.println("0- sair");
@@ -239,7 +283,7 @@ public class ExecutorDeMonografias {
                     if (controller.monografias.size() <= 0) {
                         System.out.println("A lista está vazia!");
                     } else {
-                        exibir(controller.consultar(ConsultarMonografia(controller, "Qual monografia você quer visualizar:")));
+                        exibir(controller.consultar(ConsultarMonografia(controller, "Qual monografia você quer visualizar")));
                     }
                     break;
                 case 3:
@@ -255,19 +299,26 @@ public class ExecutorDeMonografias {
                 case 4:
                     int index = ConsultarMonografia(controller, "Qual monografia você deseja editar:");
                     Monografia mono = controller.consultar(index);
-                    int atributo = editarMonografia(mono);
-                    if (controller.editar(atributo, PegarValor(atributo), mono)) {
-                        msg("MONOGRAFIA EDITADA COM SUCESSO");
-                    }
+                    int fim = 0;
+                    do {
+                        int atributo = editarMonografia(mono);
+                        if (controller.editar(atributo, PegarValor(atributo), mono)) {
+                            msg("MONOGRAFIA EDITADA COM SUCESSO");
+                        }
+                        System.out.println("====================================");
+                        System.out.println("Deseja editar outro atributo? 1- sim | 2- não ");
+                        fim = entrada.nextInt();
+                    } while (fim != 2);
                     break;
                 default:
                     break;
             }
         } while (opcao != 0);
     }
-    /*
-     public static void main(String[] args) {
-     menu();
-     }
-     */
+
+    public static void main(String[] args) {
+        ExecutorDeMonografias ex = new ExecutorDeMonografias();
+        ex.menu();
+    }
+
 }

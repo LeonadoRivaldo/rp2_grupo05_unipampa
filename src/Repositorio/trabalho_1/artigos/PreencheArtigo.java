@@ -20,8 +20,8 @@ public class PreencheArtigo {
     public static String preencheSituacao(){
         System.out.println("Informe a situação do Artigo : Aprovado/Reprovado/SobAvaliação");
          return entrada.nextLine();
-        
     }
+    
     public static String preencheTitulo() {
         System.out.println("Informe o titulo do artigo: ");
         return entrada.nextLine();

@@ -5,6 +5,8 @@
  */
 package Repositorio.trabalho_1.monografias;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,44 +78,51 @@ public class ControllerDeMonografias {
             case 1:
                 monografia.setTituloSubmissao(valor);
                 break;
-            /*  case 2:
+            /*  case 3:
              monografia.setTipo(valor);
              break;
              */
-            case 3:
+            case 2:
+                Situacao situacao = null;
+                do {
+                    situacao = Submissao.verificaSituacao(PreencheMonografia.preencheSituacao());
+                } while (situacao == null);
+                monografia.setSituacaoSubmissao(situacao);
+                break;
+            case 4:
                 List<String> autor = new ArrayList<String>();
                 autor.add(valor);
                 monografia.setAutor(autor);
                 break;
-            case 4:
+            case 5:
                 List<String> insti = new ArrayList<String>();
                 insti.add(valor);
                 monografia.setInstituicao(insti);
                 break;
-            case 5:
+            case 6:
                 monografia.setOrientador(valor);
                 break;
-            case 6:
+            case 7:
                 monografia.setCurso(valor);
                 break;
-            case 7:
+            case 8:
                 monografia.setAno(Integer.parseInt(valor));
                 break;
-            case 8:
+            case 9:
                 monografia.setNumeroDePaginas(Integer.parseInt(valor));
                 break;
-            case 9:
-                String[] p = valor.split(" ");
+            case 10:
+                String[] p = valor.split("-");
                 List<String> palavras = new ArrayList<>();
                 for (String pala : p) {
                     palavras.add(pala);
                 }
                 monografia.setPalavrasChave(palavras);
                 break;
-            case 10:
+            case 11:
                 monografia.setResumo(valor);
                 break;
-            case 11:
+            case 12:
                 monografia.setAbstract(valor);
                 break;
         }

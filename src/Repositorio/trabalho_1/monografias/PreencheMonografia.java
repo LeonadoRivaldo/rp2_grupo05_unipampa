@@ -17,6 +17,12 @@ public class PreencheMonografia {
 
     private static Scanner entrada = new Scanner(System.in);
 
+    public static String preencheSituacao() {
+        System.out.println("----------------------------------------------------");
+        System.out.println("Informe a situação da monografia : Aprovado/Reprovado/SobAvaliação");
+        return entrada.nextLine();
+    }
+
     public static String preencheTitulo() {
         System.out.println("----------------------------------------------------");
         System.out.println("Qual é o titulo da sua monografia? ");
@@ -27,7 +33,7 @@ public class PreencheMonografia {
         List<String> autor = new ArrayList();
         System.out.println("----------------------------------------------------");
         System.out.println("Qual é o autor da sua monografia? ");
-        autor.add( entrada.nextLine() );
+        autor.add(entrada.nextLine());
         return autor;
     }
 
@@ -73,19 +79,20 @@ public class PreencheMonografia {
         System.out.println("----------------------------------------------------");
         List<String> palavras = new ArrayList();
         boolean parar = false;
-        int i = 0;
-        do {
-            System.out.printf("Digite a %dº palavra-chave: ", (i+1));
+        int x = 0;
+        for (x = 0; x < 4; x++) {
+            System.out.printf("Digite a palavra-chave: ");
             String palavra = entrada.nextLine();
-            i++;
-            if (!palavra.equalsIgnoreCase("sair")&&i<4) {
+            if (!palavra.equalsIgnoreCase("sair") && x < 4) {
                 System.out.println("========== (digite sair para parar) ==========");
                 palavras.add(palavra);
             } else {
-                parar = true;
+                break;
             }
-        } while (!parar);
-        if( i >= 4 ) System.out.println("nº limite de palavras chave foi atingido!");
+        }
+        if ( x >= 4) {
+            System.out.println("nº limite de palavras chave foi atingido!");
+        }
         return palavras;
     }
 
