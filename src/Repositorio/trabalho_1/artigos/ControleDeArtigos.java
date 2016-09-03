@@ -80,6 +80,7 @@ public class ControleDeArtigos {
                     situacao = Submissao.verificaSituacao(PreencheArtigo.preencheSituacao());
                 } while (situacao == null);
                 artigo.setSituacaoSubmissao(situacao);
+                break;
         }
         
     }
