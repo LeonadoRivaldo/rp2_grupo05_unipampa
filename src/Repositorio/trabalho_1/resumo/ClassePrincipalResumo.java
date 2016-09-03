@@ -186,17 +186,7 @@ public class ClassePrincipalResumo {
                     System.out.println("Titulo do resumo :");
                     r.setTituloSubmissao(e.nextLine());
                     break;
-                case 2:
-                    System.out.println("Situação do resumo: Aprovado/Reprovado/sob avaliação: ");
-
-                    situacao = e.nextLine();
-                    if (Submissao.verificaSituacao(situacao) != null) {
-                        r.setSituacaoSubmissao(Submissao.verificaSituacao(situacao));
-                    }
-
-                    break;
-                case 3:
-                    int o;
+                case 2:int o;
                     System.out.println("Voce quer adicionar ou refazer a lista de autores ?");
                     if (e.nextLine().equalsIgnoreCase("adicionar"));
                     r.addAutor(e.nextLine());
@@ -207,13 +197,17 @@ public class ClassePrincipalResumo {
                         autor = e.nextLine();
                         System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
                         o = e.nextInt();
-                        autores.add(autor);
+                        autores.add(e.nextLine());
 
                     } while (o != 2);
+                    
+                    
+                    
+                
 
                     break;
-                case 4:
-                    System.out.println("Voce quer adicionar ou refazer a lista de instituicoes?");
+                case 3:
+                     System.out.println("Voce quer adicionar ou refazer a lista de instituicoes?");
                     if (e.nextLine().equalsIgnoreCase("adicionar")) {
                         r.addInstituicao(e.nextLine());
                     }
@@ -225,9 +219,24 @@ public class ClassePrincipalResumo {
                         instituicao = e.nextLine();
                         System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
                         op = e.nextInt();
-                        instituicoes.add(instituicao);
+                        instituicoes.add(e.nextLine());
                     } while (op != 2);
                     r.setInstituicao(instituicoes);
+                    
+                    
+                    
+                    
+
+                    break;
+                case 4:
+                    
+                        System.out.println("Situação do resumo: Aprovado/Reprovado/sob avaliação: ");
+
+                    situacao = e.nextLine();
+                    if (Submissao.verificaSituacao(situacao) != null) {
+                        r.setSituacaoSubmissao(Submissao.verificaSituacao(situacao));
+                    }
+                   
                 case 5:
                     System.out.println("Voce quer adicionar ou refazer a lista de palavras chaves?");
                     if (e.nextLine().equalsIgnoreCase("adicionar")) {
@@ -240,7 +249,7 @@ public class ClassePrincipalResumo {
                             palavrachave = e.next();
                             System.out.println("Deseja digitar outras palavras-chave?(1-SIM 2-NÃO)");
                             opcao = e.nextInt();
-                            palavraschave.add(palavrachave);
+                            palavraschave.add(e.nextLine());
                         } while (opcao != 2);
                         r.setPalavrasChave(palavraschave);
                     }
