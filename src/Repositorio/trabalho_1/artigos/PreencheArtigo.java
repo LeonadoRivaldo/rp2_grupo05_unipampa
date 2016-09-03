@@ -5,6 +5,8 @@
  */
 package Repositorio.trabalho_1.artigos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -20,27 +22,27 @@ public class PreencheArtigo {
         return entrada.nextLine();
     }
 
-    public static String[] preencheAutor() {
+    public static List<String> preencheAutor() {
         System.out.println("Informe o número de autores:");
         int n = entrada.nextInt();
         entrada.nextLine();
-        String[] autor = new String[n];
+        List<String> autor = new ArrayList();
         for (int i = 0; i < n; i++) {
             System.out.println("Digite o autor :" + (i + 1));
-            autor[i] = entrada.nextLine();
+            autor.add(entrada.nextLine());
             System.out.println("=======================================");
         }
         return autor;
     }
 
-    public static String[] preencheInstituicao() {
+    public static List<String> preencheInstituicao() {
         System.out.println("Informe o número de instituições:");//adicionar até 8 instituições
         int n = entrada.nextInt();
         entrada.nextLine();
-        String[] inst = new String[n];
+        List<String> inst = new ArrayList();
         for (int i = 0; i < n; i++) {
             System.out.println("Digite a Instituição :" + (i + 1));
-            inst[i] = entrada.nextLine();
+            inst.add(entrada.nextLine());
             System.out.println("=======================================");
         }
         return inst;
@@ -56,14 +58,14 @@ public class PreencheArtigo {
         return (entrada.nextLine());
     }
 
-    public static String[] preenchePalavrachave() {
+    public static List<String> preenchePalavrachave() {
         System.out.println("Informe o número de palavras chave do artigo: ");// adicionar até 4 palavras
         int n = entrada.nextInt();
         entrada.nextLine();
-        String[] palavras = new String[n];
+        List<String> palavras = new ArrayList();
         for (int i = 0; i < n; i++) {
             System.out.println("Digite a Palavra-Chave :" + (i + 1));
-            palavras[i] = entrada.nextLine();
+            palavras.add(entrada.nextLine());
             System.out.println("=======================================");
         }
         return (palavras);
