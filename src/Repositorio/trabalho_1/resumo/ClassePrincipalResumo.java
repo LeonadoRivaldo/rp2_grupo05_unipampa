@@ -33,7 +33,7 @@ public class ClassePrincipalResumo {
         titulo = e.nextLine();
 
         do {
-            System.out.println("Situação do resumo (Aprovado/Reprovado/sob avaliação): ");
+            System.out.println("Situação do resumo (Aprovado/Reprovado/sob avaliacao): ");
             s = Submissao.verificaSituacao(e.nextLine());
         } while (s == null);
 
@@ -236,7 +236,7 @@ public class ClassePrincipalResumo {
             case 4:
                 Situacao s = null;
                 do {
-                    System.out.println("Situação do resumo (Aprovado/Reprovado/sob avaliação): ");
+                    System.out.println("Situação do resumo (Aprovado/Reprovado/sob avaliacao): ");
                     situacao = e.nextLine();
                     s = Submissao.verificaSituacao(situacao);
                     r.setSituacaoSubmissao(s);
