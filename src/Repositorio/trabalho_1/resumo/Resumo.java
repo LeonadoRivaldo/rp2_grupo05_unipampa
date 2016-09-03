@@ -6,7 +6,18 @@ import java.util.List;
 
 
 public class Resumo extends SubmissaoCientificia {
-
+    
+    /**
+     * 
+     * @param tituloSubmissao
+     * @param situacaoSubmissao
+     * @param autores
+     * @param MAX_AUTORES
+     * @param instituicoes
+     * @param palavrasChave
+     * @param MAX_PALAVRASCHAVES
+     * @param MAX_INSTITUICOES 
+     */
     public Resumo(String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
     }
