@@ -6,6 +6,7 @@
 package Repositorio.trabalho_1.artigos;
 
 import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class ExecutarArtigos {
                 List<String> autor = PreencheArtigo.preencheAutor();
                 String frase = "";
                 for (String s : autor) {
-                    frase += s + " ";
+                    frase += s + "-";
 
                 }
                 return frase;
@@ -33,7 +34,7 @@ public class ExecutarArtigos {
                 List<String> inst = PreencheArtigo.preencheInstituicao();
                 String instituicoes = "";
                 for (String i : inst) {
-                    instituicoes += i + " ";
+                    instituicoes += i + "-";
 
                 }
                 return instituicoes;
@@ -46,11 +47,12 @@ public class ExecutarArtigos {
                 List<String> palavra = PreencheArtigo.preenchePalavrachave();
                 String p = "";
                 for (String i : palavra) {
-                    p += i + " ";
+                    p += i + "-";
 
                 }
                 return p;
-
+            case 7:
+                return PreencheArtigo.preencheSituacao();
         }
         return null;
     }
@@ -81,6 +83,7 @@ public class ExecutarArtigos {
         System.out.println("");
         System.out.println("Resumo:" + artigo.getResumo());
         System.out.println("Abstract: " + artigo.getAbstract());
+        System.out.println("Situação: " + artigo.getSituacaoSubmissao().getNome());
         System.out.println("");
         System.out.println("====================================");
     }
@@ -112,6 +115,7 @@ public class ExecutarArtigos {
         System.out.println("");
         System.out.println("5 - Resumo:" + artigo.getResumo());
         System.out.println("6 - Abstract: " + artigo.getAbstract());
+        System.out.println("7 - Situação: " + artigo.getSituacaoSubmissao().getNome());
         System.out.println("");
         System.out.println("====================================");
         Scanner entrada = new Scanner(System.in);
@@ -140,7 +144,12 @@ public class ExecutarArtigos {
         String resumo = PreencheArtigo.preencheResumo();
         String Abstract = PreencheArtigo.preencheAbstract();
         List<String> palavrasChave = PreencheArtigo.preenchePalavrachave();
-        Artigo artigo = new Artigo(resumo, Abstract, tituloSubmissao, Situacao.sobAvaliacao, autores, 8, instituicoes, palavrasChave, 4, 8);
+        Situacao situacao = null;
+        do {
+            situacao = Submissao.verificaSituacao(PreencheArtigo.preencheSituacao());
+        } while (situacao == null);
+        Artigo artigo = new Artigo(resumo, Abstract, tituloSubmissao, situacao, autores, 8, instituicoes, palavrasChave, 4, 8);
+
         return artigo;
 
     }
@@ -192,7 +201,7 @@ public class ExecutarArtigos {
     }
 
     public static void main(String[] args) {
-     ExecutarArtigos e = new ExecutarArtigos();
+        ExecutarArtigos e = new ExecutarArtigos();
         e.menu();
-     }
+    }
 }

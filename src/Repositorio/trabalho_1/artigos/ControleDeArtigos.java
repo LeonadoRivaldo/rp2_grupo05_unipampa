@@ -5,6 +5,8 @@
  */
 package Repositorio.trabalho_1.artigos;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,13 +16,12 @@ import java.util.Scanner;
  * @author Amanda Gobus
  */
 public class ControleDeArtigos {
-
+    
     ArrayList<Artigo> artigos = new ArrayList<Artigo>();
 
     /**
      * Método para incluir um artigo
      */
-
     public void incluir(Artigo artigo) {
         artigos.add(artigo);
     }
@@ -30,7 +31,7 @@ public class ControleDeArtigos {
      */
     public Artigo consultar(int y) {
         return artigos.get(y);
-
+        
     }
 
     /**
@@ -44,7 +45,7 @@ public class ControleDeArtigos {
                 artigo.setTituloSubmissao(valor);
                 break;
             case 2:
-                String[] autor = valor.split(" ");
+                String[] autor = valor.split("-");
                 List<String> autores = new ArrayList();
                 for (String a : autor) {
                     autores.add(a);
@@ -52,7 +53,7 @@ public class ControleDeArtigos {
                 artigo.setAutor(autores);
                 break;
             case 3:
-                String[] instituicao = valor.split(" ");
+                String[] instituicao = valor.split("-");
                 List<String> instituicoes = new ArrayList();
                 for (String inst : instituicao) {
                     instituicoes.add(inst);
@@ -60,7 +61,7 @@ public class ControleDeArtigos {
                 artigo.setInstituicao(instituicoes);
                 break;
             case 4:
-                String[] palavrachave = valor.split(" ");
+                String[] palavrachave = valor.split("-");
                 List<String> palavras = new ArrayList();
                 for (String p : palavrachave) {
                     palavras.add(p);
@@ -73,8 +74,14 @@ public class ControleDeArtigos {
             case 6:
                 artigo.setAbstract(valor);
                 break;
+            case 7:
+                Situacao situacao = null;
+                do {
+                    situacao = Submissao.verificaSituacao(PreencheArtigo.preencheSituacao());
+                } while (situacao == null);
+                artigo.setSituacaoSubmissao(situacao);
         }
-
+        
     }
 
     /**
@@ -82,7 +89,7 @@ public class ControleDeArtigos {
      */
     public void excluir(int y) {
         artigos.remove(y);
-
+        
     }
-
+    
 }
