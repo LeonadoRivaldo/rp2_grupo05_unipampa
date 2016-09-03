@@ -1,10 +1,11 @@
 package Repositorio.trabalho_1.resumo;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import Repositorio.trabalho_1.resumo.ControladorResumo;
 import Repositorio.trabalho_1.resumo.ClassePrincipalResumo;
 import Repositorio.trabalho_1.SubmissaoCientificia;
 import Repositorio.trabalho_1.resumo.Resumo;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,28 +19,237 @@ public class ClassePrincipalResumo {
         principal();
     }
 
-    public static String pegarvalor(int indice) {
-        Scanner entrada = new Scanner(System.in);
+    public static void criar() {
 
-        switch (indice) {
-            case 1:
-                System.out.println("Qual o novo  titulo");
-                return entrada.nextLine();
+        String titulo = null;
+        String situacao;
+        String autor;
+        String instituicao;
+        String palavrachave;
+        Situacao s = null;
+        Scanner e = new Scanner(System.in);
 
-            case 2:
-                System.out.println("Qual o novo autor ");
-                return entrada.nextLine();
+        System.out.println("Titulo do resumo :");
+        titulo = e.nextLine();
 
-            case 3:
-                System.out.println("Qual a nova instituição");
-                return entrada.nextLine();
+        do {
+            System.out.println("Situação do resumo: Aprovado/Reprovado/sob avaliação: ");
+            s = Submissao.verificaSituacao(e.nextLine());
+        } while (s == null);
 
-            case 4:
-                System.out.println("Qual a nova palavra chave");
-                return entrada.nextLine();
-        }
-        return null;
+        int o;
+        ArrayList<String> autores = new ArrayList();
+        do {
+            System.out.println("Autores do resumo");
+            autor = e.nextLine();
+            System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
+            o = e.nextInt();
+            autores.add(autor);
+            e.nextLine();
+        } while (o != 2);
+
+        int op;
+        ArrayList<String> instituicoes = new ArrayList();
+
+        do {
+            System.out.println("Insttituições do resumo");
+            instituicao = e.nextLine();
+            System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
+            op = e.nextInt();
+            instituicoes.add(instituicao);
+            e.nextLine();
+        } while (op != 2);
+
+        int opcao;
+        ArrayList<String> palavraschave = new ArrayList();
+        do {
+            System.out.println("Palavras-chaves do resumo: ");
+            palavrachave = e.next();
+            System.out.println("Deseja digitar outras palavras-chave?(1-SIM 2-NÃO)");
+            opcao = e.nextInt();
+            palavraschave.add(palavrachave);
+        } while (opcao != 2);
+        resumo.incluir(titulo, s, autores, instituicoes, palavraschave);
     }
+
+    public static void consulta(String titulo) {
+        Scanner e = new Scanner(System.in);
+        boolean naoAcho = true;
+        for (Resumo resumo : resumo.getResumos()) {
+
+            if (resumo.getTituloSubmissao().trim().equalsIgnoreCase(titulo)) {
+
+                System.out.println("DADOS");
+                System.out.println("Titulo: " + resumo.getTituloSubmissao());
+                System.out.print("Autor: ");
+                for (String autor : resumo.getAutor()) {
+                    System.out.print(autor + " ");
+                }
+
+                System.out.print("Instituição:");
+                for (String instituicao : resumo.getInstituicao()) {
+                    System.out.print(instituicao + " ,");
+                }
+                System.out.println("Situação: " + resumo.getSituacaoSubmissao());
+                System.out.print("palavra chave: ");
+                for (String palavrachave : resumo.getPalavrasChave()) {
+                    System.out.print(palavrachave + ", ");
+                }
+                naoAcho = false;
+                break;
+            }
+        }
+    }
+
+    /**
+     *
+     * @param autor
+     */
+    public static void consultaAutores(String autor) {
+        Scanner e = new Scanner(System.in);
+        boolean naoAcho = true;
+
+        for (Resumo resumo : resumo.getResumos()) {
+            List<String> listaAutores = resumo.getAutor();
+            for (String aut : listaAutores) {
+                if (aut.equalsIgnoreCase(autor)) {
+
+                    System.out.println("DADOS");
+                    System.out.println("Titulo: " + resumo.getTituloSubmissao());
+                    System.out.print("Autor: ");
+                    for (String autor1 : resumo.getAutor()) {
+                        System.out.print(autor1 + " ");
+                    }
+
+                    System.out.print("Instituição:");
+                    for (String instituicao : resumo.getInstituicao()) {
+                        System.out.print(instituicao + " ,");
+                    }
+                    System.out.println("Situação: " + resumo.getSituacaoSubmissao());
+                    System.out.print("palavra chave: ");
+                    for (String palavrachave : resumo.getPalavrasChave()) {
+                        System.out.print(palavrachave + ", ");
+                    }
+
+                }
+
+                naoAcho = false;
+                break;
+            }
+        }
+        if (naoAcho == true) {
+            System.out.println("Nenhum resumo ");
+        }
+    }
+
+    public static int pegarAtributo(Resumo resumo) {
+        Scanner e = new Scanner(System.in);
+
+        System.out.println("DADOS");
+        System.out.println("1-Titulo: " + resumo.getTituloSubmissao());
+        System.out.println("2-Autor: ");
+        for (String autor : resumo.getAutor()) {
+            System.out.println(autor + " ,");
+        }
+        System.out.println("3-Instituição: ");
+        for (String instituicao : resumo.getInstituicao()) {
+            System.out.println(instituicao + " ,");
+        }
+        System.out.println("4-Situação: " + resumo.getSituacaoSubmissao());
+        System.out.print("5-palavra chave: ");
+        for (String palavrachave : resumo.getPalavrasChave()) {
+            System.out.print(palavrachave + ", ");
+        }
+
+        return e.nextInt();
+    }
+
+    public static void editarResumo() {
+        Scanner e = new Scanner(System.in);
+        System.out.println("Qual titulo vc quer editar ?");
+        String titulo = e.nextLine();
+        Resumo r = null;
+        for (Resumo resumo : resumo.getResumos()) {
+            if (resumo.getTituloSubmissao().trim().equalsIgnoreCase(titulo)) {
+                r = resumo;
+            }
+            }
+
+            int atributo = pegarAtributo(r);
+            String situacao;
+            String autor;
+            String instituicao;
+            String palavrachave;
+
+            switch (atributo) {
+                case 1:
+                    System.out.println("Titulo do resumo :");
+                    r.setTituloSubmissao(e.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Situação do resumo: Aprovado/Reprovado/sob avaliação: ");
+
+                    situacao = e.nextLine();
+                    if (Submissao.verificaSituacao(situacao) != null) {
+                        r.setSituacaoSubmissao(Submissao.verificaSituacao(situacao));
+                    }
+
+                    break;
+                case 3:
+                    int o;
+                    System.out.println("Voce quer adicionar ou refazer a lista de autores ?");
+                    if (e.nextLine().equalsIgnoreCase("adicionar"));
+                    r.addAutor(e.nextLine());
+                    ArrayList<String> autores = new ArrayList();
+
+                    do {
+                        System.out.println("Autores do resumo");
+                        autor = e.nextLine();
+                        System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
+                        o = e.nextInt();
+                        autores.add(autor);
+
+                    } while (o != 2);
+
+                    break;
+                case 4:
+                    System.out.println("Voce quer adicionar ou refazer a lista de instituicoes?");
+                    if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                        r.addInstituicao(e.nextLine());
+                    }
+                    int op;
+                    ArrayList<String> instituicoes = new ArrayList();
+
+                    do {
+                        System.out.println("Insttituições do resumo");
+                        instituicao = e.nextLine();
+                        System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
+                        op = e.nextInt();
+                        instituicoes.add(instituicao);
+                    } while (op != 2);
+                    r.setInstituicao(instituicoes);
+                case 5:
+                    System.out.println("Voce quer adicionar ou refazer a lista de palavras chaves?");
+                    if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                        r.addPalavraChave(e.nextLine());
+                    } else {
+                        int opcao;
+                        ArrayList<String> palavraschave = new ArrayList();
+                        do {
+                            System.out.println("Palavras-chaves do resumo: ");
+                            palavrachave = e.next();
+                            System.out.println("Deseja digitar outras palavras-chave?(1-SIM 2-NÃO)");
+                            opcao = e.nextInt();
+                            palavraschave.add(palavrachave);
+                        } while (opcao != 2);
+                        r.setPalavrasChave(palavraschave);
+                    }
+                    break;
+            }
+
+        }
+
+    
 
     public static void principal() {
 
@@ -57,38 +267,26 @@ public class ClassePrincipalResumo {
             System.out.println("===============================================");
             System.out.println("1)Cadastrar resumo:");
             System.out.println("2)Pesquisar resumo");
-            System.out.println("3)deletar resumo");
-            System.out.println("4)editar resumo");
+            System.out.println("3-pesquisar resumo por autor");
+            System.out.println("4)deletar resumo");
+            System.out.println("5)editar resumo");
             System.out.println("0)sair do programa");
             n = e.nextInt();
             e.nextLine();
             switch (n) {
                 case 1:
-                    System.out.println("Titulo do resumo :");
-                    titulo = e.nextLine();
-                    System.out.println("Situação do resumo: 1-Aprovado/2-Reprovado/3-sob avaliação: ");
-                    situacao = e.nextInt();
-                    e.nextLine();
-                    System.out.println("Autor do resumo:");
-                    autor = e.nextLine();
-                    System.out.println("Instituição do resumo");
-                    instituicao = e.nextLine();
-                    int opcao;
-                    ArrayList<String> palavraschave = new ArrayList();
-                    do {
-                        System.out.println("Palavras-chaves do resumo: ");
-                        palavrachave = e.next();
-                        System.out.println("Deseja digitar outras palavras-chave?(1-SIM 2-NÃO)");
-                        opcao = e.nextInt();
-                        palavraschave.add(palavrachave);
-                    } while (opcao != 2);
-                    resumo.incluir(titulo, situacao, autor, instituicao, palavraschave);
+                    criar();
                     break;
                 case 2:
                     System.out.println("Titulo do resumo que deseja pesquisar: ");
                     ControladorResumo.consulta(e.nextLine());
                     break;
                 case 3:
+                    System.out.println("Digite o nome do autor");
+                    consultaAutores(e.nextLine());
+                    
+                    break;
+                case 4:
                     System.out.println("Digite o titulo do resumo  a ser deletado:");
                     titulo = e.nextLine();
                     if (resumo.excluir(titulo)) {
@@ -97,8 +295,8 @@ public class ClassePrincipalResumo {
                         System.out.println("Resumo não encontrado");
                     }
                     break;
-                case 4:
-                // n sei 
+                case 5:
+              editarResumo();
                 case 0:
                     break;
             }
