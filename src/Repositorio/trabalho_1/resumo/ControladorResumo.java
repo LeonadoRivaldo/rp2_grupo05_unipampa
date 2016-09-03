@@ -13,38 +13,24 @@ public class ControladorResumo {
     public ArrayList<Resumo> getResumos() {
         return resumos;
     }
-    Resumo open;
-
+    private Resumo open;
+    /**
+     * incluir publicação resumo
+     * @param titulo
+     * @param situacao
+     * @param autor
+     * @param instituicao
+     * @param palavraschave 
+     */
     public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
         open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
         resumos.add(open);
     }
-
-    public static void consulta(String titulo) {
-        Scanner e = new Scanner(System.in);
-        boolean naoAcho = true;
-        for (Resumo resumo : resumos) {
-
-            if (resumo.getTituloSubmissao().trim().equalsIgnoreCase(titulo)) {
-
-                System.out.println("DADOS");
-                System.out.println("Titulo: " + resumo.getTituloSubmissao());
-                System.out.println("Autor: " + resumo.getAutor());
-                System.out.println("Instituição: " + resumo.getInstituicao());
-                System.out.println("Situação: " + resumo.getSituacaoSubmissao());
-                for (String palavrachave : resumo.getPalavrasChave()) {
-                    System.out.println("palavra chave: " + palavrachave);
-                }
-                naoAcho = false;
-                break;
-            }
-        }
-
-        if (naoAcho == true) {
-            System.out.println("Nenhum resumo ");
-        }
-    }
-
+    /**
+     * 
+     * @param titulo
+     * @return 
+     */
     public boolean excluir(String titulo) {
         for (int i = 0; i < resumos.size(); i++) {
             if (resumos.get(i).getTituloSubmissao().equalsIgnoreCase(titulo)) {
@@ -54,13 +40,18 @@ public class ControladorResumo {
         }
         return false;
     }
-
+    /**
+     * 
+     * @param atributo
+     * @param valor
+     * @param resumo
+     * @return 
+     */
     public boolean editar(int atributo, String valor, Resumo resumo) {
         switch (atributo) {
             case 1:
                 resumo.setTituloSubmissao(valor);
                 break;
-
             case 2:
                 List<String> autor = new ArrayList<String>();
                 autor.add(valor);
