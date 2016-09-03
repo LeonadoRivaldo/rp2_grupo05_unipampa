@@ -28,6 +28,10 @@ public class Executor {
         System.out.println("Qual o titulo da sua Palestra: ");
         String tituloSubmissao;
         tituloSubmissao = (entrada.nextLine());
+        System.out.println("Situacao da Palestra: 1- Aprovado/ 2- Reprovado/ 3- SobAvaliacao");
+        int situacao;
+        situacao = entrada.nextInt();
+        entrada.nextLine();
         System.out.println("Qual o nome do Autor: ");
         ArrayList<String> autores = new ArrayList();
         autores.add(entrada.nextLine());
@@ -70,6 +74,7 @@ public class Executor {
     private static void exibir(Palestra palestra) {
         System.out.println("==================================");
         System.out.println("titulo: " + palestra.getTituloSubmissao());
+        System.out.println("situacao: " + palestra.getSituacaoSubmissao());
         System.out.println("autor: " + palestra.getAutor().get(0));
         System.out.println("resumo: " + palestra.getResumo());
         System.out.println("Abstract: " + palestra.getAbstrac());
@@ -82,11 +87,12 @@ public class Executor {
         Scanner entrada = new Scanner(System.in);
         System.out.println("==================================");
         System.out.println("1-titulo: " + palestra.getTituloSubmissao());
-        System.out.println("2-autor: " + palestra.getAutor().get(0));
-        System.out.println("3-resumo: " + palestra.getResumo());
-        System.out.println("4-Abstract: " + palestra.getAbstrac());
-        System.out.println("5-duracao: " + palestra.getDuracao());
-        System.out.println("6-curriculo: " + palestra.getCurriculo());
+        System.out.println("2-situacao: " + palestra.getSituacaoSubmissao());
+        System.out.println("3-autor: " + palestra.getAutor().get(0));
+        System.out.println("4-resumo: " + palestra.getResumo());
+        System.out.println("5-Abstract: " + palestra.getAbstrac());
+        System.out.println("6-duracao: " + palestra.getDuracao());
+        System.out.println("7-curriculo: " + palestra.getCurriculo());
         System.out.println("==================================");
         return (entrada.nextInt());
     }
@@ -106,29 +112,31 @@ public class Executor {
                 System.out.println("Qual é o novo titulo: ");
                 return entrada.nextLine();
             case 2:
-                System.out.println("Qual é o novo autor: ");
+                System.out.println("Situacao da Palestra: 1- Aprovado/ 2- Reprovado/ 3- SobAvaliacao");
                 return entrada.nextLine();
             case 3:
-                System.out.println("Qual é o novo resumo: ");
+                System.out.println("Qual é o novo autor: ");
                 return entrada.nextLine();
             case 4:
-                System.out.println("Qual é o novo Abstract: ");
+                System.out.println("Qual é o novo resumo: ");
                 return entrada.nextLine();
             case 5:
-                System.out.println("Qual é a nova duraçao: ");
+                System.out.println("Qual é o novo Abstract: ");
                 return entrada.nextLine();
             case 6:
+                System.out.println("Qual é a nova duraçao: ");
+                return entrada.nextLine();
+            case 7:
                 System.out.println("Qual é o novo curriculo: ");
                 return entrada.nextLine();
 
         }
         return null;
     }
-    
+
     public static void msg(String s) {
         System.out.println("\n=============================\n" + s + "\n=============================\n");
     }
-
 
     public void menu() {
         Scanner entrada = new Scanner(System.in);

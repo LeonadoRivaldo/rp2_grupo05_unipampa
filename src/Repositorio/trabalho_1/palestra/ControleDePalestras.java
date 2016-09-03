@@ -1,6 +1,7 @@
 package Repositorio.trabalho_1.palestra;
 
 
+import Repositorio.trabalho_1.Situacao;
 import java.util.ArrayList;
 public class ControleDePalestras {
    ArrayList<Palestra> palestras = new ArrayList<Palestra>();
@@ -40,20 +41,24 @@ public class ControleDePalestras {
                palestra.setTituloSubmissao(valor);
              break;
            case 2:
+               Situacao s = Integer.parseInt(valor);
+               palestra.setSituacaoSubmissao();
+               break;
+           case 3:
                ArrayList<String> vvv = new ArrayList();
                vvv.add(valor);
                palestra.setAutor(vvv);
                break;
-           case 3:
+           case 4:
                palestra.setResumo(valor);
                break;
-           case 4:
+           case 5:
                palestra.setAbstrac(valor);
                break;
-           case 5:
+           case 6:
                palestra.setDuracao(Integer.parseInt(valor));
                break;
-           case 6:
+           case 7:
                palestra.setCurriculo(valor);
                break;
                
