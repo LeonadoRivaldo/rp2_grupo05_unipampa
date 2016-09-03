@@ -15,8 +15,8 @@ public class ControladorResumo {
     }
     Resumo open;
 
-    public void incluir(String titulo, Situacao situacao, String autor, String instituicao, ArrayList<String> palavraschave) {
-        open = new Resumo(titulo, situacao, palavraschave, 8, palavraschave, palavraschave, 4, 8);
+    public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
+        open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
         resumos.add(open);
     }
 
