@@ -1,14 +1,44 @@
 package Repositorio.trabalho_1.resumo;
 
+import Repositorio.trabalho_1.resumo.ControladorResumo;
+import Repositorio.trabalho_1.resumo.ClassePrincipalResumo;
+import Repositorio.trabalho_1.SubmissaoCientificia;
+import Repositorio.trabalho_1.resumo.Resumo;
+
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClassePrincipalResumo {
 
     private static ControladorResumo resumo = new ControladorResumo();
-    
+
     public static void main(String[] args) {
         principal();
+    }
+
+    public static String pegarvalor(int indice) {
+        Scanner entrada = new Scanner(System.in);
+
+        switch (indice) {
+            case 1:
+                System.out.println("Qual o novo  titulo");
+                return entrada.nextLine();
+
+            case 2:
+                System.out.println("Qual o novo autor ");
+                return entrada.nextLine();
+
+            case 3:
+                System.out.println("Qual a nova instituição");
+                return entrada.nextLine();
+
+            case 4:
+                System.out.println("Qual a nova palavra chave");
+                return entrada.nextLine();
+        }
+        return null;
     }
 
     public static void principal() {
@@ -68,11 +98,7 @@ public class ClassePrincipalResumo {
                     }
                     break;
                 case 4:
-                    if (resumo.editar()) {
-                        System.out.println("Resumo editado");
-                    } else {
-                        System.out.println("Resumo não encontrado");
-                    }
+                // n sei 
                 case 0:
                     break;
             }

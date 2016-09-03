@@ -1,6 +1,9 @@
 package Repositorio.trabalho_1.resumo;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.monografias.Monografia;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ControladorResumo {
@@ -10,7 +13,7 @@ public class ControladorResumo {
     Resumo open;
 
     public void incluir(String titulo, int situacao, String autor, String instituicao, ArrayList<String> palavraschave) {
-        open = new Resumo(titulo, situacao, autor, instituicao, palavraschave);
+      open=new Resumo(titulo, Situacao.sobAvaliacao, palavraschave, situacao, palavraschave, palavraschave, situacao, situacao);
         resumos.add(open);
     }
 
@@ -19,14 +22,14 @@ public class ControladorResumo {
         boolean naoAcho = true;
         for (Resumo resumo : resumos) {
 
-            if (resumo.getTitulo().trim().equalsIgnoreCase(titulo)) {
+            if (resumo.getTituloSubmissao().trim().equalsIgnoreCase(titulo)) {
 
                 System.out.println("DADOS");
-                System.out.println("Titulo: " + resumo.getTitulo());
+                System.out.println("Titulo: " + resumo.getTituloSubmissao());
                 System.out.println("Autor: " + resumo.getAutor());
                 System.out.println("Instituição: " + resumo.getInstituicao());
-                System.out.println("Situação: " + resumo.getSituacao());
-                for (String palavrachave : resumo.getPalavrachave()) {
+                System.out.println("Situação: " + resumo.getSituacaoSubmissao());
+                for (String palavrachave : resumo.getPalavrasChave()) {
                     System.out.println("palavra chave: " + palavrachave);
                 }
                 naoAcho = false;
@@ -41,7 +44,7 @@ public class ControladorResumo {
 
     public boolean excluir(String titulo) {
         for (int i = 0; i < resumos.size(); i++) {
-            if (resumos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+            if (resumos.get(i).getTituloSubmissao().equalsIgnoreCase(titulo)) {
                 resumos.remove(resumos.get(i));
                 return true;
             }
@@ -49,45 +52,33 @@ public class ControladorResumo {
         return false;
     }
 
-    public boolean editar() {
-        String titulo;
-        int situacao;
-        String autor;
-        String instituicao;
-        ArrayList<String> palavrachave = new ArrayList<>();
-        Scanner e = new Scanner(System.in);
-        System.out.println(" ");
-        System.out.println("Editar resumos");
-        System.out.println("***************");
-        System.out.println("Digite o nome do titulo do resumo que deseja editar");
-        titulo = e.nextLine();
-        for (int i = 0; i < resumos.size(); i++) {
-            if (titulo.equalsIgnoreCase(resumos.get(i).getTitulo())) {
-                Resumo resumoEditado = resumos.get(i);
-
-                System.out.println("Escolha o novo titulo");
-                resumoEditado.setTitulo(e.nextLine());
-
-                System.out.println("Escolha a nova situação");
-                resumoEditado.setInstituicao(e.nextLine());
-
-                System.out.println("Escolha o novo autor");
-                resumoEditado.setAutor(e.nextLine());
-
-                int opcao;
-                ArrayList<String> palavraschave = new ArrayList();
-                do {
-                    System.out.println("informe a palavra chave: ");
-                    palavrachave.add(e.next());
-                    System.out.println("Você quer digitar mais palavras chaves? 1 sim 2 não");
-                    opcao = e.nextInt();
-
-                } while (opcao != 2);
-                resumoEditado.setPalavrachave(palavrachave);
-
-                return true;
-            }
+    public boolean editar(int atributo, String valor, Resumo resumo) {
+        switch (atributo) {
+            case 1:
+                resumo.setTituloSubmissao(valor);
+                break;
+            
+            case 2:
+                List<String> autor = new ArrayList<String>();
+                autor.add(valor);
+                resumo.setAutor(autor);
+                break;
+            case 3:
+                List<String> insti = new ArrayList<String>();
+                insti.add(valor);
+                resumo.setInstituicao(insti);
+                break;
+            case 4:
+                 String[] p = valor.split(" ");
+                List<String> palavras = new ArrayList<>();
+                for (String pala : p) {
+                    palavras.add(pala);
+                }
+                resumo.setPalavrasChave(palavras);
+                break;
+          
         }
-        return false;
+        return true;
     }
-}
+
+    }

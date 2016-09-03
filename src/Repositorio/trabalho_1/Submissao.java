@@ -5,6 +5,7 @@
  */
 package Repositorio.trabalho_1;
 
+import Repositorio.trabalho_1.monografias.Tipo;
 import java.util.List;
 
 /**
@@ -23,6 +24,21 @@ public abstract class Submissao {
         this.situacaoSubmissao = situacaoSubmissao;
         this.autores = autores;
         this.MAX_AUTORES = MAX_AUTORES;
+    }
+
+    public boolean verificaSituacao(String situacao) {
+        return situacao.equalsIgnoreCase(Situacao.aprovado.getNome())||
+               situacao.equalsIgnoreCase(Situacao.reprovado.getNome())||
+               situacao.equalsIgnoreCase(Situacao.sobAvaliacao.getNome());
+
+    }
+
+    public boolean verificaTipo(String tipo) {
+        return tipo.equalsIgnoreCase(Tipo.doutorado.getNome()) || 
+               tipo.equalsIgnoreCase(Tipo.graduacao.getNome()) ||
+               tipo.equalsIgnoreCase(Tipo.especializacao.getNome())||
+               tipo.equalsIgnoreCase(Tipo.mestrado.getNome());
+       
     }
 
     /**
@@ -109,6 +125,7 @@ public abstract class Submissao {
     public void setMAX_AUTORES(int MAX_AUTORES) {
         this.MAX_AUTORES = MAX_AUTORES;
     }
+
     /**
      * Estruturoda "\nNomeDoAtributo: " + atributo
      *

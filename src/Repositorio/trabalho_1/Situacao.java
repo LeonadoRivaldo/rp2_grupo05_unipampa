@@ -22,5 +22,7 @@ public enum Situacao {
     public String getNome() {
         return this.nome;
     }
+    
+   
 
 }
