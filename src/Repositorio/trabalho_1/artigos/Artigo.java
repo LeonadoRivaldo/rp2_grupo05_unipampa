@@ -5,76 +5,38 @@
  */
 package Repositorio.trabalho_1.artigos;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.SubmissaoCientificia;
+import java.util.List;
+
 
 
 /**
  *
  * @author Amanda Lopes
  */
-public class Artigo {
+public class Artigo extends SubmissaoCientificia {
 
-    private String titulo;
-    private String situacao = "Em Avaliação";
-    private String[] autor;
-    private String[] instituicao;
-    private String[] palavrachave;
+     private String Abstract;
     private String resumo;
-    private String Abstract;
-    
-  public Artigo(){
-    
-}
-  
- public Artigo(String titulo, String[] autor, String[] instituicao, String[] palavrachave, String resumo, String Abstract){
-    this.titulo = titulo;
-    this.autor = autor;
-    this.instituicao = instituicao;
-    this.palavrachave = palavrachave;
-    this.resumo = resumo;
-    this.Abstract = Abstract;
-    
- }
- 
-     public String getTitulo(){
-         return titulo;
-     }
- 
-    public void  setTitulo(String titulo){
-        this.titulo = titulo; 
-    }
-    
-    
-    public String getSituacao(){
-         return situacao;
-     }
-     
-    public void setSituacao(String situacao){
-         this.situacao = situacao;
-     }
-     
-     
-    public String[] getAutor(){
-         return autor;
-     }
- 
-    public void  setAutor(String[] autor){
-        this.autor = autor; 
-    }
-    
-    public String[] getInstituicao(){
-         return instituicao;
-     }
- 
-    public void  setInstituicao(String[] instituicao){
-        this.instituicao = instituicao; 
-    }
-    
-    public String[] getPalavrachave(){
-         return palavrachave;
-     }
- 
-    public void  setPalavrachave(String[] palavrachave){
-        this.palavrachave = palavrachave; 
+
+    /**
+     * 
+     * @param resumo
+     * @param Abstract
+     * @param tituloSubmissao
+     * @param situacaoSubmissao
+     * @param autores
+     * @param MAX_AUTORES
+     * @param instituicoes
+     * @param palavrasChave
+     * @param MAX_PALAVRASCHAVES
+     * @param MAX_INSTITUICOES 
+     */
+    public Artigo(String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
+        super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
+        this.resumo = resumo;
+        this.Abstract = Abstract;
     }
     
     public String getResumo(){

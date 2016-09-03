@@ -1,6 +1,7 @@
 package Repositorio.trabalho_1.palestra;
 
 import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,10 +29,11 @@ public class Executor {
         System.out.println("Qual o titulo da sua Palestra: ");
         String tituloSubmissao;
         tituloSubmissao = (entrada.nextLine());
-        System.out.println("Situacao da Palestra: 1- Aprovado/ 2- Reprovado/ 3- SobAvaliacao");
-        int situacao;
-        situacao = entrada.nextInt();
-        entrada.nextLine();
+        Situacao situacao = null;
+        do {
+            System.out.println("Situacao da Palestra: Aprovado/Reprovado/SobAvaliacao");
+            situacao = Submissao.verificaSituacao(entrada.nextLine());
+        } while (situacao == null);
         System.out.println("Qual o nome do Autor: ");
         ArrayList<String> autores = new ArrayList();
         autores.add(entrada.nextLine());
@@ -47,7 +49,7 @@ public class Executor {
         System.out.println("Qual o tempo de duracao da palestra em minutos: ");
         int duracao;
         duracao = (entrada.nextInt());
-        Palestra palestra = new Palestra(curriculo, resumo, abstrac, duracao, tituloSubmissao, Situacao.sobAvaliacao, autores, 1);
+        Palestra palestra = new Palestra(curriculo, resumo, abstrac, duracao, tituloSubmissao, situacao, autores, 1);
         return palestra;
 
     }
@@ -60,6 +62,23 @@ public class Executor {
         Scanner entrada = new Scanner(System.in);
         for (int i = 0; i < controle.palestras.size(); i++) {
             System.out.println((i + 1) + "-" + controle.palestras.get(i).getTituloSubmissao());
+        }
+        System.out.println("----------------------------------");
+        System.out.print(frase);
+        return (entrada.nextInt() - 1);
+    }
+
+    public static int consultarAutor(ControleDePalestras controle, String frase, String autor) {
+        System.out.println("==================================");
+        Scanner entrada = new Scanner(System.in);
+        for (int i = 0; i < controle.palestras.size(); i++) {
+            Palestra p = controle.palestras.get(i);
+            for (int o = 0; o < p.getAutor().size(); o++) {
+                if (autor.contains(p.getAutor().get(o))) {
+                    System.out.println((i + 1) + "-" + controle.palestras.get(i).getTituloSubmissao());
+                }
+            }
+
         }
         System.out.println("----------------------------------");
         System.out.print(frase);
@@ -112,7 +131,7 @@ public class Executor {
                 System.out.println("Qual é o novo titulo: ");
                 return entrada.nextLine();
             case 2:
-                System.out.println("Situacao da Palestra: 1- Aprovado/ 2- Reprovado/ 3- SobAvaliacao");
+                System.out.println("Situacao da Palestra: Aprovado/Reprovado/SobAvaliacao");
                 return entrada.nextLine();
             case 3:
                 System.out.println("Qual é o novo autor: ");
@@ -157,6 +176,8 @@ public class Executor {
             System.out.println("Opcao: ");
             opcao = entrada.nextInt();
 
+            entrada.nextLine();
+
             switch (opcao) {
                 case 0:
                     break;
@@ -165,6 +186,9 @@ public class Executor {
                     msg("PALETRA INCLUIDA");
                     break;
                 case 2:
+                    /* System.out.println("Autor:");
+                    String autor = entrada.nextLine();
+                     */
                     exibir(c.consultar(consultarP(c, "Qual palestra voce quer visualizar: ")));
                     break;
                 case 3:

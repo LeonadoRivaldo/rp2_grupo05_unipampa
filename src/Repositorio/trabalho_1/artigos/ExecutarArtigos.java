@@ -5,6 +5,9 @@
  */
 package Repositorio.trabalho_1.artigos;
 
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,25 +16,25 @@ import java.util.Scanner;
  */
 public class ExecutarArtigos {
 
-    ControleDeArtigos x = new ControleDeArtigos();
+    private ControleDeArtigos controller = new ControleDeArtigos();
 
     public static String PegarValor(int atributo) {
         switch (atributo) {
             case 1:
                 return PreencheArtigo.preencheTitulo();
             case 2:
-                String[] autor = PreencheArtigo.preencheAutor();
+                List<String> autor = PreencheArtigo.preencheAutor();
                 String frase = "";
                 for (String s : autor) {
-                    frase += s + " ";
+                    frase += s + "-";
 
                 }
                 return frase;
             case 3:
-                String[] inst = PreencheArtigo.preencheInstituicao();
+                List<String> inst = PreencheArtigo.preencheInstituicao();
                 String instituicoes = "";
                 for (String i : inst) {
-                    instituicoes += i + " ";
+                    instituicoes += i + "-";
 
                 }
                 return instituicoes;
@@ -41,14 +44,15 @@ public class ExecutarArtigos {
             case 5:
                 return PreencheArtigo.preencheAbstract();
             case 6:
-                String[] palavra = PreencheArtigo.preenchePalavrachave();
+                List<String> palavra = PreencheArtigo.preenchePalavrachave();
                 String p = "";
                 for (String i : palavra) {
-                    p += i + " ";
+                    p += i + "-";
 
                 }
                 return p;
-
+            case 7:
+                return PreencheArtigo.preencheSituacao();
         }
         return null;
     }
@@ -56,22 +60,22 @@ public class ExecutarArtigos {
     public static void exibir(Artigo artigo) {
         System.out.println("====================================");
         System.out.println("");
-        System.out.println("Titulo: " + artigo.getTitulo());
+        System.out.println("Titulo: " + artigo.getTituloSubmissao());
         System.out.print("Autor: ");
-        String[] autores = artigo.getAutor();
+        List<String> autores = artigo.getAutor();
         for (String autor : autores) {
             System.out.print(autor + ",");
         }
         System.out.println("");
         System.out.print("Instituição:");
-        String[] inst = artigo.getInstituicao();
+        List<String> inst = artigo.getInstituicao();
         for (String instituicao : inst) {
             System.out.print(instituicao + ",");
 
         }
         System.out.println("");
         System.out.print("Palavras-chave:");
-        String[] palavra = artigo.getPalavrachave();
+        List<String> palavra = artigo.getPalavrasChave();
         for (String palavrachave : palavra) {
             System.out.print(palavrachave + ",");
 
@@ -79,6 +83,7 @@ public class ExecutarArtigos {
         System.out.println("");
         System.out.println("Resumo:" + artigo.getResumo());
         System.out.println("Abstract: " + artigo.getAbstract());
+        System.out.println("Situação: " + artigo.getSituacaoSubmissao().getNome());
         System.out.println("");
         System.out.println("====================================");
     }
@@ -86,23 +91,23 @@ public class ExecutarArtigos {
     public static int editar(Artigo artigo) {
         System.out.println("====================================");
         System.out.println("Digite o número do que você quer editar :");
-        System.out.println("1 - Titulo: " + artigo.getTitulo());
+        System.out.println("1 - Titulo: " + artigo.getTituloSubmissao());
         System.out.print("2 - Autor: ");
-        String[] autores = artigo.getAutor();
+        List<String> autores = artigo.getAutor();
         for (String autor : autores) {
             System.out.print(autor + ",");
         }
         System.out.println("");
 
         System.out.print("3 - Instituição:");
-        String[] inst = artigo.getInstituicao();
+        List<String> inst = artigo.getInstituicao();
         for (String instituicao : inst) {
             System.out.print(instituicao + ",");
 
         }
         System.out.println("");
         System.out.print("4 - Palavras-chave:");
-        String[] palavra = artigo.getPalavrachave();
+        List<String> palavra = artigo.getPalavrasChave();
         for (String palavrachave : palavra) {
             System.out.print(palavrachave + ",");
 
@@ -110,6 +115,7 @@ public class ExecutarArtigos {
         System.out.println("");
         System.out.println("5 - Resumo:" + artigo.getResumo());
         System.out.println("6 - Abstract: " + artigo.getAbstract());
+        System.out.println("7 - Situação: " + artigo.getSituacaoSubmissao().getNome());
         System.out.println("");
         System.out.println("====================================");
         Scanner entrada = new Scanner(System.in);
@@ -122,7 +128,7 @@ public class ExecutarArtigos {
         System.out.println("====================================");
 
         for (int i = 0; i < x.artigos.size(); i++) {
-            System.out.println((i + 1) + "  " + x.artigos.get(i).getTitulo());
+            System.out.println((i + 1) + "  " + x.artigos.get(i).getTituloSubmissao());
         }
 
         System.out.print("Selecione o artigo : ");
@@ -131,13 +137,19 @@ public class ExecutarArtigos {
     }
 
     public static Artigo criaArtigo() {
-        Artigo artigo = new Artigo();
-        artigo.setTitulo(PreencheArtigo.preencheTitulo());
-        artigo.setAutor(PreencheArtigo.preencheAutor());
-        artigo.setInstituicao(PreencheArtigo.preencheInstituicao());
-        artigo.setResumo(PreencheArtigo.preencheResumo());
-        artigo.setAbstract(PreencheArtigo.preencheAbstract());
-        artigo.setPalavrachave(PreencheArtigo.preenchePalavrachave());
+        //Artigo artigo = new Artigo();
+        String tituloSubmissao = PreencheArtigo.preencheTitulo();
+        List<String> autores = PreencheArtigo.preencheAutor();
+        List<String> instituicoes = PreencheArtigo.preencheInstituicao();
+        String resumo = PreencheArtigo.preencheResumo();
+        String Abstract = PreencheArtigo.preencheAbstract();
+        List<String> palavrasChave = PreencheArtigo.preenchePalavrachave();
+        Situacao situacao = null;
+        do {
+            situacao = Submissao.verificaSituacao(PreencheArtigo.preencheSituacao());
+        } while (situacao == null);
+        Artigo artigo = new Artigo(resumo, Abstract, tituloSubmissao, situacao, autores, 8, instituicoes, palavrasChave, 4, 8);
+
         return artigo;
 
     }
@@ -148,9 +160,6 @@ public class ExecutarArtigos {
         String[] autores = {"autor1", "autor2"};
         String[] instituicoes = {"Unipampa"};
         String[] palavrachave = {"ENGENHARIA DE SOFTWARE", "SEMESTRE2"};
-        x.incluir(new Artigo("Algoritmos", autores, instituicoes, palavrachave, "DO-WHILE", "CLASSES E OBJETOS"));
-        x.incluir(new Artigo("TEORIA DOS GRAFOS", autores, instituicoes, palavrachave, "HIPOTESE", "INDUCAO"));
-        x.incluir(new Artigo("TIPOS DE DADOS ABSTRATOS", autores, instituicoes, palavrachave, "FILAS E PILHAS", "ESTRUTURAS DE DADOS"));
         int opcao;
         do {
             System.out.println("                             ");
@@ -168,21 +177,21 @@ public class ExecutarArtigos {
                 case 0:
                     break;
                 case 1:
-                    x.incluir(criaArtigo());
+                    controller.incluir(criaArtigo());
 
                     break;
                 case 2:
-                    exibir(x.consultar(consultarArtigo(x)));
+                    exibir(controller.consultar(consultarArtigo(controller)));
 
                     break;
                 case 3:
-                    x.excluir(consultarArtigo(x));
+                    controller.excluir(consultarArtigo(controller));
                     break;
                 case 4:
-                    int index = consultarArtigo(x);
-                    Artigo a = x.consultar(index);
+                    int index = consultarArtigo(controller);
+                    Artigo a = controller.consultar(index);
                     int atributo = editar(a);
-                    x.editar(atributo, PegarValor(atributo), a);
+                    controller.editar(atributo, PegarValor(atributo), a);
 
                     break;
 
@@ -191,7 +200,8 @@ public class ExecutarArtigos {
 
     }
 
-    /*public static void main(String[] args) {
-     menu();
-     }*/
+    public static void main(String[] args) {
+        ExecutarArtigos e = new ExecutarArtigos();
+        e.menu();
+    }
 }
