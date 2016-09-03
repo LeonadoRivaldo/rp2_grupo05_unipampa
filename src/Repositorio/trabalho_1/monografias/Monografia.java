@@ -14,7 +14,9 @@ import java.util.List;
  * @author leona_000
  */
 public class Monografia extends SubmissaoCientificia {
-
+    
+    private String tipo;
+    //private Tipo tipo;
     private String orientador;
     private String curso;
     private int ano;
@@ -38,7 +40,7 @@ public class Monografia extends SubmissaoCientificia {
      * @param MAX_PALAVRASCHAVES
      * @param MAX_INSTITUICOES 
      */
-    public Monografia(String orientador, String curso, int ano, int numeroDePaginas, String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
+    public Monografia(String tipo, String orientador, String curso, int ano, int numeroDePaginas, String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         this.orientador = orientador;
         this.curso = curso;
@@ -46,6 +48,8 @@ public class Monografia extends SubmissaoCientificia {
         this.numeroDePaginas = numeroDePaginas;
         this.resumo = resumo;
         this.Abstract = Abstract;
+        this.tipo = tipo;
+        
     }
 
     /**

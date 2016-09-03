@@ -5,7 +5,9 @@
  */
 package Repositorio.trabalho_1.monografias;
 
+import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.monografias.ControllerDeMonografias;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -116,31 +118,24 @@ public class ExecutorDeMonografias {
         System.out.println("===============================================");
         String tituloSubmissao = PreencheMonografia.preencheTitulo();
         List<String> autores = PreencheMonografia.preencheAutor();
-        //monografia.setTipo(PreencheMonografia.preencheTipo());
-        //monografia.setInstituicao(PreencheMonografia.preencheInstituicao());
-        //monografia.setOrientador(PreencheMonografia.preencheOrientador());
-        //monografia.setCurso(PreencheMonografia.preencheCurso());
-        //monografia.setAno(Integer.parseInt(PreencheMonografia.preencheAno()));
-        //monografia.setNumeroDePaginas(Integer.parseInt(PreencheMonografia.preencheNroPaginas()));
-        //monografia.setPalavrasChaves(PreencheMonografia.preenchePalavrasChaves());
-        //monografia.setResumo(PreencheMonografia.preencheResumo());
-        //monografia.setAbstract(PreencheMonografia.preencheAbstract());
-    String orientador;
-    String curso;
-    int ano;
-    int numeroDePaginas;
-    String resumo;
-    String Abstract;
-    
-    String situacaoSubmissao;
-    int MAX_AUTORES;
-    List<String> instituicoes;
-    List<String> palavrasChave;
-    int MAX_PALAVRASCHAVES;
-    int MAX_INSTITUICOES; 
-    
+        String tipo  = PreencheMonografia.preencheTipo();
+        String instituicao = PreencheMonografia.preencheInstituicao();
+        List<String> instituicoes = new ArrayList();
+        instituicoes.add(instituicao);
+        String orientador = PreencheMonografia.preencheOrientador();
+        String curso = PreencheMonografia.preencheCurso();
+        int ano = Integer.parseInt(PreencheMonografia.preencheAno());
+        int numeroDePaginas = Integer.parseInt(PreencheMonografia.preencheNroPaginas());
+        List<String> palavrasChave = PreencheMonografia.preenchePalavrasChaves();
+        String resumo  = PreencheMonografia.preencheResumo();
+        String Abstract = PreencheMonografia.preencheAbstract();
+        Situacao situacaoSubmissao = Situacao.sobAvaliacao;
+        int MAX_AUTORES = 1;
+        int MAX_PALAVRASCHAVES= 4;
+        int MAX_INSTITUICOES = 1;
+        Monografia monografia = new Monografia(tipo, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         System.out.println("===============================================");
-        return null;
+        return monografia;
     }
 
     public static void msg(String s) {
@@ -148,7 +143,11 @@ public class ExecutorDeMonografias {
     }
 
     public static void baseDeDados(ControllerDeMonografias controle) {
-        String palavras[] = {"Um", "Doi", "Tres", "Quatro"};
+        List<String> palavras = new ArrayList();
+        palavras.add("Um");
+        palavras.add("Doi");
+        palavras.add("tres");
+        palavras.add("quatro");
         String resumo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit\n";
         resumo += "in ligula est, placerat quis maximus vel, imperdiet eu sapien.\n";
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
@@ -170,7 +169,12 @@ public class ExecutorDeMonografias {
             case 1:
                 return PreencheMonografia.preencheTitulo();
             case 2:
-                return PreencheMonografia.preencheAutor();
+                List<String> autores = PreencheMonografia.preencheAutor();
+                String frase1 = "";
+                for (String s : autores) {
+                    frase1 += s + " ";
+                }
+                return frase1;
             case 3:
                 return PreencheMonografia.preencheTipo();
             case 4:

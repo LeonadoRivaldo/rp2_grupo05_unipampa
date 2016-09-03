@@ -96,7 +96,7 @@ public abstract class Submissao {
      * @return
      */
     public boolean addAutor(String autor) {
-        if (this.MAX_AUTORES > this.autores.size()) {
+        if (this.MAX_AUTORES >= this.autores.size()) {
             this.autores.add(autor);
             return true;
         }
