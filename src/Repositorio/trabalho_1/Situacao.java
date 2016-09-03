@@ -11,7 +11,7 @@ package Repositorio.trabalho_1;
  */
 public enum Situacao {
 
-    sobAvaliacao("Sob avaliação"), aprovado("Aprovado"), reprovado("Reprovado");
+    sobAvaliacao("Sob avaliacao"), aprovado("Aprovado"), reprovado("Reprovado");
 
     private final String nome;
 

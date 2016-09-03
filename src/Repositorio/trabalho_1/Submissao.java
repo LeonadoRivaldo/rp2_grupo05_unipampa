@@ -9,8 +9,6 @@ import Repositorio.trabalho_1.monografias.Tipo;
 import java.util.List;
 
 /**
- *
- * @author leona_000
  */
 public abstract class Submissao {
 
