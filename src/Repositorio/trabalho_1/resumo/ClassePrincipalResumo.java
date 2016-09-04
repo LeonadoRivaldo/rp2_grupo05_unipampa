@@ -178,6 +178,7 @@ public class ClassePrincipalResumo {
         for (String palavrachave : resumo.getPalavrasChave()) {
             System.out.print(palavrachave + ", ");
         }
+        System.out.println("");
         System.out.println("Opcao: ");
         return e.nextInt();
     }
@@ -284,12 +285,13 @@ public class ClassePrincipalResumo {
             System.out.println("===============================================");
             System.out.println("Índice  de resumos");
             System.out.println("===============================================");
-            System.out.println("1)Cadastrar resumo:");
+            System.out.println("1)Cadastrar resumo");
             System.out.println("2)Pesquisar resumo");
-            System.out.println("3-pesquisar resumo por autor");
+            System.out.println("3)pesquisar resumo por autor");
             System.out.println("4)deletar resumo");
             System.out.println("5)editar resumo");
             System.out.println("0)sair do programa");
+            System.out.print("Opção: ");
             n = e.nextInt();
             e.nextLine();
             switch (n) {

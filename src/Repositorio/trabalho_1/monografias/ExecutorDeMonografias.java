@@ -6,7 +6,6 @@
 package Repositorio.trabalho_1.monografias;
 
 import Repositorio.trabalho_1.Situacao;
-import Repositorio.trabalho_1.monografias.ControllerDeMonografias;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
