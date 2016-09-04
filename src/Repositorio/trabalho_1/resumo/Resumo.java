@@ -1,11 +1,11 @@
 package Repositorio.trabalho_1.resumo;
 
 import Repositorio.trabalho_1.Situacao;
-import Repositorio.trabalho_1.SubmissaoCientificia;
+import Repositorio.trabalho_1.SubmissaoCientifica;
 import java.util.List;
 
 
-public class Resumo extends SubmissaoCientificia {
+public class Resumo extends SubmissaoCientifica {
     
     /**
      * 

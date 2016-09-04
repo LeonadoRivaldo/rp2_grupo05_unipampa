@@ -6,7 +6,7 @@
 package Repositorio.trabalho_1.artigos;
 
 import Repositorio.trabalho_1.Situacao;
-import Repositorio.trabalho_1.SubmissaoCientificia;
+import Repositorio.trabalho_1.SubmissaoCientifica;
 import java.util.List;
 
 
@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Amanda Lopes
  */
-public class Artigo extends SubmissaoCientificia {
+public class Artigo extends SubmissaoCientifica {
 
      private String Abstract;
     private String resumo;

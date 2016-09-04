@@ -6,14 +6,14 @@
 package Repositorio.trabalho_1.monografias;
 
 import Repositorio.trabalho_1.Situacao;
-import Repositorio.trabalho_1.SubmissaoCientificia;
+import Repositorio.trabalho_1.SubmissaoCientifica;
 import java.util.List;
 
 /**
  *
  * @author leona_000
  */
-public class Monografia extends SubmissaoCientificia {
+public class Monografia extends SubmissaoCientifica {
     
     private String tipo;
     //private Tipo tipo;
