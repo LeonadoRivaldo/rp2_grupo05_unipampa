@@ -7,13 +7,25 @@ import java.util.List;
 /**
  * Classe para objetos do tipo Minicurso que contem os atributos e operações do
  * mesmo
- *Situacao.getNome()
  */
 public class Minicurso extends SubmissaoApresentacao {
 
     private String recursos;
     private String metodologia;
 
+    /**
+     * Construtor que recebe por parametro todos os atributos de um minicurso
+     *
+     * @param titulo String do titulo
+     * @param autores List de autores, no máximo 3
+     * @param resumo String do resumo
+     * @param situacao Situacao situação
+     * @param abstrac String abstract
+     * @param metodologia String metodologia
+     * @param recursos String recursos
+     * @param duracao int duracão, este onde o numero de horas deve ser
+     * envia em minutos
+     */
     public Minicurso(String titulo, List autores, String resumo, Situacao situacao,
             String abstrac, String metodologia, String recursos, int duracao) {
         super(resumo, abstrac, duracao, titulo, situacao, autores, 3);
@@ -49,12 +61,17 @@ public class Minicurso extends SubmissaoApresentacao {
         this.metodologia = metodologia;
     }
 
+    /**
+     * Metodo que transforma em String os dados do minicurso
+     *
+     * @return Retorna os dados em String do minicurso
+     */
     @Override
     public String toString() {
         String string;
-            string = (super.toString()
-                + "\nRecursos: "+ recursos
-                + "\nMetodologia: "+ metodologia);
+        string = (super.toString()
+                + "\nRecursos: " + recursos
+                + "\nMetodologia: " + metodologia);
         return string;
     }
 }
