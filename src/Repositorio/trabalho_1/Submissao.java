@@ -137,7 +137,7 @@ public abstract class Submissao {
     public String toString() {
         String string = "";
         string += "\nTitulo: " + getTituloSubmissao();
-        string += "\nSituacao: " + getSituacaoSubmissao().name();
+        string += "\nSituacao: " + getSituacaoSubmissao().getNome();
         string += "\nAutores: ";
         for (String s : autores) {
             string += s + ", ";
