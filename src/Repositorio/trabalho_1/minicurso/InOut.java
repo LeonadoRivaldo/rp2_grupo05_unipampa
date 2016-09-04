@@ -1,5 +1,4 @@
 package Repositorio.trabalho_1.minicurso;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -53,16 +52,5 @@ public class InOut {
     public static void div() {
         System.out.println("\n###################################################"
                 + "#####################################\n");
-    }
-
-    /**
-     * Metodo que exibibe um ArrayList recebido para o usuario
-     *
-     * @param arrayList Recebe o ArrayList que será exibido
-     */
-    public static void outArrayList(ArrayList arrayList) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println(arrayList.get(i));
-        }
     }
 }
