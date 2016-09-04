@@ -66,4 +66,33 @@ public abstract class SubmissaoApresentacao extends Submissao {
         this.duracao = duracao;
     }
 
+    /**
+     * Metodo que trasnforma o atributo duração da submissao, em uma String no
+     * formato HH:MM
+     *
+     * @return String da duração da submissao, no formato HH:MM
+     */
+    private String duracaoToString() {
+        int h, m;
+
+        h = this.duracao / 60;
+        m = this.duracao % 60;
+
+        return h + ":" + m;
+    }
+
+    /**
+     * Metodo que transforma os dados da submissao em String
+     * @return String dos dadosf
+     */
+    @Override
+    public String toString() {
+        String string = "";
+        string = super.toString()
+                + "\nResumo: " + getResumo()
+                + "\nAbstract: " + getAbstrac()
+                + "\nDuração: " + duracaoToString() + " horas";
+        return string;
+    }
+
 }

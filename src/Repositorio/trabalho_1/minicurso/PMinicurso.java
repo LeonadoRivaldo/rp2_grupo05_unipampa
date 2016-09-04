@@ -3,30 +3,30 @@ package Repositorio.trabalho_1.minicurso;
 import java.util.List;
 
 /**
- * Classe principal, cria e manipula um objeto do tipo Minicursos e o que será
+ * Classe menu, cria e manipula um objeto do tipo Minicursos e o que será
  * exibido ao usuario
  */
 public class PMinicurso {
-    
+
     private static final Minicursos minicursos = new Minicursos();
 
     /**
-     * Metodo main, chama o menu principal
+     * Metodo main, chama o menuPrincipal menu
      *
      *
      */
     public static void principal() {
         InOut.outL("MINICURSOS");
-        menu();
+        menuPrincipal();
         InOut.outL("Adiossssssss muchacho!");
     }
 
     /**
-     * Metodo responsável pelo menu principal
+     * Metodo responsável pelo menuPrincipal menu
      */
-    private static void menu() {
+    private static void menuPrincipal() {
         int opcao;
-        
+
         do {
             InOut.div();
             opcao = InOut.inInt("Digite:\n 1 - Para criar um novo Minicurso"
@@ -35,7 +35,7 @@ public class PMinicurso {
                     + "\n 4 - Para editar um minicurso"
                     + "\n 5 - Para excluir um minicurso"
                     + "\n 0 - Para sair");
-            
+
             switch (opcao) {
                 case 0:
                     break;
@@ -54,7 +54,7 @@ public class PMinicurso {
                     editar();
                     break;
                 case 5:
-                    deletar();
+                    menuDeletar();
                     break;
                 default:
                     InOut.outL("Você digitou uma opção incorreta!");
@@ -69,7 +69,7 @@ public class PMinicurso {
         String titulo, resumo, abstrac, metodologia, recursos;
         int situacao, duracao;
         List<String> autores;
-        
+
         titulo = PreencheMinicurso.preencheTitulo();
         autores = PreencheMinicurso.preencheAutores();
         situacao = PreencheMinicurso.preencheSituacao();
@@ -78,10 +78,10 @@ public class PMinicurso {
         metodologia = PreencheMinicurso.preencheMetodologia();
         recursos = PreencheMinicurso.preencheRecursos();
         duracao = PreencheMinicurso.preencheDuracao();
-        
+
         minicursos.criar(titulo, autores, resumo, situacao, abstrac,
                 metodologia, recursos, duracao);
-        
+
         InOut.div();
         InOut.outL("Minicurso criado com sucesso!");
     }
@@ -92,7 +92,7 @@ public class PMinicurso {
     private static void exibir() {
         InOut.div();
         InOut.outL("Minicursos cadastrados:\n");
-        InOut.inString(minicursos.getListaMinicursos());
+        InOut.outL(minicursos.getListaMinicursos());
     }
 
     /**
@@ -101,7 +101,7 @@ public class PMinicurso {
     private static void pesquisar() {
         String desejado = "";
         int tipo;
-        
+
         do {
             InOut.div();
             tipo = InOut.inInt("Digite:"
@@ -119,64 +119,123 @@ public class PMinicurso {
                     InOut.outL("Você digitou uma opção incorreta!");
             }
         } while (tipo != 1 && tipo != 2);
-        
+
         InOut.div();
         System.out.println("Resultado da busca:");
         System.out.println("");
-        System.out.println(minicursos.buscar(desejado, tipo));        
+        System.out.println(minicursos.buscar(desejado, tipo));
     }
 
     /**
-     * Metodo responsavel por excluir um minicurso
+     * Metodo responsavel pelo menu ao deletar um minicurso
      */
-    private static void deletar() {
-        int opcao, minicursoSelecionado;
-        
-        do {
-            exibir();
-            InOut.div();
-            minicursoSelecionado = InOut.inInt("Digite o numero do minicurso que deseja excluir:");
-            InOut.div();
+    private static void menuDeletar() {
+        int opcao = 0;
+
+        InOut.div();
+        while (opcao != 1 && opcao != 2) {
+            opcao = InOut.inInt("Digite:"
+                    + "\n 1 - Para exibir a lista de minicursos e selecionar qual deseja deletar"
+                    + "\n 2 - Para inserir o titulo que deseja deletar");
+        }
+
+        switch (opcao) {
+            case 1:
+                deletarPorLista();
+                break;
+            case 2:
+                deletarPorTitulo();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Metodo responsavel pelo menu ao deletar um minicurso por titulo
+     */
+    private static void deletarPorTitulo() {
+        String desejado;
+        int index, opcao = 0;
+
+        InOut.div();
+        desejado = InOut.inString("Digite o título desejado:");
+        System.out.println(minicursos.buscar(desejado, 2));
+        System.out.println("");
+        index = InOut.inInt("Digite o numero do minicurso que deseja excluir:");
+        InOut.div();
+        while (opcao != 1 && opcao != 2) {
             opcao = InOut.inInt("Você tem certeza que deseja excluir este minicurso?"
                     + "Digite:"
                     + "\n 1 - Para excluir"
                     + "\n 2 - Para cancelar");
-            
-            switch (opcao) {
-                case 1:
-                    minicursos.excluir(minicursoSelecionado);
-                    InOut.div();
-                    InOut.outL("Minicurso deletado com sucesso!");
-                    opcao = 2;
-                    break;
-                case 2:
-                    break;
-                default:
-                    InOut.outL("Opçao incorreta!");
-                    break;
-            }
-        } while (opcao != 2);
+        }
+
+        switch (opcao) {
+            case 1:
+                minicursos.excluir(index);
+                InOut.div();
+                InOut.outL("Minicurso deletado com sucesso!");
+                opcao = 2;
+                break;
+            case 2:
+                break;
+            default:
+                InOut.outL("Opçao incorreta!");
+                break;
+        }
+
+    }
+
+    /**
+     * Metodo responsavel pelo menu ao deletar um minicurso por lista
+     */
+    private static void deletarPorLista() {
+        int opcao = 0, index;
+
+        exibir();
+        InOut.div();
+        index = InOut.inInt("Digite o numero do minicurso que deseja excluir:");
+        InOut.div();
+        while (opcao != 1 && opcao != 2) {
+            opcao = InOut.inInt("Você tem certeza que deseja excluir este minicurso?"
+                    + "Digite:"
+                    + "\n 1 - Para excluir"
+                    + "\n 2 - Para cancelar");
+        }
+
+        switch (opcao) {
+            case 1:
+                minicursos.excluir(index);
+                InOut.div();
+                InOut.outL("Minicurso deletado com sucesso!");
+                break;
+            case 2:
+                break;
+            default:
+                InOut.outL("Opçao incorreta!");
+                break;
+        }
     }
 
     /**
      * Metodo responsavel pela edição de um minicurso
      */
     private static void editar() {
-        String novoDado;
         int opcao;
-        int nAutores, nSituacao, index;
-        
+        int index;
+
         exibir();
         InOut.div();
         index = InOut.inInt("Digite o numero do minicurso que deseja editar:");
         InOut.div();
-        
+
         do {
             System.out.println("Minicurso selecionado:");
             System.out.println("");
-            minicursos.getMinicurso(index);
+            System.out.println(minicursos.getMinicurso(index));
             InOut.div();
-            
+
             opcao = InOut.inInt("Digite:"
                     + "\n 1 - Para editar o titulo"
                     + "\n 2 - Para editar o autor"
@@ -188,7 +247,7 @@ public class PMinicurso {
                     + "\n 8 - Para editar a duração"
                     + "\n 0 - Para sair");
             InOut.div();
-            
+
             switch (opcao) {
                 case 0:
                     break;
@@ -220,26 +279,26 @@ public class PMinicurso {
                     System.out.println("Opção incorreta!");
                     break;
             }
-            
+
         } while (opcao != 0);
     }
 
     /**
-     * Metodo responsavel pelo menu que é exibido na busca e na exibição de
-     * todos os minicursos
+     * Metodo responsavel pelo menuPrincipal que é exibido na busca e na
+     * exibição de todos os minicursos
      */
     private static void menuMinicurso() {
         int opcao;
-        
+
         System.out.println("");
         opcao = InOut.inInt("Digite:"
                 + "\n Para exibir mais informações sobre um minicurso, digite o"
                 + " numero correspondente"
                 + "\n DIGITE -1 PARA SAIR");
-        
+
         if (opcao != -1) {
             System.out.println("");
             System.out.println(minicursos.getMinicurso(opcao));
         }
-    } 
+    }
 }
