@@ -15,7 +15,7 @@ public class PMinicurso {
      *
      *
      */
-    public static void menu() {
+    public static void principal() {
         InOut.outL("MINICURSOS");
         menuPrincipal();
         InOut.outL("Adiossssssss muchacho!");

@@ -82,6 +82,37 @@ public class ExecutorDeMonografias {
     }
 
     /**
+     *
+     */
+    private static int listaPorAutor(String autor, ControllerDeMonografias c, String frase) {
+        int i = 0;
+        int in = -1;
+        Scanner entrada = new Scanner(System.in);
+        for (Monografia monografia : c.monografias) {
+            List<String> autores = monografia.getAutor();
+            for (String a : autores) {
+                if (a.contains(autor)) {
+                    i++;
+                    int pos = c.monografias.indexOf(monografia);
+                    System.out.println(pos + "- " + monografia.getTituloSubmissao());
+                    break;
+                }
+            }
+        }
+        if (i > 0) {
+            do {
+                System.out.println("------------------------------");
+                System.out.print(frase + ": ");
+                in = entrada.nextInt();
+            } while (in < 1 || in > c.monografias.size());
+            return in;
+        } else {
+            msg("Nenhuma monografia encontrada com esse autor");
+        }
+        return --in;
+    }
+
+    /**
      * Consulta monografias
      *
      * @param c controler de monografia
@@ -96,9 +127,9 @@ public class ExecutorDeMonografias {
         System.out.println("Pesquisa por titulo ou consulta em lista? (pesquisa/lista)");
         pesquisa = entrada.nextLine();
         if (pesquisa.equalsIgnoreCase("lista")) {
-            System.out.println("-----------------------------------------------");
-            System.out.println("Listar monografias por titulo ou por autor:");
-            pesquisa = entrada.nextLine();
+            //System.out.println("-----------------------------------------------");
+            //System.out.println("Listar monografias por titulo ou por autor:");
+            pesquisa = "titulo";
             if (pesquisa.equalsIgnoreCase("titulo")) {
                 System.out.println("--------------------------------------------");
                 for (Monografia monografia : c.monografias) {
@@ -127,7 +158,6 @@ public class ExecutorDeMonografias {
                         in = entrada.nextInt();
                     }
                 } while (in < 1 || in > c.monografias.size());
-
             } else {
                 msg("FAZER LISTA POR AUTOR!");
                 entrada.nextLine();
@@ -138,16 +168,15 @@ public class ExecutorDeMonografias {
             pesquisa = entrada.nextLine();
             if (pesquisa.equalsIgnoreCase("autor")) {
                 String autor = PreencheMonografia.preencheAutor().get(0);
+                return listaPorAutor(autor, c, frase);
+            } else {
                 i = 0;
+                String titulo = PreencheMonografia.preencheTitulo();
                 for (Monografia monografia : c.monografias) {
-                    List<String> autores = monografia.getAutor();
-                    for (String a : autores) {
-                        if (a.contains(autor)) {
-                            i++;
-                            int pos = c.monografias.indexOf(monografia);
-                            System.out.println(pos + "- " + monografia.getTituloSubmissao());
-                            break;
-                        }
+                    if (monografia.getTituloSubmissao().contains(titulo)) {
+                        i++;
+                        int pos = c.monografias.indexOf(monografia);
+                        System.out.println(pos + "- " + monografia.getTituloSubmissao());
                     }
                 }
                 if (i > 0) {
@@ -156,12 +185,10 @@ public class ExecutorDeMonografias {
                         System.out.print(frase + ": ");
                         in = entrada.nextInt();
                     } while (in < 1 || in > c.monografias.size());
+                    return in;
                 } else {
-                    msg("Nenhuma monografia encontrada com esse autor");
+                    msg("Nenhuma monografia encontrada com esse titulo");
                 }
-            } else {
-                msg("Fazer pesquisa por titulo");
-                entrada.nextLine();
             }
         }
         return --in;
@@ -269,7 +296,7 @@ public class ExecutorDeMonografias {
     /**
      * menu do sistem
      */
-    public void menu() {
+    public void principal() {
         Scanner entrada = new Scanner(System.in);
 
         baseDeDados(controller);
@@ -303,7 +330,12 @@ public class ExecutorDeMonografias {
                     if (controller.monografias.size() <= 0) {
                         System.out.println("A lista está vazia!");
                     } else {
-                        exibir(controller.consultar(ConsultarMonografia(controller, "Qual monografia você quer visualizar")));
+                        int index = ConsultarMonografia(controller, "Qual monografia você quer visualizar");
+                        if (index > -1) {
+                            exibir(controller.consultar(index));
+                        } else {
+                            System.out.println("nenhuma monografia encontrada");
+                        }
                     }
                     break;
                 case 3:
@@ -338,7 +370,7 @@ public class ExecutorDeMonografias {
 
     public static void main(String[] args) {
         ExecutorDeMonografias ex = new ExecutorDeMonografias();
-        ex.menu();
+        ex.principal();
     }
 
 }

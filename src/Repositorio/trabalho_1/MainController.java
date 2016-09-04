@@ -21,7 +21,10 @@ public class MainController {
     public static void msg(String s) {
         System.out.println("\n##############################################\n" + s + "\n##############################################\n");
     }
-
+    /**
+     * menu!
+     * @return 
+     */
     public static int menu() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("##############################################");
@@ -37,16 +40,15 @@ public class MainController {
         System.out.print("Opção: ");
         return entrada.nextInt();
     }
-    
-    
-    
+
     /**
-     * main
-     * @param args 
+     * main do sistema, aonde as classes são integradas
+     *
+     * @param args
      */
     public static void main(String[] args) {
         ExecutorDeMonografias exeMonografias = new ExecutorDeMonografias();
-       
+
         Executor palestra = new Executor();
         PMinicurso minicurso = new PMinicurso();
         ExecutarArtigos artigos = new ExecutarArtigos();
@@ -60,19 +62,19 @@ public class MainController {
                 case 0:
                     break;
                 case 1:
-                    exeMonografias.menu();
+                    exeMonografias.principal();
                     break;
                 case 2:
                     ClassePrincipalResumo.principal();
                     break;
                 case 3:
-                    palestra.menu();
+                    palestra.principal();
                     break;
                 case 4:
-                    PMinicurso.menu();
+                    PMinicurso.principal();
                     break;
                 case 5:
-                    artigos.menu();
+                    artigos.principal();
                     break;
                 default:
                     msg("OPÇÃO INVALIDA!!");
