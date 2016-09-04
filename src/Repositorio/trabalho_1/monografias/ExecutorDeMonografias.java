@@ -96,53 +96,73 @@ public class ExecutorDeMonografias {
         System.out.println("Pesquisa por titulo ou consulta em lista? (pesquisa/lista)");
         pesquisa = entrada.nextLine();
         if (pesquisa.equalsIgnoreCase("lista")) {
-            System.out.println("--------------------------------------------");
-            for (Monografia monografia : c.monografias) {
-                i++;
-                System.out.println(i + "- " + monografia.getTituloSubmissao());
-                if (i % 10 == 0) {
-                    do {
-                        System.out.println("------------------------------");
-                        System.out.print(frase + " ou -1 para continuar:");
-                        in = entrada.nextInt();
-                        System.out.println("------------------------------");
-                        if (in == -1) {
+            System.out.println("-----------------------------------------------");
+            System.out.println("Listar monografias por titulo ou por autor:");
+            pesquisa = entrada.nextLine();
+            if (pesquisa.equalsIgnoreCase("titulo")) {
+                System.out.println("--------------------------------------------");
+                for (Monografia monografia : c.monografias) {
+                    i++;
+                    System.out.println(i + "- " + monografia.getTituloSubmissao());
+                    if (i % 10 == 0) {
+                        do {
+                            System.out.println("------------------------------");
+                            System.out.print(frase + " ou -1 para continuar:");
+                            in = entrada.nextInt();
+                            System.out.println("------------------------------");
+                            if (in == -1) {
+                                break;
+                            }
+                        } while (in < 1 || in > i);
+                        if (in != -1) {
                             break;
                         }
-                    } while (in < 1 || in > i);
-                    if (in != -1) {
-                        break;
                     }
                 }
+                do {
+                    if (i == c.monografias.size()) {
+                        System.out.println("fim da lista!");
+                        System.out.println("------------------------------");
+                        System.out.print(frase + ": ");
+                        in = entrada.nextInt();
+                    }
+                } while (in < 1 || in > c.monografias.size());
+
+            } else {
+                msg("FAZER LISTA POR AUTOR!");
+                entrada.nextLine();
             }
-            do {
-                if (i == c.monografias.size()) {
-                    System.out.println("fim da lista!");
-                    System.out.println("------------------------------");
-                    System.out.print(frase + ": ");
-                    in = entrada.nextInt();
-                }
-            } while (in < 1 || in > c.monografias.size());
         } else {
-            System.out.println("--------------------------------------------");
-            String autor = PreencheMonografia.preencheAutor().get(0);
-            i = 0;
-            for (Monografia monografia : c.monografias) {
-                List<String> autores = monografia.getAutor();
-                for (String a : autores) {
-                    if (a.contains(autor)) {
-                        i++;
-                        int pos = c.monografias.indexOf(monografia);
-                        System.out.println(pos + "- " + monografia.getTituloSubmissao());
-                        break;
+            System.out.println("==================================================");
+            System.out.print("Pesquisa por titulo ou autor:");
+            pesquisa = entrada.nextLine();
+            if (pesquisa.equalsIgnoreCase("autor")) {
+                String autor = PreencheMonografia.preencheAutor().get(0);
+                i = 0;
+                for (Monografia monografia : c.monografias) {
+                    List<String> autores = monografia.getAutor();
+                    for (String a : autores) {
+                        if (a.contains(autor)) {
+                            i++;
+                            int pos = c.monografias.indexOf(monografia);
+                            System.out.println(pos + "- " + monografia.getTituloSubmissao());
+                            break;
+                        }
                     }
                 }
+                if (i > 0) {
+                    do {
+                        System.out.println("------------------------------");
+                        System.out.print(frase + ": ");
+                        in = entrada.nextInt();
+                    } while (in < 1 || in > c.monografias.size());
+                } else {
+                    msg("Nenhuma monografia encontrada com esse autor");
+                }
+            } else {
+                msg("Fazer pesquisa por titulo");
+                entrada.nextLine();
             }
-            do {
-                System.out.println("------------------------------");
-                System.out.print(frase + ": ");
-                in = entrada.nextInt();
-            } while (in < 1 || in > c.monografias.size());
         }
         return --in;
     }

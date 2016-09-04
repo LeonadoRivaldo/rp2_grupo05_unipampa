@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author leona_000
  */
-public abstract class SubmissaoCientificia extends Submissao {
+public abstract class SubmissaoCientifica extends Submissao {
 
     protected List<String> instituicoes;
     protected List<String> palavrasChave;
@@ -29,7 +29,7 @@ public abstract class SubmissaoCientificia extends Submissao {
      * @param MAX_PALAVRASCHAVES
      * @param MAX_INSTITUICOES
      */
-    public SubmissaoCientificia(String tituloSubmissao,Situacao situacaoSubmissao,List<String> autores, int MAX_AUTORES,List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
+    public SubmissaoCientifica(String tituloSubmissao,Situacao situacaoSubmissao,List<String> autores, int MAX_AUTORES,List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES);
         this.instituicoes = instituicoes;
         this.palavrasChave = palavrasChave;

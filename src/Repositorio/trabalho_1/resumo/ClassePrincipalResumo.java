@@ -4,7 +4,7 @@ import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import Repositorio.trabalho_1.resumo.ControladorResumo;
 import Repositorio.trabalho_1.resumo.ClassePrincipalResumo;
-import Repositorio.trabalho_1.SubmissaoCientificia;
+import Repositorio.trabalho_1.SubmissaoCientifica;
 import Repositorio.trabalho_1.resumo.Resumo;
 
 import java.util.ArrayList;

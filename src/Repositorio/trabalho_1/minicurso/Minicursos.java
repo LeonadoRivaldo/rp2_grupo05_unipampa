@@ -1,13 +1,16 @@
 package Repositorio.trabalho_1.minicurso;
 
 import java.util.ArrayList;
+import java.util.List;
+import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 
 /**
  * Classe que cria e modela objetos do tipo Minicurso
  */
 public class Minicursos {
-
-    private ArrayList<Minicurso> lista;
+    
+    private final ArrayList<Minicurso> lista;
     private Minicurso minicurso;
 
     /**
@@ -33,26 +36,21 @@ public class Minicursos {
      * @param titulo Titulo do minicurso
      * @param autores Autores do minicurso
      * @param resumo Resumo do minicurso
-     * @param situação Situação do minicurso
+     * @param situacao Situação do minicurso
      * @param abstrac Abstract do minicurso
      * @param metodologia Metodologia do minicurso
      * @param recursos Recursos do minicurso
      * @param duracao Duração do minicurso
      */
-    public void setMinicurso(String titulo, String autores, String resumo, String situação,
-            String abstrac, String metodologia, String recursos, String duracao) {
-
-        minicurso = new Minicurso();
-
-        minicurso.setTitulo(titulo);
-        minicurso.setAutor(autores);
-        minicurso.setResumo(resumo);
-        minicurso.setSituacao(situação);
-        minicurso.setAbstrac(abstrac);
-        minicurso.setMetodologia(metodologia);
-        minicurso.setRecursos(recursos);
-        minicurso.setDuracao(duracao);
-
+    public void criar(String titulo, List autores, String resumo, int situacao,
+            String abstrac, String metodologia, String recursos, int duracao) {
+        
+        String pSituacao = situacaoToString(situacao);
+        Situacao s;
+        s = Submissao.verificaSituacao(pSituacao);
+        minicurso = new Minicurso(titulo, autores, resumo, s,
+                abstrac, metodologia, recursos, duracao);
+        
         lista.add(minicurso);
     }
 
@@ -60,48 +58,36 @@ public class Minicursos {
      * Metodo responsavel por buscar e exibir informações sobre um minicurso
      *
      * @param index Recebido para saber a posição do minicurso a ser buscado
-     * @param minicursoSelecionado Recebido para preencher com os dados do
-     * minicurso selecionado
      * @return Retorna um Arraylist pronto para ser exibido contendo todas as
      * informações do minicurso selecionado
      */
-    public ArrayList getMinicurso(int index, ArrayList minicursoSelecionado) {
-        minicursoSelecionado.add("Titulo: " + lista.get(index).getTitulo());
-        minicursoSelecionado.add("Autor: " + lista.get(index).getAutor());
-        minicursoSelecionado.add("Situação: " + lista.get(index).getSituacao());
-        minicursoSelecionado.add("Resumo: " + lista.get(index).getResumo());
-        minicursoSelecionado.add("Abstract: " + lista.get(index).getAbstrac());
-        minicursoSelecionado.add("Metodologia: " + lista.get(index).getMetodologia());
-        minicursoSelecionado.add("Recursos: " + lista.get(index).getRecursos());
-        minicursoSelecionado.add("Duração: " + lista.get(index).getDuracao());
-
-        return minicursoSelecionado;
+    public String getMinicurso(int index) {
+        return (lista.get(index).toString());
     }
 
     /**
-     * Metodo para deletar um minicurso informado
+     * Metodo para excluir um minicurso informado
      *
      * @param index Index do minicurso que será deletado
      */
-    public void deleteMinicurso(int index) {
+    public void excluir(int index) {
         lista.remove(index);
     }
 
     /**
      * Metodo responsavel por busca e exibir a lista de minicursos
      *
-     * @param minicursosCadastrados Recebido para preencher com a lista dos
-     * minicursos cadastrados
      * @return Retorna um ArrayList pronto para ser exibido contendo o autor e
      * titulo de todos os minicursos
      */
-    public ArrayList getMinicursos(ArrayList minicursosCadastrados) {
+    public String getListaMinicursos() {
+        String dados = "";
+        
         for (int i = 0; i < lista.size(); i++) {
-            minicursosCadastrados.add(i + " - " + lista.get(i).getTitulo()
-                    + "    \t Autor(es): "
-                    + lista.get(i).getAutor());
+            dados += i + " - Titulo: " + lista.get(i).getTituloSubmissao()
+                    + "     \tAutor(es): " + autoresToString(i);
         }
-        return minicursosCadastrados;
+        return dados;
     }
 
     /**
@@ -110,71 +96,98 @@ public class Minicursos {
      *
      * @param desejado Recebe o dado que deseja buscar, autor ou titulo
      * @param tipo Recebe o tipo da busca: por autor(1) ou por titulo(2)
-     * @param resultadoBusca Recebe o ArrayList para preencher
      * @return Retorna um ArrayList pronto para exibir contrendo a lista de
      * minicursos encontrados na busca, contendo titulo e autor
      */
-    public ArrayList search(String desejado, int tipo, ArrayList resultadoBusca) {
+    public String buscar(String desejado, int tipo) {
+        String dados = "";
+        
         if (tipo == 1) {
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getAutor().toUpperCase().contains(desejado.toUpperCase())) {
-                    resultadoBusca.add(i + " - " + lista.get(i).getAutor() + "    \tAutor(es): "
-                            + lista.get(i).getAutor());
+                Minicurso m = lista.get(i);
+                for (String e : m.getAutor()) {
+                    if (e.equals(desejado)) {
+                        dados += i + " - Titulo: " + lista.get(i).getTituloSubmissao()
+                                + "      \tAutor(es): " + autoresToString(i);
+                    }
                 }
             }
+            return dados;
         } else {
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getTitulo().toUpperCase().contains(desejado.toUpperCase())) {
-                    InOut.outL(i + " - " + lista.get(i).getTitulo() + "    \tAutor(es): "
-                            + lista.get(i).getTitulo());
+                if (lista.get(i).getTituloSubmissao().equals(desejado)) {
+                    dados += i + " - Titulo: " + lista.get(i).getTituloSubmissao()
+                            + "      \tAutor(es): " + autoresToString(i);
                 }
             }
+            return dados;
         }
-        return resultadoBusca;
     }
 
-    /**
-     * Metodo responsavel por editar um minicurso selecionado
-     *
-     * @param opcao Recebe qual dado deseja editar (opção): 1 - titulo, 2 -
-     * autor, 3 - situação, 4 - resumo, 5 - abstract, 6 - recursos, 7 -
-     * metodologia, 8 - duração
-     *
-     * O numero máximo de autores é 3
-     *
-     * A situação deve ser: Sob avaliação, Aprovado ou Não aprovado
-     *
-     * @param index Recebe o index do minicurso que será alterado
-     * @param novoDado Recebe o novo valor do atributo que será alterado
-     */
-    public void edit(int opcao, int index, String novoDado) {
-        switch (opcao) {
+
+    public void editarTitulo(int index, String titulo) {
+        lista.get(index).setTituloSubmissao(titulo);
+    }
+    
+    public void editarAutores(int index, List autores) {
+        lista.get(index).setAutor(autores);
+    }
+    
+    public void editarSituacao(int index, int situacao) {
+        String pSituacao = situacaoToString(situacao);
+        Situacao s;
+        s = Submissao.verificaSituacao(pSituacao);
+        lista.get(index).setSituacaoSubmissao(s);
+    }
+    
+    public void editarResumo(int index, String resumo) {
+        lista.get(index).setResumo(resumo);
+    }
+    
+    public void editarAbstract(int index, String abstac) {
+        lista.get(index).setAbstrac(abstac);
+    }
+    
+    public void editarRecursos(int index, String recursos) {
+        lista.get(index).setRecursos(recursos);
+    }
+    
+    public void editarMetodologia(int index, String metodologia) {
+        lista.get(index).setMetodologia(metodologia);
+    }
+    
+    public void editarDuracao(int index, int duracao) {
+        lista.get(index).setDuracao(duracao);
+    }
+    
+    public String autoresToString(int index) {
+        String dados = "";
+        List<String> autores;
+        
+        autores = lista.get(index).getAutor();
+        
+        for (String s : autores) {
+            dados += s + ", ";
+            
+        }
+        return dados;
+    }
+    
+    public String situacaoToString(int situacao) {
+        String pSituacao;
+        switch (situacao) {
             case 1:
-                lista.get(index).setTitulo(novoDado);
+                pSituacao = "sob avaliacao";
                 break;
             case 2:
-                lista.get(index).setAutor(novoDado);
+                pSituacao = "aprovado";
                 break;
             case 3:
-                lista.get(index).setSituacao(novoDado);
-                break;
-            case 4:
-                lista.get(index).setResumo(novoDado);
-                break;
-            case 5:
-                lista.get(index).setAbstrac(novoDado);
-                break;
-            case 6:
-                lista.get(index).setRecursos(novoDado);
-                break;
-            case 7:
-                lista.get(index).setMetodologia(novoDado);
-                break;
-            case 8:
-                lista.get(index).setDuracao(novoDado);
+                pSituacao = "reprovado";
                 break;
             default:
-                break;
+                pSituacao = "sob avaliacao";
         }
+        return pSituacao;
     }
 }
