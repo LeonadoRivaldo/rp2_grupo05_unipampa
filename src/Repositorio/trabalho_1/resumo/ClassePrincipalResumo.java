@@ -100,6 +100,7 @@ public class ClassePrincipalResumo {
                 for (String palavrachave : resumo.getPalavrasChave()) {
                     System.out.print(palavrachave + ", ");
                 }
+                System.out.println("");
                 naoAcho = false;
                 break;
             }
@@ -126,7 +127,7 @@ public class ClassePrincipalResumo {
                     for (String autor1 : resumo.getAutor()) {
                         System.out.print(autor1 + " ");
                     }
-
+                    System.out.println("");
                     System.out.print("Instituição:");
                     for (String instituicao : resumo.getInstituicao()) {
                         System.out.print(instituicao + " ,");
@@ -138,7 +139,7 @@ public class ClassePrincipalResumo {
                     }
 
                 }
-
+                System.out.println("");
                 naoAcho = false;
                 break;
             }
@@ -173,7 +174,7 @@ public class ClassePrincipalResumo {
         for (String palavrachave : resumo.getPalavrasChave()) {
             System.out.print(palavrachave + ", ");
         }
-
+        System.out.println("Opcao: ");
         return e.nextInt();
     }
 
