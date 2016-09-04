@@ -154,7 +154,7 @@ public class ExecutarArtigos {
 
     }
 
-    public void menu() {
+    public void principal() {
         Scanner entrada = new Scanner(System.in);
 
         String[] autores = {"autor1", "autor2"};
@@ -202,6 +202,6 @@ public class ExecutarArtigos {
 
     public static void main(String[] args) {
         ExecutarArtigos e = new ExecutarArtigos();
-        e.menu();
+        e.principal();
     }
 }

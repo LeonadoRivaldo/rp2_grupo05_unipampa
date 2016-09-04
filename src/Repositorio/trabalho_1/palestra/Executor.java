@@ -157,7 +157,7 @@ public class Executor {
         System.out.println("\n=============================\n" + s + "\n=============================\n");
     }
 
-    public void menu() {
+    public void principal() {
         Scanner entrada = new Scanner(System.in);
         ArrayList<String> autores = new ArrayList();
         autores.add("Colega Amanda");
@@ -210,6 +210,6 @@ public class Executor {
 
     public static void main(String[] args) {
         Executor e = new Executor();
-        e.menu();
+        e.principal();
     }
 }

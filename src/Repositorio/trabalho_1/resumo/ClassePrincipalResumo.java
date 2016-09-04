@@ -123,9 +123,9 @@ public class ClassePrincipalResumo {
             List<String> listaAutores = resumo.getAutor();
             for (String aut : listaAutores) {
                 if (aut.equalsIgnoreCase(autor)) {
-
                     System.out.println("DADOS");
                     System.out.println("Titulo: " + resumo.getTituloSubmissao());
+                    System.out.println("Situação: " + resumo.getSituacaoSubmissao().getNome());
                     System.out.print("Autor: ");
                     for (String autor1 : resumo.getAutor()) {
                         System.out.print(autor1 + " ");
@@ -135,7 +135,7 @@ public class ClassePrincipalResumo {
                     for (String instituicao : resumo.getInstituicao()) {
                         System.out.print(instituicao + " ,");
                     }
-                    System.out.println("Situação: " + resumo.getSituacaoSubmissao());
+                    System.out.println("");
                     System.out.print("palavra chave: ");
                     for (String palavrachave : resumo.getPalavrasChave()) {
                         System.out.print(palavrachave + ", ");
@@ -160,7 +160,7 @@ public class ClassePrincipalResumo {
      */
     public static int pegarAtributo(Resumo resumo) {
         Scanner e = new Scanner(System.in);
-
+        System.out.println("---------------------------------------------------");
         System.out.println("DADOS");
         System.out.println("1-Titulo: " + resumo.getTituloSubmissao());
         System.out.print("2-Autor: ");
@@ -172,7 +172,8 @@ public class ClassePrincipalResumo {
         for (String instituicao : resumo.getInstituicao()) {
             System.out.print(instituicao + " ,");
         }
-        System.out.println("4-Situação: " + resumo.getSituacaoSubmissao());
+        System.out.println("");
+        System.out.println("4-Situação: " + resumo.getSituacaoSubmissao().getNome());
         System.out.print("5-palavra chave: ");
         for (String palavrachave : resumo.getPalavrasChave()) {
             System.out.print(palavrachave + ", ");
@@ -181,6 +182,9 @@ public class ClassePrincipalResumo {
         return e.nextInt();
     }
 
+    /**
+     * Funçao que edita o resumo!
+     */
     public static void editarResumo() {
         Scanner e = new Scanner(System.in);
         System.out.println("Qual titulo vc quer editar ?");
@@ -268,7 +272,6 @@ public class ClassePrincipalResumo {
     }
 
     public static void principal() {
-
         String titulo = null;
         int situacao;
         String autor;
