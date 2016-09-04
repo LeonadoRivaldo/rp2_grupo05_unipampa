@@ -88,13 +88,14 @@ public class ClassePrincipalResumo {
                 System.out.println("Titulo: " + resumo.getTituloSubmissao());
                 System.out.print("Autor: ");
                 for (String autor : resumo.getAutor()) {
-                    System.out.print(autor + " ");
+                    System.out.print(autor + ", ");
                 }
-
+                System.out.println("");
                 System.out.print("Instituição:");
                 for (String instituicao : resumo.getInstituicao()) {
-                    System.out.print(instituicao + " ,");
+                    System.out.print(instituicao + ", ");
                 }
+                System.out.println("");
                 System.out.println("Situação: " + resumo.getSituacaoSubmissao());
                 System.out.print("palavra chave: ");
                 for (String palavrachave : resumo.getPalavrasChave()) {
@@ -105,7 +106,9 @@ public class ClassePrincipalResumo {
                 break;
             }
         }
-        if( naoAcho ) System.out.println("===============================================\nNenhum Resumo encontrado\n===============================================");
+        if (naoAcho) {
+            System.out.println("===============================================\nNenhum Resumo encontrado\n===============================================");
+        }
     }
 
     /**
