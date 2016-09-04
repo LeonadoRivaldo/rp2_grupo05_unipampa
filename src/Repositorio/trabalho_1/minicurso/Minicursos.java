@@ -177,7 +177,7 @@ public class Minicursos {
         String pSituacao;
         switch (situacao) {
             case 1:
-                pSituacao = "sobAvaliacao";
+                pSituacao = "sob avaliacao";
                 break;
             case 2:
                 pSituacao = "aprovado";
@@ -186,7 +186,7 @@ public class Minicursos {
                 pSituacao = "reprovado";
                 break;
             default:
-                pSituacao = "sobAvaliacao";
+                pSituacao = "sob avaliacao";
         }
         return pSituacao;
     }
