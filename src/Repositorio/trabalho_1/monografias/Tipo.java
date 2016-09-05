@@ -11,7 +11,7 @@ package Repositorio.trabalho_1.monografias;
  */
 public enum Tipo {
 
-    graduacao("graduação"), especializacao("especialização"), mestrado("mestrado"), doutorado("doutorado");
+    graduacao("Graduacao"), especializacao("Especializacao"), mestrado("Mestrado"), doutorado("Doutorado");
    private String nome;
 
     Tipo(String nome) {

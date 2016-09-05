@@ -211,36 +211,40 @@ public class ClassePrincipalResumo {
             case 2:
                 int o;
                 System.out.println("Voce quer adicionar ou refazer a lista de autores ?");
-                if (e.nextLine().equalsIgnoreCase("adicionar"));
-                r.addAutor(e.nextLine());
-                ArrayList<String> autores = new ArrayList();
 
-                do {
-                    System.out.println("Autores do resumo");
-                    autor = e.nextLine();
-                    System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
-                    o = e.nextInt();
-                    autores.add(e.nextLine());
+                if (e.nextLine().equalsIgnoreCase("adicionar")) {;
+                    r.addAutor(e.nextLine());
+                } else {
+                    ArrayList<String> autores = new ArrayList();
+                    do {
+                        System.out.println("Autores do resumo");
+                        autor = e.nextLine();
+                        System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
+                        o = e.nextInt();
+                        autores.add(e.nextLine());
 
-                } while (o != 2);
+                    } while (o != 2);
+                    r.setAutor(autores);
+                }
+
                 break;
             case 3:
                 System.out.println("Voce quer adicionar ou refazer a lista de instituicoes?");
                 if (e.nextLine().equalsIgnoreCase("adicionar")) {
                     r.addInstituicao(e.nextLine());
+                } else {
+                    int op;
+                    ArrayList<String> instituicoes = new ArrayList();
+
+                    do {
+                        System.out.println("Insttituições do resumo");
+                        instituicao = e.nextLine();
+                        System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
+                        op = e.nextInt();
+                        instituicoes.add(e.nextLine());
+                    } while (op != 2);
+                    r.setInstituicao(instituicoes);
                 }
-                int op;
-                ArrayList<String> instituicoes = new ArrayList();
-
-                do {
-                    System.out.println("Insttituições do resumo");
-                    instituicao = e.nextLine();
-                    System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
-                    op = e.nextInt();
-                    instituicoes.add(e.nextLine());
-                } while (op != 2);
-                r.setInstituicao(instituicoes);
-
                 break;
             case 4:
                 Situacao s = null;

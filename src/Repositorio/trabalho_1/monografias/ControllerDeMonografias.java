@@ -21,7 +21,7 @@ public class ControllerDeMonografias {
     /**
      * inclui uma monografia na biblioteca
      *
-     * @param m
+     * @param m objeto monografia criado na interface
      * @return
      */
     public boolean incluir(Monografia m) {
@@ -33,7 +33,7 @@ public class ControllerDeMonografias {
      * faz consulta utilizando uma lista enumerada, e seleciona qual item da
      * lista quer mostrar
      *
-     * @param indice
+     * @param indice da monografia dentro da lista
      * @return
      */
     public Monografia consultar(int indice) {
@@ -43,7 +43,7 @@ public class ControllerDeMonografias {
     /**
      * funçao para exlcuir uma monografia
      *
-     * @param indice
+     * @param indice da monografia dentro da lista
      * @return
      */
     public boolean excluir(int indice) {
@@ -78,15 +78,21 @@ public class ControllerDeMonografias {
             case 1:
                 monografia.setTituloSubmissao(valor);
                 break;
-            /*  case 3:
-             monografia.setTipo(valor);
-             break;
-             */
+            case 3:
+                Tipo tipoMonografia = null;
+                tipoMonografia = Submissao.verificaTipo(valor);
+                while (tipoMonografia == null) {
+                    tipoMonografia = Submissao.verificaTipo(PreencheMonografia.preencheTipo());
+                }
+                monografia.setTipo(tipoMonografia);
+                break;
+
             case 2:
                 Situacao situacao = null;
-                do {
+                situacao = Submissao.verificaSituacao(valor);
+                while (situacao == null) {
                     situacao = Submissao.verificaSituacao(PreencheMonografia.preencheSituacao());
-                } while (situacao == null);
+                }
                 monografia.setSituacaoSubmissao(situacao);
                 break;
             case 4:

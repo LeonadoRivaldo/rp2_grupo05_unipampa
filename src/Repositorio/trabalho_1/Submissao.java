@@ -35,12 +35,17 @@ public abstract class Submissao {
         return null;
     }
 
-    public boolean verificaTipo(String tipo) {
-        return tipo.equalsIgnoreCase(Tipo.doutorado.getNome())
-                || tipo.equalsIgnoreCase(Tipo.graduacao.getNome())
-                || tipo.equalsIgnoreCase(Tipo.especializacao.getNome())
-                || tipo.equalsIgnoreCase(Tipo.mestrado.getNome());
-
+    public static Tipo verificaTipo(String tipo) {
+        if (tipo.equalsIgnoreCase(Tipo.graduacao.getNome())) {
+            return Tipo.graduacao;
+        } else if (tipo.equalsIgnoreCase(Tipo.especializacao.getNome())) {
+            return Tipo.especializacao;
+        } else if (tipo.equalsIgnoreCase(Tipo.doutorado.getNome())) {
+            return Tipo.doutorado;
+        } else if (tipo.equalsIgnoreCase(Tipo.mestrado.getNome())) {
+            return Tipo.mestrado;
+        }
+        return null;
     }
 
     /**

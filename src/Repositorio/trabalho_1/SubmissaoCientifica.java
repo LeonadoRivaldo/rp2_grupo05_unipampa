@@ -20,6 +20,7 @@ public abstract class SubmissaoCientifica extends Submissao {
 
     /**
      * construtor
+     *
      * @param tituloSubmissao
      * @param situacaoSubmissao
      * @param autores
@@ -29,7 +30,7 @@ public abstract class SubmissaoCientifica extends Submissao {
      * @param MAX_PALAVRASCHAVES
      * @param MAX_INSTITUICOES
      */
-    public SubmissaoCientifica(String tituloSubmissao,Situacao situacaoSubmissao,List<String> autores, int MAX_AUTORES,List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
+    public SubmissaoCientifica(String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES);
         this.instituicoes = instituicoes;
         this.palavrasChave = palavrasChave;
@@ -46,7 +47,7 @@ public abstract class SubmissaoCientifica extends Submissao {
 
     /**
      * @param instituicoes
-     * @return 
+     * @return
      */
     public boolean setInstituicao(List<String> instituicoes) {
         if (instituicoes.size() < this.MAX_INSTITUICOES) {
@@ -79,7 +80,7 @@ public abstract class SubmissaoCientifica extends Submissao {
 
     /**
      * @param palavrasChave the palavrasChave to set
-     * @return 
+     * @return
      */
     public boolean setPalavrasChave(List<String> palavrasChave) {
         if (palavrasChave.size() < this.MAX_PALAVRASCHAVES) {
@@ -101,6 +102,25 @@ public abstract class SubmissaoCientifica extends Submissao {
             return true;
         }
         return false;
+    }
+
+    /**
+     * retorna uma string com as infromações do objeto
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        String string = super.toString();
+        string += "\nInstituicoes: ";
+        for (String inst : instituicoes) {
+            string += inst + ", ";
+        }
+        string += "\nPalavras chave: ";
+        for (String palavra : palavrasChave) {
+            string += palavra + ", ";
+        }
+        return string;
     }
 
 }
