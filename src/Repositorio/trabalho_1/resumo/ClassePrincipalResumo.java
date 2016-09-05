@@ -16,7 +16,7 @@ public class ClassePrincipalResumo {
     private static ControladorResumo resumo = new ControladorResumo();
 
     public static void main(String[] args) {
-        principal();
+
     }
 
     public static void criar() {
@@ -212,12 +212,13 @@ public class ClassePrincipalResumo {
                 int o;
                 System.out.println("Voce quer adicionar ou refazer a lista de autores ?");
 
-                if (e.nextLine().equalsIgnoreCase("adicionar")) {;
+                if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                    System.out.println("novo autor: ");
                     r.addAutor(e.nextLine());
                 } else {
                     ArrayList<String> autores = new ArrayList();
                     do {
-                        System.out.println("Autores do resumo");
+                        System.out.println("Autores do resumo: ");
                         autores.add(e.nextLine());
                         System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
                         o = e.nextInt();
@@ -229,13 +230,14 @@ public class ClassePrincipalResumo {
             case 3:
                 System.out.println("Voce quer adicionar ou refazer a lista de instituicoes?");
                 if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                    System.out.println("nova instituicao:");
                     r.addInstituicao(e.nextLine());
                 } else {
                     int op;
                     ArrayList<String> instituicoes = new ArrayList();
 
                     do {
-                        System.out.println("Insttituições do resumo");
+                        System.out.println("Insttituições do resumo: ");
                         instituicoes.add(e.nextLine());
                         System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
                         op = e.nextInt();
@@ -255,6 +257,7 @@ public class ClassePrincipalResumo {
             case 5:
                 System.out.println("Voce quer adicionar ou refazer a lista de palavras chaves?");
                 if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                    System.out.println("Nova palavra chave:");
                     r.addPalavraChave(e.nextLine());
                 } else {
                     int opcao;
