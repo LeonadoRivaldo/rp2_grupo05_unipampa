@@ -222,6 +222,7 @@ public class ClassePrincipalResumo {
                         autores.add(e.nextLine());
                         System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
                         o = e.nextInt();
+                        e.nextLine();
                     } while (o != 2);
                     r.setAutor(autores);
                 }
@@ -241,6 +242,7 @@ public class ClassePrincipalResumo {
                         instituicoes.add(e.nextLine());
                         System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
                         op = e.nextInt();
+                        e.nextLine();
                     } while (op != 2);
                     r.setInstituicao(instituicoes);
                 }
@@ -264,10 +266,10 @@ public class ClassePrincipalResumo {
                     ArrayList<String> palavraschave = new ArrayList();
                     do {
                         System.out.println("Palavras-chaves do resumo: ");
-                        palavrachave = e.next();
+                        palavraschave.add(e.nextLine());
                         System.out.println("Deseja digitar outras palavras-chave?(1-SIM 2-NÃO)");
                         opcao = e.nextInt();
-                        palavraschave.add(e.nextLine());
+                        e.nextLine();
                     } while (opcao != 2);
                     r.setPalavrasChave(palavraschave);
                 }
