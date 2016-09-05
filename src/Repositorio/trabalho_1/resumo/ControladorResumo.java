@@ -46,6 +46,7 @@ public class ControladorResumo {
      * @param valor
      * @param resumo
      * @return 
+     * @deprecated tá usando um na main
      */
     public boolean editar(int atributo, String valor, Resumo resumo) {
         switch (atributo) {

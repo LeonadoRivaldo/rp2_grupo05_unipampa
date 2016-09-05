@@ -6,6 +6,7 @@
 package Repositorio.trabalho_1.monografias;
 
 import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class ExecutorDeMonografias {
         System.out.println("===================================================");
         System.out.println("Titulo: " + monografia.getTituloSubmissao());
         System.out.println("Situacao: " + monografia.getSituacaoSubmissao().getNome());
-        //System.out.println("Tipo: " + monografia.getTipo());
+        System.out.println("Tipo: " + monografia.getTipo().getNome());
         System.out.println("Autor: " + monografia.getAutor().get(0));
         System.out.println("Instituição: " + monografia.getInstituicao().get(0));
         System.out.println("Orientador: " + monografia.getOrientador());
@@ -55,7 +56,7 @@ public class ExecutorDeMonografias {
             System.out.println("===================================================");
             System.out.println("1-Titulo: " + monografia.getTituloSubmissao());
             System.out.println("2-Situacao: " + monografia.getSituacaoSubmissao().getNome());
-            System.out.println("3-Tipo: //TODO!");
+            System.out.println("3-Tipo: " + monografia.getTipo().getNome());
             System.out.println("4-Autor: " + monografia.getAutor().get(0));
             System.out.println("5-Instituição: " + monografia.getInstituicao().get(0));
             System.out.println("6-Orientador: " + monografia.getOrientador());
@@ -202,7 +203,17 @@ public class ExecutorDeMonografias {
         System.out.println("===============================================");
         String tituloSubmissao = PreencheMonografia.preencheTitulo();
         List<String> autores = PreencheMonografia.preencheAutor();
-        String tipo = PreencheMonografia.preencheTipo();
+        Situacao situacaoSubmissao = null;
+        do {
+            String situacao = PreencheMonografia.preencheSituacao();
+            situacaoSubmissao = Submissao.verificaSituacao(situacao);
+        } while (situacaoSubmissao == null);
+        Tipo tipoMonografia = null;
+        do {
+            String tipo = PreencheMonografia.preencheTipo();
+            tipoMonografia = Submissao.verificaTipo(tipo);
+        } while (tipoMonografia == null);
+
         String instituicao = PreencheMonografia.preencheInstituicao();
         List<String> instituicoes = new ArrayList();
         instituicoes.add(instituicao);
@@ -213,12 +224,12 @@ public class ExecutorDeMonografias {
         List<String> palavrasChave = PreencheMonografia.preenchePalavrasChaves();
         String resumo = PreencheMonografia.preencheResumo();
         String Abstract = PreencheMonografia.preencheAbstract();
-        Situacao situacaoSubmissao = Situacao.sobAvaliacao;
+
         int MAX_AUTORES = 1;
         int MAX_PALAVRASCHAVES = 4;
         int MAX_INSTITUICOES = 1;
         System.out.println("===============================================");
-        Monografia monografia = new Monografia(tipo, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
+        Monografia monografia = new Monografia(tipoMonografia, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         return monografia;
     }
 
@@ -241,7 +252,7 @@ public class ExecutorDeMonografias {
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
         resumo += "enim ultrices, in interdum lacus blandit. Class aptent taciti.\n";
         for (int i = 0; i < 50; i++) {
-            controle.incluir(new Monografia(("Graduacao" + i), "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, i, palavras1, palavras2, 4, 1));
+            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, i, palavras1, palavras2, 4, 1));
 
         }
     }
