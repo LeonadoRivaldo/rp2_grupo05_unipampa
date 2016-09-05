@@ -57,21 +57,22 @@ public class ControllerDeMonografias {
      * valor para modificar o objeto e o objeto a ser modificado</p>
      * <i>
      * Titulo = 1<br/>
-     * tipo = 2<br/>
-     * autor = 3<br/>
-     * Instituicao = 4 <br/>
-     * orientador = 5<br/>
-     * curso = 6<br/>
-     * ano = 7<br/>
-     * numeroDePaginas = 8<br/>
-     * palavrasChaves = 9<br/>
-     * resumo = 10<br/>
-     * Abstract = 11<br/>
+     * Situaçao = 2<br/>
+     * tipo = 3<br/>
+     * autor = 4<br/>
+     * Instituicao = 5 <br/>
+     * orientador = 6<br/>
+     * curso = 7<br/>
+     * ano = 8<br/>
+     * numeroDePaginas = 9<br/>
+     * palavrasChaves = 10<br/>
+     * resumo = 11<br/>
+     * Abstract = 12<br/>
      * </i>
      *
-     * @param atributo
-     * @param valor
-     * @param monografia
+     * @param atributo selecionado pelo usuario anteriomente
+     * @param valor novo valor
+     * @param monografia objeto da monografia
      */
     public boolean editar(int atributo, String valor, Monografia monografia) {
         switch (atributo) {
