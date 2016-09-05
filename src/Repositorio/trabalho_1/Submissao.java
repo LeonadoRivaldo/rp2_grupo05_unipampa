@@ -17,6 +17,14 @@ public abstract class Submissao {
     protected List<String> autores;
     protected int MAX_AUTORES;
 
+    /**
+     * Contrutor das submissoes
+     *
+     * @param tituloSubmissao titulo da submissao
+     * @param situacaoSubmissao situação da submissao
+     * @param autores lista de autores
+     * @param MAX_AUTORES quantidade maxima de autores por submissao
+     */
     public Submissao(String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES) {
         this.tituloSubmissao = tituloSubmissao;
         this.situacaoSubmissao = situacaoSubmissao;
@@ -24,28 +32,24 @@ public abstract class Submissao {
         this.MAX_AUTORES = MAX_AUTORES;
     }
 
+    /**
+     * Chama o metodo que verifica a situação das submissões
+     *
+     * @param situacao
+     * @return objeto situação
+     */
     public static Situacao verificaSituacao(String situacao) {
-        if (situacao.equalsIgnoreCase(Situacao.aprovado.getNome())) {
-            return Situacao.aprovado;
-        } else if (situacao.equalsIgnoreCase(Situacao.sobAvaliacao.getNome())) {
-            return Situacao.sobAvaliacao;
-        } else if (situacao.equalsIgnoreCase(Situacao.reprovado.getNome())) {
-            return Situacao.reprovado;
-        }
-        return null;
+        return Situacao.verifica(situacao);
     }
 
+    /**
+     * chama o metodo que verifica se o tipo da monografia ta correto
+     *
+     * @param tipo
+     * @return
+     */
     public static Tipo verificaTipo(String tipo) {
-        if (tipo.equalsIgnoreCase(Tipo.graduacao.getNome())) {
-            return Tipo.graduacao;
-        } else if (tipo.equalsIgnoreCase(Tipo.especializacao.getNome())) {
-            return Tipo.especializacao;
-        } else if (tipo.equalsIgnoreCase(Tipo.doutorado.getNome())) {
-            return Tipo.doutorado;
-        } else if (tipo.equalsIgnoreCase(Tipo.mestrado.getNome())) {
-            return Tipo.mestrado;
-        }
-        return null;
+        return Tipo.verifica(tipo);
     }
 
     /**
