@@ -9,19 +9,17 @@ import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.SubmissaoCientifica;
 import java.util.List;
 
-
-
 /**
  *
  * @author Amanda Lopes
  */
 public class Artigo extends SubmissaoCientifica {
 
-     private String Abstract;
+    private String Abstract;
     private String resumo;
 
     /**
-     * 
+     *
      * @param resumo
      * @param Abstract
      * @param tituloSubmissao
@@ -31,32 +29,27 @@ public class Artigo extends SubmissaoCientifica {
      * @param instituicoes
      * @param palavrasChave
      * @param MAX_PALAVRASCHAVES
-     * @param MAX_INSTITUICOES 
+     * @param MAX_INSTITUICOES
      */
     public Artigo(String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         this.resumo = resumo;
         this.Abstract = Abstract;
     }
-    
-    public String getResumo(){
+
+    public String getResumo() {
         return resumo;
     }
-    
-    public void setResumo(String resumo){
+
+    public void setResumo(String resumo) {
         this.resumo = resumo;
     }
-    
-    public String getAbstract(){
+
+    public String getAbstract() {
         return Abstract;
     }
-    
-    public void setAbstract(String Abstract){
+
+    public void setAbstract(String Abstract) {
         this.Abstract = Abstract;
     }
-
-   
-
-   
 }
-

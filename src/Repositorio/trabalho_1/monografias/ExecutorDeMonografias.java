@@ -21,6 +21,7 @@ public class ExecutorDeMonografias {
 
     /**
      * Mostra as informações da monografia
+     *
      * @param monografia recebe um objeto e apresenta as informações dele
      */
     private static void exibir(Monografia monografia) {
@@ -86,10 +87,11 @@ public class ExecutorDeMonografias {
      * faz uma lista por autor
      * @deprecated não to usando ainda
      * @param autor recebe o autor
-     * @param c o controller 
+     * @param c o controller
      * @param frase string que vai aparecer na interface
      * @return retorna um inteiro com o indice da monografia
      */
+    @Deprecated
     private static int listaPorAutor(String autor, ControllerDeMonografias c, String frase) {
         int i = 0;
         int in = -1;
@@ -119,9 +121,9 @@ public class ExecutorDeMonografias {
     }
 
     /**
-     * Consulta monografias, por pequista ou lista, dando ao usuario
-     * opçao de pesquisar por titulo ou por autor
-     * ou ter uma lista de todas as monografias pelo titulo
+     * Consulta monografias, por pequista ou lista, dando ao usuario opçao de
+     * pesquisar por titulo ou por autor ou ter uma lista de todas as
+     * monografias pelo titulo
      *
      * @param c controler de monografia
      * @param frase String que vai aparecer para o usuario
@@ -240,20 +242,20 @@ public class ExecutorDeMonografias {
         Monografia monografia = new Monografia(tipoMonografia, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         return monografia;
     }
-    
-    
+
     /**
      * função para exibir mensagens no sistema
-     * @param s mensagem que vai ser exibida para o usuario 
+     *
+     * @param s mensagem que vai ser exibida para o usuario
      */
     public static void msg(String s) {
         System.out.println("\n=============================\n" + s + "\n=============================\n");
     }
-    
-    
+
     /**
      * cria objetos para colocar na lista
-     * @param controle 
+     *
+     * @param controle
      */
     public static void baseDeDados(ControllerDeMonografias controle) {
         List<String> palavras = new ArrayList();
@@ -395,9 +397,11 @@ public class ExecutorDeMonografias {
             }
         } while (opcao != 0);
     }
+
     /**
      * main executavel do sistema
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         ExecutorDeMonografias ex = new ExecutorDeMonografias();
