@@ -16,7 +16,7 @@ public class ClassePrincipalResumo {
     private static ControladorResumo resumo = new ControladorResumo();
 
     public static void main(String[] args) {
-
+        principal();
     }
 
     public static void criar() {
@@ -284,7 +284,7 @@ public class ClassePrincipalResumo {
         String palavrachave;
         Scanner e = new Scanner(System.in);
 
-        int n = 0;
+        int n = -1;
         do {
             System.out.println("===============================================");
             System.out.println("Índice  de resumos");
