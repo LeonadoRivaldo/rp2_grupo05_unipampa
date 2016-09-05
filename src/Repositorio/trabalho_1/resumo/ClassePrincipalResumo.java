@@ -218,11 +218,9 @@ public class ClassePrincipalResumo {
                     ArrayList<String> autores = new ArrayList();
                     do {
                         System.out.println("Autores do resumo");
-                        autor = e.nextLine();
+                        autores.add(e.nextLine());
                         System.out.println("Deseja adicionar mais um autor? (1-SIM 2-NÃO)");
                         o = e.nextInt();
-                        autores.add(e.nextLine());
-
                     } while (o != 2);
                     r.setAutor(autores);
                 }
@@ -238,10 +236,9 @@ public class ClassePrincipalResumo {
 
                     do {
                         System.out.println("Insttituições do resumo");
-                        instituicao = e.nextLine();
+                        instituicoes.add(e.nextLine());
                         System.out.println("Deseja adicionar mais uma ? (1- SIM , 2-NÃO)");
                         op = e.nextInt();
-                        instituicoes.add(e.nextLine());
                     } while (op != 2);
                     r.setInstituicao(instituicoes);
                 }
