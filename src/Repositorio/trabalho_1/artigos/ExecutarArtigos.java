@@ -136,7 +136,10 @@ public class ExecutarArtigos {
         return (entrada.nextInt() - 1);
 
     }
-
+    /**
+     * cria um artigo usando a classe que tem metodos para preencher o objeto
+     * @return um objeto do tipo artigo
+     */
     public static Artigo criaArtigo() {
         //Artigo artigo = new Artigo();
         String tituloSubmissao = PreencheArtigo.preencheTitulo();
