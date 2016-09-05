@@ -16,7 +16,7 @@ public class ClassePrincipalResumo {
     private static ControladorResumo resumo = new ControladorResumo();
 
     public static void main(String[] args) {
-        principal();
+       
     }
 
     public static void criar() {
@@ -186,7 +186,7 @@ public class ClassePrincipalResumo {
     /**
      * Funçao que edita o resumo!
      */
-    public static void editarResumo() {
+       public static void editarResumo() {
         Scanner e = new Scanner(System.in);
         System.out.println("Qual titulo vc quer editar ?");
         String titulo = e.nextLine();
@@ -272,6 +272,9 @@ public class ClassePrincipalResumo {
 
     }
 
+
+
+
     public static void principal() {
         String titulo = null;
         int situacao;
@@ -324,3 +327,5 @@ public class ClassePrincipalResumo {
         } while (n != 0);
     }
 }
+
+
