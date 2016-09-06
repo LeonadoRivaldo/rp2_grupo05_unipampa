@@ -27,7 +27,7 @@ public class ControleDeArtigos {
     }
 
     /**
-     * Método para consultar um artigo
+     * Método para consultar um artigo passando por parâmetro um inteiro
      */
     public Artigo consultar(int y) {
         return artigos.get(y);
@@ -38,6 +38,9 @@ public class ControleDeArtigos {
      * Método para editar uma artigo 1 - String titulo, 2 - String[] autor, 3 -
      * String[] instituicao, 4 - String[] palavrachave, 5 - String resumo, 6 -
      * String Abstract
+     * @param atributo
+     * @param valor
+     * @param artigo
      */
     public void editar(int atributo, String valor, Artigo artigo) {
         switch (atributo) {
@@ -87,7 +90,7 @@ public class ControleDeArtigos {
     }
 
     /**
-     * Método para excluir uma artigo
+     * Método para excluir uma artigo passando por parâmentro um inteito e removendo da lista
      */
     public void excluir(int y) {
         artigos.remove(y);
