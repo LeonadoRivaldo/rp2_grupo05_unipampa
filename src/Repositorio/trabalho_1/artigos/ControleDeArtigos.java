@@ -16,7 +16,7 @@ import java.util.Scanner;
  * @author Amanda Gobus
  */
 public class ControleDeArtigos {
-    
+
     ArrayList<Artigo> artigos = new ArrayList<Artigo>();
 
     /**
@@ -31,7 +31,7 @@ public class ControleDeArtigos {
      */
     public Artigo consultar(int y) {
         return artigos.get(y);
-        
+
     }
 
     /**
@@ -76,13 +76,14 @@ public class ControleDeArtigos {
                 break;
             case 7:
                 Situacao situacao = null;
-                do {
+                situacao = Submissao.verificaSituacao(valor);
+                while (situacao == null) {
                     situacao = Submissao.verificaSituacao(PreencheArtigo.preencheSituacao());
-                } while (situacao == null);
+                }
                 artigo.setSituacaoSubmissao(situacao);
                 break;
         }
-        
+
     }
 
     /**
@@ -90,7 +91,7 @@ public class ControleDeArtigos {
      */
     public void excluir(int y) {
         artigos.remove(y);
-        
+
     }
-    
+
 }

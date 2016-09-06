@@ -93,7 +93,7 @@ public class Executor {
     private static void exibir(Palestra palestra) {
         System.out.println("==================================");
         System.out.println("titulo: " + palestra.getTituloSubmissao());
-        System.out.println("situacao: " + palestra.getSituacaoSubmissao());
+        System.out.println("situacao: " + palestra.getSituacaoSubmissao().getNome());
         System.out.println("autor: " + palestra.getAutor().get(0));
         System.out.println("resumo: " + palestra.getResumo());
         System.out.println("Abstract: " + palestra.getAbstrac());
@@ -102,11 +102,18 @@ public class Executor {
         System.out.println("==================================");
     }
 
+    /**
+     * Mostra os atributos pro usuario com os valores que ele tem, para que ele
+     * possa editar!
+     *
+     * @param palestra
+     * @return um inteiro com o indice do atributo
+     */
     private static int editarpalestra(Palestra palestra) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("==================================");
         System.out.println("1-titulo: " + palestra.getTituloSubmissao());
-        System.out.println("2-situacao: " + palestra.getSituacaoSubmissao());
+        System.out.println("2-situacao: " + palestra.getSituacaoSubmissao().getNome());
         System.out.println("3-autor: " + palestra.getAutor().get(0));
         System.out.println("4-resumo: " + palestra.getResumo());
         System.out.println("5-Abstract: " + palestra.getAbstrac());
@@ -116,6 +123,13 @@ public class Executor {
         return (entrada.nextInt());
     }
 
+    /**
+     * recebe uma entrada do usuario, com base no indice do atributo digitado
+     * anteriormente, metodo que é usado para edição de palestras
+     *
+     * @param indice
+     * @return String com o que o usuario digitou no console
+     */
     public static String pegarvalor(int indice) {
         Scanner entrada = new Scanner(System.in);
 
@@ -131,7 +145,7 @@ public class Executor {
                 System.out.println("Qual é o novo titulo: ");
                 return entrada.nextLine();
             case 2:
-                System.out.println("Situacao da Palestra: Aprovado/Reprovado/SobAvaliacao");
+                System.out.println("Situacao da Palestra: Aprovado/Reprovado/Sob Avaliacao");
                 return entrada.nextLine();
             case 3:
                 System.out.println("Qual é o novo autor: ");
@@ -187,20 +201,32 @@ public class Executor {
                     break;
                 case 2:
                     /* System.out.println("Autor:");
-                    String autor = entrada.nextLine();
+                     String autor = entrada.nextLine();
                      */
-                    exibir(c.consultar(consultarP(c, "Qual palestra voce quer visualizar: ")));
+                    if (c.palestras.size() > 0) {
+                        exibir(c.consultar(consultarP(c, "Qual palestra voce quer visualizar: ")));
+                    } else {
+                        msg("NAO EXISTEM PALESTRAS CADASTRADAS");
+                    }
                     break;
                 case 3:
-                    c.excluir(consultarP(c, "Qual palestra voce quer excluir: "));
-                    msg("PALESTRA EXCLUIDA");
+                    if (c.palestras.size() > 0) {
+                        c.excluir(consultarP(c, "Qual palestra voce quer excluir: "));
+                        msg("PALESTRA EXCLUIDA");
+                    } else {
+                        msg("NAO EXISTEM PALESTRAS CADASTRADAS");
+                    }
                     break;
                 case 4:
-                    int indice = consultarP(c, "Qual palestra voce quer editar: ");
-                    Palestra palestra = c.consultar(indice);
-                    int atributo = editarpalestra(palestra);
-                    c.editar(atributo, pegarvalor(atributo), palestra);
-                    msg("PALESTRA EDITADA");
+                    if (c.palestras.size() > 0) {
+                        int indice = consultarP(c, "Qual palestra voce quer editar: ");
+                        Palestra palestra = c.consultar(indice);
+                        int atributo = editarpalestra(palestra);
+                        c.editar(atributo, pegarvalor(atributo), palestra);
+                        msg("PALESTRA EDITADA");
+                    } else {
+                        msg("NAO EXISTEM PALESTRAS CADASTRADAS");
+                    }
                     break;
             }
 

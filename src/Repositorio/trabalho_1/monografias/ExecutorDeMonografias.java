@@ -21,6 +21,8 @@ public class ExecutorDeMonografias {
 
     /**
      * Mostra as informações da monografia
+     *
+     * @param monografia recebe um objeto e apresenta as informações dele
      */
     private static void exibir(Monografia monografia) {
         System.out.println("===================================================");
@@ -82,8 +84,14 @@ public class ExecutorDeMonografias {
     }
 
     /**
-     *
+     * faz uma lista por autor
+     * @deprecated não to usando ainda
+     * @param autor recebe o autor
+     * @param c o controller
+     * @param frase string que vai aparecer na interface
+     * @return retorna um inteiro com o indice da monografia
      */
+    @Deprecated
     private static int listaPorAutor(String autor, ControllerDeMonografias c, String frase) {
         int i = 0;
         int in = -1;
@@ -113,7 +121,9 @@ public class ExecutorDeMonografias {
     }
 
     /**
-     * Consulta monografias
+     * Consulta monografias, por pequista ou lista, dando ao usuario opçao de
+     * pesquisar por titulo ou por autor ou ter uma lista de todas as
+     * monografias pelo titulo
      *
      * @param c controler de monografia
      * @param frase String que vai aparecer para o usuario
@@ -233,10 +243,20 @@ public class ExecutorDeMonografias {
         return monografia;
     }
 
+    /**
+     * função para exibir mensagens no sistema
+     *
+     * @param s mensagem que vai ser exibida para o usuario
+     */
     public static void msg(String s) {
         System.out.println("\n=============================\n" + s + "\n=============================\n");
     }
 
+    /**
+     * cria objetos para colocar na lista
+     *
+     * @param controle
+     */
     public static void baseDeDados(ControllerDeMonografias controle) {
         List<String> palavras = new ArrayList();
         List<String> palavras1 = new ArrayList();
@@ -378,6 +398,11 @@ public class ExecutorDeMonografias {
         } while (opcao != 0);
     }
 
+    /**
+     * main executavel do sistema
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         ExecutorDeMonografias ex = new ExecutorDeMonografias();
         ex.principal();

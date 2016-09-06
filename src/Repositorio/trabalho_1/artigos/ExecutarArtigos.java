@@ -7,6 +7,7 @@ package Repositorio.trabalho_1.artigos;
 
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -135,7 +136,10 @@ public class ExecutarArtigos {
         return (entrada.nextInt() - 1);
 
     }
-
+    /**
+     * cria um artigo usando a classe que tem metodos para preencher o objeto
+     * @return um objeto do tipo artigo
+     */
     public static Artigo criaArtigo() {
         //Artigo artigo = new Artigo();
         String tituloSubmissao = PreencheArtigo.preencheTitulo();
@@ -156,10 +160,13 @@ public class ExecutarArtigos {
 
     public void principal() {
         Scanner entrada = new Scanner(System.in);
-
-        String[] autores = {"autor1", "autor2"};
+        List<String> autores = new ArrayList();
+        autores.add("autor1");
+        autores.add("autor2");
         String[] instituicoes = {"Unipampa"};
         String[] palavrachave = {"ENGENHARIA DE SOFTWARE", "SEMESTRE2"};
+        
+        controller.incluir(new Artigo("asdasd", "sdadasd", "Titulo do artigo", Situacao.sobAvaliacao, autores , 8, instituicoes, palavrachave, 4, 8));
         int opcao;
         do {
             System.out.println("                             ");
@@ -182,7 +189,6 @@ public class ExecutarArtigos {
                     break;
                 case 2:
                     exibir(controller.consultar(consultarArtigo(controller)));
-
                     break;
                 case 3:
                     controller.excluir(consultarArtigo(controller));

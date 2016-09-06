@@ -18,11 +18,19 @@ public class ClassePrincipalResumo {
     public static void main(String[] args) {
         principal();
     }
+<<<<<<< HEAD
 /** 
  * 
  * @param 
  * Metodo de criar um novo resumo
  */
+=======
+
+    /**
+     * Metodo de criar, para
+     *
+     */
+>>>>>>> 77a292d02bd92afcf7d95938321e52390930dc11
     public static void criar() {
 
         String titulo = null;
