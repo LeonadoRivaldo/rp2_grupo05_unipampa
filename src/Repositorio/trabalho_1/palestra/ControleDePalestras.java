@@ -37,22 +37,23 @@ public class ControleDePalestras {
     public void editar(int indice, String valor, Palestra palestra) {
         Scanner entrada = new Scanner(System.in);
         /* String titulo,
-       String situacao,
-       String autor, 
-       String resumo,
-       String Abstract,
-       int duracao,
-       String curriculo*/
+         String situacao,
+         String autor, 
+         String resumo,
+         String Abstract,
+         int duracao,
+         String curriculo*/
         switch (indice) {
             case 1:
                 palestra.setTituloSubmissao(valor);
                 break;
             case 2:
                 Situacao situacao = null;
-                do {
-                    System.out.println("Situacao da Palestra: Aprovado/Reprovado/SobAvaliacao");
+                situacao = Submissao.verificaSituacao(valor);
+                while (situacao == null) {
+                    System.out.println("Situacao da Palestra: Aprovado/Reprovado/SobA valiacao");
                     situacao = Submissao.verificaSituacao(entrada.nextLine());
-                } while (situacao == null);
+                }
                 palestra.setSituacaoSubmissao(Submissao.verificaSituacao(valor));
                 break;
             case 3:

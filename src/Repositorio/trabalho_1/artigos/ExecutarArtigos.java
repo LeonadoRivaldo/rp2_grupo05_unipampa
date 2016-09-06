@@ -182,7 +182,6 @@ public class ExecutarArtigos {
                     break;
                 case 2:
                     exibir(controller.consultar(consultarArtigo(controller)));
-
                     break;
                 case 3:
                     controller.excluir(consultarArtigo(controller));

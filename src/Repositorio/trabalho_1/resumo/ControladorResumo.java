@@ -14,22 +14,25 @@ public class ControladorResumo {
         return resumos;
     }
     private Resumo open;
+
     /**
      * incluir publicação resumo
+     *
      * @param titulo
      * @param situacao
      * @param autor
      * @param instituicao
-     * @param palavraschave 
+     * @param palavraschave
      */
     public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
         open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
         resumos.add(open);
     }
+
     /**
-     * 
+     *
      * @param titulo
-     * @return 
+     * @return
      */
     public boolean excluir(String titulo) {
         for (int i = 0; i < resumos.size(); i++) {
@@ -40,12 +43,13 @@ public class ControladorResumo {
         }
         return false;
     }
+
     /**
-     * 
+     *
      * @param atributo
      * @param valor
      * @param resumo
-     * @return 
+     * @return
      * @deprecated tá usando um na main
      */
     public boolean editar(int atributo, String valor, Resumo resumo) {
