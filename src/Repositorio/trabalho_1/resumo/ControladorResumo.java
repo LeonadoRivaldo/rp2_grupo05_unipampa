@@ -22,7 +22,12 @@ public class ControladorResumo {
      * @param situacao
      * @param autor
      * @param instituicao
+<<<<<<< HEAD
+     * @param palavraschave 
+     * 
+=======
      * @param palavraschave
+>>>>>>> 77a292d02bd92afcf7d95938321e52390930dc11
      */
     public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
         open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
@@ -32,7 +37,12 @@ public class ControladorResumo {
     /**
      *
      * @param titulo
+<<<<<<< HEAD
+     * @return 
+     * Função para excluir um resumo usando seu titulo
+=======
      * @return
+>>>>>>> 77a292d02bd92afcf7d95938321e52390930dc11
      */
     public boolean excluir(String titulo) {
         for (int i = 0; i < resumos.size(); i++) {

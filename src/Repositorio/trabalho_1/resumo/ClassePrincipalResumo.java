@@ -18,11 +18,19 @@ public class ClassePrincipalResumo {
     public static void main(String[] args) {
         principal();
     }
+<<<<<<< HEAD
+/** 
+ * 
+ * @param 
+ * Metodo de criar um novo resumo
+ */
+=======
 
     /**
      * Metodo de criar, para
      *
      */
+>>>>>>> 77a292d02bd92afcf7d95938321e52390930dc11
     public static void criar() {
 
         String titulo = null;
@@ -80,6 +88,10 @@ public class ClassePrincipalResumo {
      * Consulta pelo titulo
      *
      * @param titulo
+     * 
+     * Nessse metodo o usuario pode fazer a consulta usando o titulo do resumo desejado
+     * 
+     * 
      */
     public static void consulta(String titulo) {
         Scanner e = new Scanner(System.in);
@@ -118,6 +130,7 @@ public class ClassePrincipalResumo {
     /**
      *
      * @param autor
+     * Nesse metodo o usuario pode fazer a consulta usando o nome do autor do resumo 
      */
     public static void consultaAutores(String autor) {
         Scanner e = new Scanner(System.in);
@@ -157,10 +170,12 @@ public class ClassePrincipalResumo {
     }
 
     /**
-     * pega um atributo do resumo
+     * 
      *
      * @param resumo
      * @return
+     * 
+     * Pega o atrubuto do resumo 
      */
     public static int pegarAtributo(Resumo resumo) {
         Scanner e = new Scanner(System.in);

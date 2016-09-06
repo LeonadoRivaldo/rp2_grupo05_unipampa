@@ -43,7 +43,12 @@ public class ListaSubmissao implements ListaSubmissoes {
     public List<Submissao> consultarAutor(String autor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * 
+     * @param titulo titulo da submissao, antigo(se for alterado), para substitituir o elemento.
+     * @param submissao
+     * @return 
+     */
     @Override
     public boolean editar(String titulo, Submissao submissao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
