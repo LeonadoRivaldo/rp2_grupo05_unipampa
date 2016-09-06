@@ -258,7 +258,8 @@ public class ClassePrincipalResumo {
                 break;
             case 5:
                 System.out.println("Voce quer adicionar ou refazer a lista de palavras chaves?");
-                if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                String escolha = e.nextLine();
+                if (escolha.equalsIgnoreCase("adicionar")) {
                     System.out.println("Nova palavra chave:");
                     r.addPalavraChave(e.nextLine());
                 } else {
