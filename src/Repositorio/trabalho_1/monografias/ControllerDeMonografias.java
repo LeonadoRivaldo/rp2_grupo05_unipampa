@@ -26,8 +26,7 @@ public class ControllerDeMonografias {
      * @return
      */
     public boolean incluir(Monografia m) {
-        monografias.add(m);
-        return true;
+        return monografias.incluir(m);
     }
 
     /**
@@ -37,8 +36,8 @@ public class ControllerDeMonografias {
      * @param indice da monografia dentro da lista
      * @return
      */
-    public Monografia consultar(int indice) {
-        return monografias.get(indice);
+    public Monografia consultar(String titulo) {
+        return (Monografia) monografias.consultarTitulo(titulo);
     }
 
     /**
