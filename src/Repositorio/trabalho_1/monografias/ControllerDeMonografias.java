@@ -97,6 +97,7 @@ public class ControllerDeMonografias {
      */
     public boolean editar(int atributo, String valor, Monografia monografia) {
         String oldTitulo = monografia.getTituloSubmissao();
+        String[] s;
         switch (atributo) {
             case 1:
                 monografia.setTituloSubmissao(valor);
@@ -118,13 +119,15 @@ public class ControllerDeMonografias {
                 monografia.setSituacaoSubmissao(situacao);
                 break;
             case 4:
+                s = valor.split("-");
                 List<String> autor = new ArrayList<String>();
-                autor.add(valor);
+                autor.add(s[0]);
                 monografia.setAutor(autor);
                 break;
             case 5:
+                s = valor.split("-");
                 List<String> insti = new ArrayList<String>();
-                insti.add(valor);
+                insti.add(s[0]);
                 monografia.setInstituicao(insti);
                 break;
             case 6:

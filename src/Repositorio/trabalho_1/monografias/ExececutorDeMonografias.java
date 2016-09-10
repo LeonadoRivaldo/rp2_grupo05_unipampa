@@ -186,7 +186,7 @@ public class ExececutorDeMonografias {
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
         resumo += "enim ultrices, in interdum lacus blandit. Class aptent taciti.\n";
         for (int i = 0; i < 50; i++) {
-            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, i, palavras1, palavras2, 4, 1));
+            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, 1, palavras1, palavras2, 4, 1));
 
         }
     }
