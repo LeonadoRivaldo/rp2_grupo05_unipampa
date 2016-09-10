@@ -5,6 +5,7 @@
  */
 package Repositorio.trabalho_1.monografias;
 
+import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ import java.util.List;
  */
 public class ControllerDeMonografias {
 
-    ArrayList<Monografia> monografias = new ArrayList<Monografia>();
-
+    //ArrayList<Monografia> monografias = new ArrayList<Monografia>();
+    ListaSubmissao monografias = new ListaSubmissao();
     /**
      * inclui uma monografia na biblioteca
      *

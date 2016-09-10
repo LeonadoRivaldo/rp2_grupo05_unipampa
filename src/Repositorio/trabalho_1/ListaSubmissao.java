@@ -23,6 +23,10 @@ public class ListaSubmissao implements ListaSubmissoes {
         submissoes = new ArrayList();
     }
 
+    public List<Submissao> getSubmissoes() {
+        return submissoes;
+    }
+    
     /**
      * mêtodo que vai receber uma submissão e adciona-la na lista de submissões
      *
