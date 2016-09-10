@@ -133,9 +133,9 @@ public class ExecutorDeMonografias {
         Scanner entrada = new Scanner(System.in);
         System.out.println("==============================");
         int in = -1, i = 0;
-        String pesquisa = "";
-        System.out.println("Pesquisa por titulo ou consulta em lista? (pesquisa/lista)");
-        pesquisa = entrada.nextLine();
+        String pesquisa = "pesquisa";
+        //System.out.println("Pesquisa por titulo ou consulta em lista? (pesquisa/lista)");
+        //pesquisa = entrada.nextLine();
         if (pesquisa.equalsIgnoreCase("lista")) {
             //System.out.println("-----------------------------------------------");
             //System.out.println("Listar monografias por titulo ou por autor:");
