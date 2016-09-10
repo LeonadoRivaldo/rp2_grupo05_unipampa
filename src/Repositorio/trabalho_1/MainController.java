@@ -21,9 +21,11 @@ public class MainController {
     public static void msg(String s) {
         System.out.println("\n##############################################\n" + s + "\n##############################################\n");
     }
+
     /**
      * menu!
-     * @return 
+     *
+     * @return
      */
     public static int menu() {
         Scanner entrada = new Scanner(System.in);
@@ -47,12 +49,11 @@ public class MainController {
      * @param args
      */
     public static void main(String[] args) {
-        ExecutorDeMonografias exeMonografias = new ExecutorDeMonografias();
-
+        Scanner entrada = new Scanner(System.in);
+        ExececutorDeMonografias exeMonografias = new ExececutorDeMonografias();
         Executor palestra = new Executor();
         PMinicurso minicurso = new PMinicurso();
         ExecutarArtigos artigos = new ExecutarArtigos();
-        Scanner entrada = new Scanner(System.in);
         ControladorResumo resumo = new ControladorResumo();
         int opcao = -1;
 
