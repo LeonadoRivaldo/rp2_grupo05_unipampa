@@ -26,32 +26,110 @@ public class ListaSubmissao implements ListaSubmissoes {
     /**
      * mêtodo que vai receber uma submissão e adciona-la na lista de submissões
      *
-     * @param submissao um objeto submissao de qualquer tipo para ser adicionado na lista
+     * @param submissao um objeto submissao de qualquer tipo para ser adicionado
+     * na lista
      * @return
      */
     @Override
     public boolean incluir(Submissao submissao) {
         return submissoes.add(submissao);
     }
-    
+
+    /**
+     * Envie um titulo para a consulta da submissao
+     *
+     * @param titulo da submissao a ser consultada
+     * @return objeto sumissao se encontar e null se não encontrar ou existir
+     * mais de uma submissao com o mesmo titulo
+     */
     @Override
     public Submissao consultarTitulo(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nSubmissoesEncontradas = 0;
+        int submissaoIndex = 0;
+        for (Submissao submisao : submissoes) {
+            if (submisao.getTituloSubmissao().equalsIgnoreCase(titulo)) {
+                submissaoIndex = submissoes.indexOf(submisao);
+                nSubmissoesEncontradas++;
+            }
+        }
+        if (nSubmissoesEncontradas == 1) {
+            return submissoes.get(submissaoIndex);
+        }
+        return null;
     }
 
+    /**
+     * Envie um autor para a consulta das submissões
+     *
+     * @param autor da pesquisa para encontar as submissoes relacionadas
+     * @return lista de submissoes que tem relação com autor e null se não
+     * encontrar
+     */
     @Override
     public List<Submissao> consultarAutor(String autor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Submissao> sub = new ArrayList<>();
+        for (Submissao submisao : submissoes) {
+            if (submisao.getAutor().contains(autor)) {
+                sub.add(submisao);
+            }
+        }
+        if (sub.size() > 0) {
+            return sub;
+        }
+        return null;
     }
 
+    /**
+     * Enviar o titulo antigo, se o mesmo for alterado, e o objeto inteiro
+     * modificado.
+     *
+     * @param titulo titulo da submissao, antigo(se for alterado), para
+     * substitituir o elemento.
+     * @param submissao um objeto que vai substituir o objeto antigo
+     * @return true se encontrar o objeto e fizer a alteração, false caso haja
+     * mais de um objeto com o mesmo titulo ou se a achão falhar
+     */
     @Override
     public boolean editar(String titulo, Submissao submissao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nSubmissoesEncontradas = 0;
+        int submissaoIndex = 0;
+        for (Submissao submisao : submissoes) {
+            if (submisao.getTituloSubmissao().equalsIgnoreCase(titulo)) {
+                submissaoIndex = submissoes.indexOf(submisao);
+                nSubmissoesEncontradas++;
+            }
+        }
+        if (nSubmissoesEncontradas == 1) {
+            submissoes.set(submissaoIndex, submissao);
+            return true;
+        }
+        return false;
     }
 
+    /**
+     * Enviar o titulo da submissao que vai ser excluida
+     *
+     * @param titulo titulo da submissao
+     * @return true se encontrar o objeto e excluir
+     * @retrun false caso haja mais de um objeto com o mesmo titulo ou se a
+     * achão falhar
+     */
     @Override
     public boolean excluir(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nSubmissoesEncontradas = 0;
+        int submissaoIndex = 0;
+        for (Submissao submisao : submissoes) {
+            if (submisao.getTituloSubmissao().equalsIgnoreCase(titulo)) {
+                submissaoIndex = submissoes.indexOf(submisao);
+                nSubmissoesEncontradas++;
+            }
+        }
+
+        if (nSubmissoesEncontradas == 1) {
+            submissoes.remove(submissaoIndex);
+            return true;
+        }
+        return false;
     }
 
 }

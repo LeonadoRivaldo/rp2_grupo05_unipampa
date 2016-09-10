@@ -17,16 +17,31 @@ public class PreencheArtigo {
 
     private static Scanner entrada = new Scanner(System.in);
 
-    public static String preencheSituacao(){
-        System.out.println("Informe a situação do Artigo : Aprovado/Reprovado/SobAvaliação");
-         return entrada.nextLine();
+    /**
+     * Método que preenche a situação do artigo e retorna direto
+     *
+     * @return
+     */
+    public static String preencheSituacao() {
+        System.out.println("Informe a situação do Artigo : Aprovado/Reprovado/Sob Avaliacao");
+        return entrada.nextLine();
     }
-    
+
+    /**
+     * Método que preenche o titulo
+     *
+     * @return
+     */
     public static String preencheTitulo() {
         System.out.println("Informe o titulo do artigo: ");
         return entrada.nextLine();
     }
 
+    /**
+     * Método pergunta o número de autores e depois preenche e retorna autor
+     *
+     * @return autor
+     */
     public static List<String> preencheAutor() {
         System.out.println("Informe o número de autores:");
         int n = entrada.nextInt();
@@ -40,6 +55,11 @@ public class PreencheArtigo {
         return autor;
     }
 
+    /**
+     * Método que preenche instituição e depois retorna inst
+     *
+     * @return inst
+     */
     public static List<String> preencheInstituicao() {
         System.out.println("Informe o número de instituições:");//adicionar até 8 instituições
         int n = entrada.nextInt();
@@ -53,16 +73,32 @@ public class PreencheArtigo {
         return inst;
     }
 
+    /**
+     * Método que preenche o resumo
+     *
+     * @return
+     */
     public static String preencheResumo() {
         System.out.println("Digite o resumo do artigo: ");
         return (entrada.nextLine());
     }
 
+    /**
+     * Método que preenche o abstract
+     *
+     * @return
+     */
     public static String preencheAbstract() {
         System.out.println("Digite o Abstract: ");
         return (entrada.nextLine());
     }
 
+    /**
+     * Método que pergunta o número de palavras chave , depois preenche as
+     * palavras chaves do artigo e retorna as palavras
+     *
+     * @return
+     */
     public static List<String> preenchePalavrachave() {
         System.out.println("Informe o número de palavras chave do artigo: ");// adicionar até 4 palavras
         int n = entrada.nextInt();

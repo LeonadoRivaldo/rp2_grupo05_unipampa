@@ -41,10 +41,6 @@ public class ExecutarArtigos {
                 return instituicoes;
 
             case 4:
-                return PreencheArtigo.preencheResumo();
-            case 5:
-                return PreencheArtigo.preencheAbstract();
-            case 6:
                 List<String> palavra = PreencheArtigo.preenchePalavrachave();
                 String p = "";
                 for (String i : palavra) {
@@ -52,6 +48,11 @@ public class ExecutarArtigos {
 
                 }
                 return p;
+            case 5:
+                return PreencheArtigo.preencheResumo();
+            case 6:
+                return PreencheArtigo.preencheAbstract();
+
             case 7:
                 return PreencheArtigo.preencheSituacao();
         }
@@ -136,8 +137,10 @@ public class ExecutarArtigos {
         return (entrada.nextInt() - 1);
 
     }
+
     /**
      * cria um artigo usando a classe que tem metodos para preencher o objeto
+     *
      * @return um objeto do tipo artigo
      */
     public static Artigo criaArtigo() {
@@ -161,12 +164,21 @@ public class ExecutarArtigos {
     public void principal() {
         Scanner entrada = new Scanner(System.in);
         List<String> autores = new ArrayList();
-        autores.add("autor1");
-        autores.add("autor2");
-        String[] instituicoes = {"Unipampa"};
-        String[] palavrachave = {"ENGENHARIA DE SOFTWARE", "SEMESTRE2"};
-        
-        controller.incluir(new Artigo("asdasd", "sdadasd", "Titulo do artigo", Situacao.sobAvaliacao, autores , 8, instituicoes, palavrachave, 4, 8));
+        List<String> instituicoes = new ArrayList();
+        List<String> palavrachave = new ArrayList();
+
+        autores.add("Homem de ferro");
+        autores.add("Popeye");
+        autores.add("A Pantera Cor-de-Rosa");
+        autores.add("Os Flinstones");
+        autores.add("Zé Colmeia");
+        instituicoes.add("Fenda Do Biquini");
+        instituicoes.add("Disney");
+        instituicoes.add("Pixar");
+        palavrachave.add("Animações");
+        palavrachave.add("Pokemon");
+        controller.incluir(new Artigo("Mickey Mouse", "Minnie Mouse", "WAlT Disney", Situacao.aprovado, autores, 8, instituicoes, palavrachave, 4, 8));
+
         int opcao;
         do {
             System.out.println("                             ");

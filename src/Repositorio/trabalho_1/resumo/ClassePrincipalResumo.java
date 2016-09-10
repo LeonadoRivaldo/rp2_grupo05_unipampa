@@ -18,6 +18,7 @@ public class ClassePrincipalResumo {
     public static void main(String[] args) {
         principal();
     }
+<<<<<<< HEAD
 
 /** 
  * 
@@ -25,12 +26,17 @@ public class ClassePrincipalResumo {
  * Metodo de criar um novo resumo
  */
 
+=======
+>>>>>>> 6d83310f7d9c3ab73eabf6555efe3b1283303bf6
 
     /**
      * Metodo de criar, para
      *
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6d83310f7d9c3ab73eabf6555efe3b1283303bf6
     public static void criar() {
 
         String titulo = null;
