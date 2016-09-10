@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author leona_000
  */
-public class ExecutorDeMonografias {
+public class ExececutorDeMonografias {
 
     ControllerDeMonografias controller = new ControllerDeMonografias();
 
@@ -91,98 +91,29 @@ public class ExecutorDeMonografias {
      * @param frase string que vai aparecer na interface
      * @return retorna um inteiro com o indice da monografia
      */
-    private static void listaPorAutor(String autor, ControllerDeMonografias c, String frase) {
-        System.out.println("TODO");
+    private static Monografia listaPorAutor(ControllerDeMonografias controller, List<Submissao> submissoes) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("====================================================");
+        for (Submissao monografia : submissoes) {
+            System.out.println(monografia.getTituloSubmissao());
+        }
+        System.out.println("----------------------------------------------------");
+        System.out.println("Digite o titulo da monografia a ser exibida: ");
+        return controller.consultar(entrada.nextLine());
     }
 
     /**
-     * Consulta monografias, por pequista ou lista, dando ao usuario opçao de
-     * pesquisar por titulo ou por autor ou ter uma lista de todas as
-     * monografias pelo titulo
+     * Faz pesquisa pelo titulo!
      *
-     * @deprecated old - refazer
-     * @param c controler de monografia
-     * @param frase String que vai aparecer para o usuario
-     * @return
+     * @param controller de monografias
+     * @param frase string que mostra para o usuario
+     * @return objeto monografia ou null se não achar
      */
-    public static int ConsultarMonografia(ControllerDeMonografias c, String frase) {
+    public static Monografia consultarMonografia(ControllerDeMonografias controller, String frase) {
+        System.out.println("====================================================");
         Scanner entrada = new Scanner(System.in);
-        System.out.println("==============================");
-        int in = -1, i = 0;
-        String pesquisa = "pesquisa";
-        //System.out.println("Pesquisa por titulo ou consulta em lista? (pesquisa/lista)");
-        //pesquisa = entrada.nextLine();
-        if (pesquisa.equalsIgnoreCase("lista")) {
-            //System.out.println("-----------------------------------------------");
-            //System.out.println("Listar monografias por titulo ou por autor:");
-            pesquisa = "titulo";
-            if (pesquisa.equalsIgnoreCase("titulo")) {
-                System.out.println("--------------------------------------------");
-                for (Monografia monografia : c.monografias) {
-                    i++;
-                    System.out.println(i + "- " + monografia.getTituloSubmissao());
-                    if (i % 10 == 0) {
-                        do {
-                            System.out.println("------------------------------");
-                            System.out.print(frase + " ou -1 para continuar:");
-                            in = entrada.nextInt();
-                            System.out.println("------------------------------");
-                            if (in == -1) {
-                                break;
-                            }
-                        } while (in < 1 || in > i);
-                        if (in != -1) {
-                            break;
-                        }
-                    }
-                }
-                do {
-                    if (i == c.monografias.size()) {
-                        System.out.println("fim da lista!");
-                        System.out.println("------------------------------");
-                        System.out.print(frase + ": ");
-                        in = entrada.nextInt();
-                    }
-                } while (in < 1 || in > c.monografias.size());
-            } else {
-                msg("FAZER LISTA POR AUTOR!");
-                entrada.nextLine();
-            }
-        } else {
-            System.out.println("==================================================");
-            System.out.print("Pesquisa por titulo ou autor:");
-            pesquisa = entrada.nextLine();
-            if (pesquisa.equalsIgnoreCase("autor")) {
-                String autor = PreencheMonografia.preencheAutor().get(0);
-                return listaPorAutor(autor, c, frase);
-            } else {
-                i = 0;
-                String titulo = PreencheMonografia.preencheTitulo();
-                for (Monografia monografia : c.monografias) {
-                    if (monografia.getTituloSubmissao().contains(titulo)) {
-                        i++;
-                        int pos = c.monografias.indexOf(monografia);
-                        System.out.println(pos + "- " + monografia.getTituloSubmissao());
-                    }
-                }
-                if (i > 0) {
-                    do {
-                        System.out.println("------------------------------");
-                        System.out.print(frase + ": ");
-                        in = entrada.nextInt();
-                    } while (in < 1 || in > c.monografias.size());
-                    return in;
-                } else {
-                    msg("Nenhuma monografia encontrada com esse titulo");
-                }
-            }
-        }
-        return --in;
-    }
-
-    public static Monografia consultarMonografia(ControllerDeMonografias c, String frase) {
-        System.out.println("TODO");
-        return null;
+        System.out.println(frase);
+        return controller.consultar(entrada.nextLine());
     }
 
     /**
@@ -230,7 +161,9 @@ public class ExecutorDeMonografias {
      * @param s mensagem que vai ser exibida para o usuario
      */
     public static void msg(String s) {
-        System.out.println("\n=============================\n" + s + "\n=============================\n");
+        System.out.println("\n===========================================================\n");
+        System.out.println(s.toUpperCase());
+        System.out.println("\n===========================================================\n");
     }
 
     /**
@@ -309,7 +242,8 @@ public class ExecutorDeMonografias {
      */
     public void principal() {
         Scanner entrada = new Scanner(System.in);
-
+        Monografia monografia;
+        List<Submissao> submissoes;
         baseDeDados(controller);
         int opcao = 0;
         do {
@@ -328,8 +262,8 @@ public class ExecutorDeMonografias {
                 case 0:
                     break;
                 case 1:
-                    Monografia m = criaMonografia();
-                    if (controller.incluir(m)) {
+                    monografia = criaMonografia();
+                    if (controller.incluir(monografia)) {
                         msg("MONOGRAFIA CRIADA COM SUCESSO");
                     } else {
                         System.out.println(":(");
@@ -337,46 +271,83 @@ public class ExecutorDeMonografias {
                     System.out.println("");
                     break;
                 case 2:
-                    Monografia mono = consultarMonografia(controller, "Digite o titulo que você quer pesquisar: ");
+                    monografia = consultarMonografia(controller, "Digite o titulo que você quer pesquisar: ");
                     do {
-                        if (mono != null) {
-                            exibir(mono);
+                        if (monografia != null) {
+                            exibir(monografia);
                         } else {
                             msg("MONOGRAFIA NÃO ENCONTRADA");
                             System.out.println("Deseja pesquisar novamente?");
-                            if (entrada.nextLine().equalsIgnoreCase("sim")) {
-                                mono = consultarMonografia(controller, "Digite o titulo que você quer pesquisar: ");
+                            if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                break;
                             }
                         }
-                    } while (mono == null);
+                    } while (monografia == null);
+                    break;
+                case 3:
+                    do {
+                        System.out.println("========================================");
+                        System.out.println("Digite o nome do autor que você quer pesquisar: ");
+                        submissoes = controller.consultarAutor(entrada.nextLine());
+                        monografia = listaPorAutor(controller, submissoes);
+                        if (monografia != null) {
+                            exibir(monografia);
+                        } else {
+                            msg("monografia não encontrada");
+                            System.out.println("Deseja pesquisar novamente?");
+                            if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                break;
+                            }
+                        }
+                    } while (monografia == null);
                     break;
                 case 4:
-                    System.out.println("========================================");
-                    if (controller.monografias.size() <= 0) {
-                        System.out.println("A lista está vazia!");
-                    } else {
-                        if (controller.excluir(ConsultarMonografia(controller, "Qual monografia você quer excluir:"))) {
-                            msg("MONOGRAFIA excluida COM SUCESSO");
+                    boolean excluida = false;
+                    do {
+                        System.out.println("================================================");
+                        System.out.println("Qual é o titulo da monografia que você deseja excluir:");
+                        excluida = controller.excluir(entrada.nextLine());
+                        if (excluida) {
+                            msg("Monografia excluida com sucesso");
+                        } else {
+                            msg("Monografia não encontrada");
+                            System.out.print("Pesquisar novamente?");
+                            if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                excluida = true;
+                            }
                         }
-                    }
+                    } while (!excluida);
                     break;
                 case 5:
-                    int index = ConsultarMonografia(controller, "Qual monografia você deseja editar:");
-                    Monografia mono = controller.consultar(index);
+                    monografia = consultarMonografia(controller, "Qual monografia você deseja editar:");
                     int fim = 0;
+                    boolean editada = false;
                     do {
-                        int atributo = editarMonografia(mono);
-                        if (controller.editar(atributo, PegarValor(atributo), mono)) {
-                            msg("MONOGRAFIA EDITADA COM SUCESSO");
+                        if (monografia != null) {
+                            do {
+                                int atributo = editarMonografia(monografia);
+                                editada = controller.editar(atributo, PegarValor(atributo), monografia);
+                                if (editada) {
+                                    msg("MONOGRAFIA EDITADA COM SUCESSO");
+                                }
+                                System.out.println("====================================");
+                                System.out.println("Deseja editar outro atributo? 1- sim | 2- não ");
+                                fim = entrada.nextInt();
+                            } while (fim != 2);
+                        } else {
+                            msg("monografia não encontrada");
+                            if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                break;
+                            }
                         }
-                        System.out.println("====================================");
-                        System.out.println("Deseja editar outro atributo? 1- sim | 2- não ");
-                        fim = entrada.nextInt();
-                    } while (fim != 2);
+                    } while (!editada);
+
                     break;
                 default:
+                    msg("Opção invalida!");
                     break;
             }
+
         } while (opcao != 0);
     }
 
@@ -386,8 +357,22 @@ public class ExecutorDeMonografias {
      * @param args
      */
     public static void main(String[] args) {
-        ExecutorDeMonografias ex = new ExecutorDeMonografias();
+        ExececutorDeMonografias ex = new ExececutorDeMonografias();
         ex.principal();
     }
 
+    /* deprecated METHODS */
+    /**
+     * Consulta monografias, por pequista ou lista, dando ao usuario opçao de
+     * pesquisar por titulo ou por autor ou ter uma lista de todas as
+     * monografias pelo titulo
+     *
+     * @deprecated old - refazer
+     * @param c controler de monografia
+     * @param frase String que vai aparecer para o usuario
+     * @return
+     *
+     * public static int ConsultarMonografia(ControllerDeMonografias c, String
+     * frase) {
+     */
 }

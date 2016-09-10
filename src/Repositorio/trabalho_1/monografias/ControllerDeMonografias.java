@@ -18,7 +18,18 @@ import java.util.List;
 public class ControllerDeMonografias {
 
     //ArrayList<Monografia> monografias = new ArrayList<Monografia>();
-    ListaSubmissao monografias = new ListaSubmissao();
+    /**
+     * Objeto que instancia a lista de submissoes
+     */
+    private ListaSubmissao listaController;
+
+    /**
+     * Construtor
+     */
+    public ControllerDeMonografias() {
+        this.listaController = new ListaSubmissao();
+    }
+
     /**
      * inclui uma monografia na biblioteca
      *
@@ -26,28 +37,39 @@ public class ControllerDeMonografias {
      * @return
      */
     public boolean incluir(Monografia m) {
-        return monografias.incluir(m);
+        return listaController.incluir(m);
     }
 
     /**
-     * faz consulta utilizando uma lista enumerada, e seleciona qual item da
-     * lista quer mostrar
+     * faz pesquisa pelo titulo
      *
-     * @param indice da monografia dentro da lista
-     * @return
+     * @param titulo da monografia para a pesquisa
+     * @return objeto monografia se encontrar ou null se não achar ou se houver
+     * mais de 1
      */
     public Monografia consultar(String titulo) {
-        return (Monografia) monografias.consultarTitulo(titulo);
+        return (Monografia) listaController.consultarTitulo(titulo);
+    }
+
+    /**
+     * Faz consulta utilizando uma string de autor
+     *
+     * @param autor para pesquisa
+     * @return lista das submissoes relacionadas aquele autor ou null se não
+     * houver nenhuma submissao daquele autor
+     */
+    public List<Submissao> consultarAutor(String autor) {
+        return listaController.consultarAutor(autor);
     }
 
     /**
      * funçao para exlcuir uma monografia
      *
-     * @param indice da monografia dentro da lista
-     * @return
+     * @param titulo para a pesquisa e esclusao
+     * @return true se exlcuir corretamente, false se não conseguir
      */
     public boolean excluir(String titulo) {
-        return monografias.excluir(titulo);
+        return listaController.excluir(titulo);
     }
 
     /**
@@ -74,6 +96,7 @@ public class ControllerDeMonografias {
      * @param monografia objeto da monografia
      */
     public boolean editar(int atributo, String valor, Monografia monografia) {
+        String oldTitulo = monografia.getTituloSubmissao();
         switch (atributo) {
             case 1:
                 monografia.setTituloSubmissao(valor);
@@ -86,7 +109,6 @@ public class ControllerDeMonografias {
                 }
                 monografia.setTipo(tipoMonografia);
                 break;
-
             case 2:
                 Situacao situacao = null;
                 situacao = Submissao.verificaSituacao(valor);
@@ -132,7 +154,7 @@ public class ControllerDeMonografias {
                 monografia.setAbstract(valor);
                 break;
         }
-        return true;
+        return listaController.editar(oldTitulo, monografia);
     }
 
     /**
@@ -142,8 +164,7 @@ public class ControllerDeMonografias {
      * @return
      */
     public boolean criar(Monografia monografia) {
-        incluir(monografia);
-        return true;
+        return incluir(monografia);
     }
 
 }
