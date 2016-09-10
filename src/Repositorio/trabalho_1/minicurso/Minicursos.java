@@ -1,5 +1,6 @@
 package Repositorio.trabalho_1.minicurso;
 
+import Repositorio.trabalho_1.ListaSubmissao;
 import java.util.ArrayList;
 import java.util.List;
 import Repositorio.trabalho_1.Situacao;
@@ -10,17 +11,9 @@ import Repositorio.trabalho_1.Submissao;
  */
 public class Minicursos {
 
-    private ArrayList<Minicurso> lista;
+    //private ArrayList<Minicurso> listaMinicursos;
+    private ListaSubmissao listaMinicursos = new ListaSubmissao();
     private Minicurso minicurso;
-
-    /**
-     * Construtor da classe Minicursos
-     *
-     * Cria o ArrayList lista que guarda todos os minicursos criados
-     */
-    public Minicursos() {
-        lista = new ArrayList();
-    }
 
     /**
      * Metodo que cria um novo minicurso
@@ -45,44 +38,52 @@ public class Minicursos {
         minicurso = new Minicurso(titulo, autores, resumo, s,
                 abstrac, metodologia, recursos, duracao);
 
-        lista.add(minicurso);
+        listaMinicursos.incluir(minicurso);
     }
 
     /**
      * Metodo responsavel por buscar e exibir informações sobre um minicurso
      *
-     * @param index int index do minicurso a ser buscado
+     * @param titulo String titulo do minicurso a ser exibido
      * @return String contendo todos os dados, pronto para exibir
      */
-    public String getMinicurso(int index) {
-        return (lista.get(index).toString());
+    public String getMinicurso(String titulo) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        return e.toString();
     }
 
     /**
      * Metodo para excluir um minicurso informado
      *
-     * @param index int index do minicurso que será deletado
+     * @param titulo Strint titulo do minicurso que será deletado
      */
-    public void excluir(int index) {
-        lista.remove(index);
+    public boolean excluir(String titulo) {
+        return listaMinicursos.excluir(titulo);
     }
 
     /**
-     * Metodo responsavel por busca e exibir a lista de minicursos
+     * Metodo responsavel por busca e exibir a listaMinicursos de minicursos
      *
-     * @return String contendo todos os minicursos
+     * @return ArrayList com titulo e autores de cada submissao: Nas posições
+     * pares os titulos e nas ímpares os autores. EX: posiçao 0 = titulo do
+     * minicurso A, posição 1 = autores do minicurso A. Caso não exista nenhum
+     * minicurso cadastrado, retorna null.
+     *
      */
     public String getListaMinicursos() {
         String dados = "";
+        List<Submissao> m = listaMinicursos.getSubmissoes();
 
-        for (int i = 0; i < lista.size(); i++) {
-            dados += "\n" + i + " - Titulo: " + lista.get(i).getTituloSubmissao()
-                    + "     \tAutor(es): " + autoresToString(i);
+        for (int i = 0; i < m.size(); i++) {
+            Minicurso e = (Minicurso) m.get(i);
+            dados += "\n" + i + " - Titulo: " + e.getTituloSubmissao()
+                    + "      \tAutor(es): " + autoresToString(e.getTituloSubmissao());
         }
+
         if (!dados.isEmpty()) {
             return dados;
         } else {
-            return "Nenhum minicurso encontrado!";
+            return null;
         }
     }
 
@@ -92,19 +93,23 @@ public class Minicursos {
      *
      * @param desejado String com o dado desejado
      * @param tipo int tipo, que deve ser: 1 - para pesquisa por autor, 2 - para
-     * pesquisa por titulof
+     * pesquisa por titulo
+     *
+     * Caso a busca seja por titulo, será retornado todas as informações do
+     * Minicurso, em String. f
      * @return String contendo os minicursos econtrados
      */
     public String buscar(String desejado, int tipo) {
         String dados = "";
+        List<Submissao> m = listaMinicursos.getSubmissoes();
 
         if (tipo == 1) {
-            for (int i = 0; i < lista.size(); i++) {
-                Minicurso m = lista.get(i);
-                for (String e : m.getAutor()) {
-                    if (e.equalsIgnoreCase(desejado)) {
-                        dados += "\n" + i + " - Titulo: " + lista.get(i).getTituloSubmissao()
-                                + "      \tAutor(es): " + autoresToString(i);
+            for (int i = 0; i < m.size(); i++) {
+                Minicurso e = (Minicurso) m.get(i);
+                for (String a : e.getAutor()) {
+                    if (a.equalsIgnoreCase(desejado)) {
+                        dados += "\n" + i + " - Titulo: " + e.getTituloSubmissao()
+                                + "      \tAutor(es): " + autoresToString(e.getTituloSubmissao());
                     }
                 }
             }
@@ -114,22 +119,19 @@ public class Minicursos {
                 return "Nenhum minicurso encontrado!";
             }
         } else {
-            for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getTituloSubmissao().equalsIgnoreCase(desejado)) {
-                    dados += "\n" + i + " - Titulo: " + lista.get(i).getTituloSubmissao()
-                            + "      \tAutor(es): " + autoresToString(i);
+            for (int i = 0; i < m.size(); i++) {
+                Minicurso e = (Minicurso) m.get(i);
+                if (e.getTituloSubmissao().equalsIgnoreCase(desejado)) {
+                    return e.toString();
                 }
             }
-            if (!dados.isEmpty()) {
-                return dados;
-            } else {
-                return "Nenhum minicurso encontrado!";
-            }
+            return "Nenhum minicurso encontrado!";
         }
     }
 
-    public void editarTitulo(int index, String titulo) {
-        lista.get(index).setTituloSubmissao(titulo);
+    public void editarTitulo(String titulo, String novoTitulo) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        e.setTituloSubmissao(titulo);
     }
 
     /**
@@ -138,9 +140,10 @@ public class Minicursos {
      * @param index int index do minicurso
      * @param autores List dos novos autores, maximo 3
      */
-    public void editarAutores(int index, List autores) {
+    public void editarAutores(String titulo, List autores) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
         if (autores.size() <= 3) {
-            lista.get(index).setAutor(autores);
+            e.setAutor(autores);
         }
     }
 
@@ -151,11 +154,12 @@ public class Minicursos {
      * @param situacao int da situação, que deve ser: 1 - para sob avaliação, 2
      * - para aprovado, 3 - para nao aprovado
      */
-    public void editarSituacao(int index, int situacao) {
+    public void editarSituacao(String titulo, int situacao) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
         String pSituacao = situacaoToString(situacao);
         Situacao s;
         s = Submissao.verificaSituacao(pSituacao);
-        lista.get(index).setSituacaoSubmissao(s);
+        e.setSituacaoSubmissao(s);
     }
 
     /**
@@ -164,8 +168,9 @@ public class Minicursos {
      * @param index int index do minicurso
      * @param resumo String do resumo
      */
-    public void editarResumo(int index, String resumo) {
-        lista.get(index).setResumo(resumo);
+    public void editarResumo(String titulo, String resumo) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        e.setResumo(resumo);
     }
 
     /**
@@ -174,8 +179,9 @@ public class Minicursos {
      * @param index in index do minicurso
      * @param abstac String do abstract
      */
-    public void editarAbstract(int index, String abstac) {
-        lista.get(index).setAbstrac(abstac);
+    public void editarAbstract(String titulo, String abstac) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        e.setAbstrac(abstac);
     }
 
     /**
@@ -184,8 +190,9 @@ public class Minicursos {
      * @param index int index do minicurso
      * @param recursos String dos recursos
      */
-    public void editarRecursos(int index, String recursos) {
-        lista.get(index).setRecursos(recursos);
+    public void editarRecursos(String titulo, String recursos) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        e.setRecursos(recursos);
     }
 
     /**
@@ -194,8 +201,9 @@ public class Minicursos {
      * @param index int index do minicurso
      * @param metodologia String da metodologia
      */
-    public void editarMetodologia(int index, String metodologia) {
-        lista.get(index).setMetodologia(metodologia);
+    public void editarMetodologia(String titulo, String metodologia) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        e.setMetodologia(metodologia);
     }
 
     /**
@@ -204,22 +212,23 @@ public class Minicursos {
      * @param index int index
      * @param duracao int duracao, que deve ser em minutos
      */
-    public void editarDuracao(int index, int duracao) {
-        lista.get(index).setDuracao(duracao);
+    public void editarDuracao(String titulo, int duracao) {
+        Minicurso e = (Minicurso) listaMinicursos.consultarTitulo(titulo);
+        e.setDuracao(duracao);
     }
 
     /**
      * Metodo que transforma a List de autores do minicurso, na posição recebida
      * por parametro, em String
      *
-     * @param index int index do minicurso
+     * @param titulo String titulo do minicurso
      * @return String dos autores
      */
-    public String autoresToString(int index) {
+    public String autoresToString(String titulo) {
         String dados = "";
         List<String> autores;
 
-        autores = lista.get(index).getAutor();
+        autores = listaMinicursos.consultarTitulo(titulo).getAutor();
 
         for (String s : autores) {
             dados += s + ", ";

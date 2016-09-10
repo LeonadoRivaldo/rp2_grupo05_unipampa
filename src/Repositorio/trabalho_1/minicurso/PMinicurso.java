@@ -156,13 +156,13 @@ public class PMinicurso {
      */
     private static void deletarPorTitulo() {
         String desejado;
-        int index, opcao = 0;
+        int opcao = 0;
 
         InOut.div();
+        exibir();
         desejado = InOut.inString("Digite o título desejado:");
         System.out.println(minicursos.buscar(desejado, 2));
         System.out.println("");
-        index = InOut.inInt("Digite o numero do minicurso que deseja excluir:");
         InOut.div();
         while (opcao != 1 && opcao != 2) {
             opcao = InOut.inInt("Você tem certeza que deseja excluir este minicurso?"
@@ -173,15 +173,18 @@ public class PMinicurso {
 
         switch (opcao) {
             case 1:
-                minicursos.excluir(index);
+                if (minicursos.excluir(desejado)) {
+                    System.out.println("Minicurso deletado com sucesso!");
+                } else {
+                    System.out.println("Ocorreu algum erro. Verifique o que digitou");
+                }
                 InOut.div();
-                InOut.outL("Minicurso deletado com sucesso!");
                 opcao = 2;
                 break;
             case 2:
                 break;
             default:
-                InOut.outL("Opçao incorreta!");
+                System.out.println("Opçao incorreta!");
                 break;
         }
 
@@ -191,11 +194,12 @@ public class PMinicurso {
      * Metodo responsavel pelo menu ao deletar um minicurso por lista
      */
     private static void deletarPorLista() {
-        int opcao = 0, index;
+        int opcao = 0;
+        String desejado;
 
         exibir();
         InOut.div();
-        index = InOut.inInt("Digite o numero do minicurso que deseja excluir:");
+        desejado = InOut.inString("Digite o titulo do minicurso que deseja excluir:");
         InOut.div();
         while (opcao != 1 && opcao != 2) {
             opcao = InOut.inInt("Você tem certeza que deseja excluir este minicurso?"
@@ -206,9 +210,12 @@ public class PMinicurso {
 
         switch (opcao) {
             case 1:
-                minicursos.excluir(index);
                 InOut.div();
-                InOut.outL("Minicurso deletado com sucesso!");
+                if (minicursos.excluir(desejado)) {
+                    System.out.println("Minicurso deletado com sucesso!");
+                } else {
+                    System.out.println("Ocorreu algum erro. Verifique o que digitou");
+                }
                 break;
             case 2:
                 break;
@@ -223,17 +230,17 @@ public class PMinicurso {
      */
     private static void editar() {
         int opcao;
-        int index;
+        String desejado;
 
         exibir();
         InOut.div();
-        index = InOut.inInt("Digite o numero do minicurso que deseja editar:");
+        desejado = InOut.inString("Digite o titulo do minicurso que deseja editar:");
         InOut.div();
 
         do {
             System.out.println("Minicurso selecionado:");
             System.out.println("");
-            System.out.println(minicursos.getMinicurso(index));
+            System.out.println(minicursos.getMinicurso(desejado));
             InOut.div();
 
             opcao = InOut.inInt("Digite:"
@@ -252,28 +259,30 @@ public class PMinicurso {
                 case 0:
                     break;
                 case 1:
-                    minicursos.editarTitulo(index, PreencheMinicurso.preencheTitulo());
+                    String aux = PreencheMinicurso.preencheTitulo();
+                    minicursos.editarTitulo(desejado, aux);
+                    desejado = aux;
                     break;
                 case 2:
-                    minicursos.editarAutores(index, PreencheMinicurso.preencheAutores());
+                    minicursos.editarAutores(desejado, PreencheMinicurso.preencheAutores());
                     break;
                 case 3:
-                    minicursos.editarSituacao(index, PreencheMinicurso.preencheSituacao());
+                    minicursos.editarSituacao(desejado, PreencheMinicurso.preencheSituacao());
                     break;
                 case 4:
-                    minicursos.editarResumo(index, PreencheMinicurso.preencheResumo());
+                    minicursos.editarResumo(desejado, PreencheMinicurso.preencheResumo());
                     break;
                 case 5:
-                    minicursos.editarAbstract(index, PreencheMinicurso.preencheAbstrac());
+                    minicursos.editarAbstract(desejado, PreencheMinicurso.preencheAbstrac());
                     break;
                 case 6:
-                    minicursos.editarRecursos(index, PreencheMinicurso.preencheRecursos());
+                    minicursos.editarRecursos(desejado, PreencheMinicurso.preencheRecursos());
                     break;
                 case 7:
-                    minicursos.editarMetodologia(index, PreencheMinicurso.preencheMetodologia());
+                    minicursos.editarMetodologia(desejado, PreencheMinicurso.preencheMetodologia());
                     break;
                 case 8:
-                    minicursos.editarDuracao(index, PreencheMinicurso.preencheDuracao());
+                    minicursos.editarDuracao(desejado, PreencheMinicurso.preencheDuracao());
                     break;
                 default:
                     System.out.println("Opção incorreta!");
@@ -288,17 +297,22 @@ public class PMinicurso {
      * exibição de todos os minicursos
      */
     private static void menuMinicurso() {
-        int opcao;
+        String desejado;
 
         System.out.println("");
-        opcao = InOut.inInt("Digite:"
+        desejado = InOut.inString("Digite:"
                 + "\n Para exibir mais informações sobre um minicurso, digite o"
-                + " numero correspondente"
-                + "\n DIGITE -1 PARA SAIR");
+                + " titulo correspondente"
+                + "\n DEIXE EM BRANCO PARA SAIR");
 
-        if (opcao != -1) {
+        if (desejado != "") {
             System.out.println("");
-            System.out.println(minicursos.getMinicurso(opcao));
+            String aux = minicursos.getMinicurso(desejado);
+            if (aux == null) {
+                System.out.println("Nenhum minicurso encontrado. Verifique o que voce digitou");
+            } else {
+                System.out.println(aux);
+            }
         }
     }
 }
