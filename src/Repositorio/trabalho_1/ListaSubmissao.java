@@ -26,7 +26,7 @@ public class ListaSubmissao implements ListaSubmissoes {
     public List<Submissao> getSubmissoes() {
         return submissoes;
     }
-    
+
     /**
      * mêtodo que vai receber uma submissão e adciona-la na lista de submissões
      *
@@ -73,8 +73,12 @@ public class ListaSubmissao implements ListaSubmissoes {
     public List<Submissao> consultarAutor(String autor) {
         List<Submissao> sub = new ArrayList<>();
         for (Submissao submisao : submissoes) {
-            if (submisao.getAutor().contains(autor)) {
-                sub.add(submisao);
+            List<String> autores = submisao.getAutor();
+            for (String autor1 : autores) {
+                if (autor1.equalsIgnoreCase(autor)) {
+                    sub.add(submisao);
+                    break;
+                }
             }
         }
         if (sub.size() > 0) {
