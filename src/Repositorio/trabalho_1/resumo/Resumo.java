@@ -21,6 +21,11 @@ public class Resumo extends SubmissaoCientifica {
     public Resumo(String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
     }
+    
+     public String toString() {
+        
+        return super.toString();
+    }
 
 }
 
