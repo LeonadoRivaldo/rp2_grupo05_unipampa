@@ -35,5 +35,9 @@ public class Palestra extends SubmissaoApresentacao {
     public void setCurriculo(String curriculo) {
         this.curriculo = curriculo;
     }
-
+public String toString() {
+        String string = "";
+        string += "\ncurriculo" + getCurriculo();
+        return string;
+    }
 }
