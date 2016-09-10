@@ -20,7 +20,7 @@ public class Executor {
 
     /**
      * Metodo para criar uma palestra
-     *
+     * Onde uma mensagem é mostrada ao usuario e ele escreve a entrada do valor desejado.
      * @return retorno é um objeto palestra
      */
     public static Palestra criar() {
@@ -55,7 +55,7 @@ public class Executor {
     }
 
     /**
-     * Metodo para consultar uma palestra
+     * Metodo para consultar uma palestra, onde é percorrido o tamanho da lista e depois mostra a lista de palestras pelo titulo.
      */
     public static int consultarP(ControleDePalestras controle, String frase) {
         System.out.println("==================================");
@@ -86,7 +86,7 @@ public class Executor {
     }
 
     /**
-     * Metodo para exibir uma Palestra
+     * Metodo para exibir uma Palestra, onde mostra os atributos para o usuario com os valores que ele tem
      *
      * @param palestra
      */
@@ -103,7 +103,7 @@ public class Executor {
     }
 
     /**
-     * Mostra os atributos pro usuario com os valores que ele tem, para que ele
+     * Mostra os atributos para o usuario com os valores que ele tem, para que ele
      * possa editar!
      *
      * @param palestra

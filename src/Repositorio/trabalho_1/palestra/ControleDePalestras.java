@@ -10,7 +10,7 @@ public class ControleDePalestras {
     ArrayList<Palestra> palestras = new ArrayList<Palestra>();
 
     /**
-     * Metodo para criar e incluir uma Palestra
+     * Metodo para criar e incluir uma Palestra, onde é adicionado um objeto na lista palestras.
      *
      * @param p
      */
@@ -19,7 +19,7 @@ public class ControleDePalestras {
     }
 
     /**
-     * Metodo para excluir uma palestra
+     * Metodo para excluir uma palestra, onde é excluido atraves do indice
      *
      * @param indice
      */
@@ -28,7 +28,7 @@ public class ControleDePalestras {
     }
 
     /**
-     * Metodo para editar uma palestra
+     * Metodo para editar uma palestra, onde o usuario vai escolher pelo indice o atributo que ele quer editar.
      *
      * @param indice
      * @param valor
@@ -76,7 +76,11 @@ public class ControleDePalestras {
 
         }
     }
-
+/**
+ * Metodo para consultar uma palestra, onde reotrna a lista de palestra pelo indice.
+ * @param indice
+ * @return 
+ */
     public Palestra consultar(int indice) {
         return palestras.get(indice);
     }
