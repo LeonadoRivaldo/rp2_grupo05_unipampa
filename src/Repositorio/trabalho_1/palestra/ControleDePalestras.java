@@ -1,13 +1,16 @@
 package Repositorio.trabalho_1.palestra;
 
+import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ControleDePalestras {
 
-    ArrayList<Palestra> palestras = new ArrayList<Palestra>();
+   // ArrayList<Palestra> palestras = new ArrayList<Palestra>();
+    private static ListaSubmissao palestra = new ListaSubmissao();
 
     /**
      * Metodo para criar e incluir uma Palestra, onde é adicionado um objeto na lista palestras.
@@ -15,7 +18,7 @@ public class ControleDePalestras {
      * @param p
      */
     public void incluir(Palestra p) {
-        palestras.add(p);
+        palestra.incluir(p);
     }
 
     /**
@@ -23,9 +26,9 @@ public class ControleDePalestras {
      *
      * @param indice
      */
-    public void excluir(int indice) {
-        palestras.remove(indice);
-    }
+    public boolean excluir(String titulo) {
+        return palestra.excluir(titulo);
+    } 
 
     /**
      * Metodo para editar uma palestra, onde o usuario vai escolher pelo indice o atributo que ele quer editar.
@@ -34,7 +37,7 @@ public class ControleDePalestras {
      * @param valor
      * @param palestra
      */
-    public void editar(int indice, String valor, Palestra palestra) {
+    public boolean editar(int indice, String valor, Palestra palestra) {
         Scanner entrada = new Scanner(System.in);
         /* String titulo,
          String situacao,
@@ -43,6 +46,8 @@ public class ControleDePalestras {
          String Abstract,
          int duracao,
          String curriculo*/
+        
+        String oldTitulo = palestra.getTituloSubmissao();
         switch (indice) {
             case 1:
                 palestra.setTituloSubmissao(valor);
@@ -75,14 +80,19 @@ public class ControleDePalestras {
                 break;
 
         }
+        return this.palestra.editar(oldTitulo, palestra);
     }
 /**
  * Metodo para consultar uma palestra, onde reotrna a lista de palestra pelo indice.
  * @param indice
  * @return 
  */
-    public Palestra consultar(int indice) {
-        return palestras.get(indice);
+    public Palestra consultar(String titulo) {
+        return(Palestra) palestra.consultarTitulo(titulo);
+    }
+
+    public List<Submissao> consultarAutor(String nextLine) {
+        return palestra.consultarAutor(nextLine);
     }
 
 }

@@ -3,6 +3,7 @@ package Repositorio.trabalho_1.palestra;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -19,8 +20,9 @@ public class Executor {
     ControleDePalestras c = new ControleDePalestras();
 
     /**
-     * Metodo para criar uma palestra
-     * Onde uma mensagem é mostrada ao usuario e ele escreve a entrada do valor desejado.
+     * Metodo para criar uma palestra Onde uma mensagem é mostrada ao usuario e
+     * ele escreve a entrada do valor desejado.
+     *
      * @return retorno é um objeto palestra
      */
     public static Palestra criar() {
@@ -55,38 +57,45 @@ public class Executor {
     }
 
     /**
-     * Metodo para consultar uma palestra, onde é percorrido o tamanho da lista e depois mostra a lista de palestras pelo titulo.
+     * Metodo para consultar uma palestra, onde é percorrido o tamanho da lista
+     * e depois mostra a lista de palestras pelo titulo.
+     *
+     *
+     *
+     * public static int consultarP(ControleDePalestras controle, String frase)
+     * { System.out.println("=================================="); Scanner
+     * entrada = new Scanner(System.in); for (int i = 0; i <
+     * controle.palestras.size(); i++) { System.out.println((i + 1) + "-" +
+     * controle.palestras.get(i).getTituloSubmissao()); }
+     * System.out.println("----------------------------------");
+     * System.out.print(frase); return (entrada.nextInt() - 1); }
      */
-    public static int consultarP(ControleDePalestras controle, String frase) {
-        System.out.println("==================================");
+    public static void consultarAutor(String frase, ControleDePalestras c) {
         Scanner entrada = new Scanner(System.in);
-        for (int i = 0; i < controle.palestras.size(); i++) {
-            System.out.println((i + 1) + "-" + controle.palestras.get(i).getTituloSubmissao());
+        System.out.println("Digite o autor que você quer pesquisar: ");
+        List<Submissao> lista = c.consultarAutor(entrada.nextLine());
+        if(lista != null){
+        System.out.println("==================================");
+        for (int i = 0; i < lista.size(); i++) {
+            Palestra p = (Palestra) lista.get(i);
+            System.out.println((i + 1) + "-" + p.getTituloSubmissao());
         }
         System.out.println("----------------------------------");
         System.out.print(frase);
-        return (entrada.nextInt() - 1);
-    }
-
-    public static int consultarAutor(ControleDePalestras controle, String frase, String autor) {
-        System.out.println("==================================");
-        Scanner entrada = new Scanner(System.in);
-        for (int i = 0; i < controle.palestras.size(); i++) {
-            Palestra p = controle.palestras.get(i);
-            for (int o = 0; o < p.getAutor().size(); o++) {
-                if (autor.contains(p.getAutor().get(o))) {
-                    System.out.println((i + 1) + "-" + controle.palestras.get(i).getTituloSubmissao());
-                }
-            }
-
+        Palestra pa = c.consultar(entrada.nextLine());
+        if(pa != null){
+        exibir(pa);
+        }else{
+            msg("NAO FOI ENCONRADA A PALESTRA");
         }
-        System.out.println("----------------------------------");
-        System.out.print(frase);
-        return (entrada.nextInt() - 1);
+        }else{
+            msg("AUTOR NAO ENCONTRADO");
+        }
     }
 
     /**
-     * Metodo para exibir uma Palestra, onde mostra os atributos para o usuario com os valores que ele tem
+     * Metodo para exibir uma Palestra, onde mostra os atributos para o usuario
+     * com os valores que ele tem
      *
      * @param palestra
      */
@@ -103,8 +112,8 @@ public class Executor {
     }
 
     /**
-     * Mostra os atributos para o usuario com os valores que ele tem, para que ele
-     * possa editar!
+     * Mostra os atributos para o usuario com os valores que ele tem, para que
+     * ele possa editar!
      *
      * @param palestra
      * @return um inteiro com o indice do atributo
@@ -184,8 +193,9 @@ public class Executor {
             System.out.println("Gerenciamento de palestras");
             System.out.println("1- incluir");
             System.out.println("2- consultar");
-            System.out.println("3- excluir");
-            System.out.println("4- editar");
+            System.out.println("3- consultar por autor");
+            System.out.println("4- excluir");
+            System.out.println("5- editar");
             System.out.println("0- sair");
             System.out.println("Opcao: ");
             opcao = entrada.nextInt();
@@ -203,29 +213,40 @@ public class Executor {
                     /* System.out.println("Autor:");
                      String autor = entrada.nextLine();
                      */
-                    if (c.palestras.size() > 0) {
-                        exibir(c.consultar(consultarP(c, "Qual palestra voce quer visualizar: ")));
+                    System.out.println("Qual titulo da palestra voce quer pesquisar: ");
+                    String titulo = entrada.nextLine();
+                    Palestra p = c.consultar(titulo);
+                    if (p != null) {
+                        exibir(p);
                     } else {
-                        msg("NAO EXISTEM PALESTRAS CADASTRADAS");
+                        msg("NAO FOI ENCONTRADA NENHUMA PALESTRA");
                     }
                     break;
                 case 3:
-                    if (c.palestras.size() > 0) {
-                        c.excluir(consultarP(c, "Qual palestra voce quer excluir: "));
-                        msg("PALESTRA EXCLUIDA");
-                    } else {
-                        msg("NAO EXISTEM PALESTRAS CADASTRADAS");
-                    }
+                    consultarAutor("Digite o titulo para ser consultado: ", c);
                     break;
                 case 4:
-                    if (c.palestras.size() > 0) {
-                        int indice = consultarP(c, "Qual palestra voce quer editar: ");
-                        Palestra palestra = c.consultar(indice);
-                        int atributo = editarpalestra(palestra);
-                        c.editar(atributo, pegarvalor(atributo), palestra);
-                        msg("PALESTRA EDITADA");
+                    System.out.println("Qual titulo da palestra voce quer excluir: ");
+                    String t = entrada.nextLine();
+                    if (c.excluir(t)) {
+                        msg("PALESTRA EXCLUIDA");
                     } else {
-                        msg("NAO EXISTEM PALESTRAS CADASTRADAS");
+                        msg("NAO FOI ENCONTRADA NENHUMA PALESTRA");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Qual titulo da palestra voce quer pesquisar: ");
+                    String ti = entrada.nextLine();
+                    Palestra p1 = c.consultar(ti);
+                    if (p1 != null) {
+                        int atributo = editarpalestra(p1);
+                        if (c.editar(atributo, pegarvalor(atributo), p1)) {
+                            msg("EDITADO");
+                        } else {
+                            msg("FALHA AO EDITAR");
+                        }
+                    } else {
+                        msg("NAO FOI ENCONTRADA NENHUMA PALESTRA");
                     }
                     break;
             }
