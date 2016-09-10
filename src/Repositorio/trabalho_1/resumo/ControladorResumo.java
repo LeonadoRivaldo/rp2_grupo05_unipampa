@@ -22,7 +22,12 @@ public class ControladorResumo {
      * @param situacao
      * @param autor
      * @param instituicao
+
+     * @param palavraschave 
+     * 
+=======
      * @param palavraschave
+
      */
     public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
         open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
@@ -32,7 +37,12 @@ public class ControladorResumo {
     /**
      *
      * @param titulo
+
+     * @return 
+     * Função para excluir um resumo usando seu titulo
+=======
      * @return
+
      */
     public boolean excluir(String titulo) {
         for (int i = 0; i < resumos.size(); i++) {

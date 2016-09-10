@@ -7,6 +7,7 @@ package Repositorio.trabalho_1.artigos;
 
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,10 +41,6 @@ public class ExecutarArtigos {
                 return instituicoes;
 
             case 4:
-                return PreencheArtigo.preencheResumo();
-            case 5:
-                return PreencheArtigo.preencheAbstract();
-            case 6:
                 List<String> palavra = PreencheArtigo.preenchePalavrachave();
                 String p = "";
                 for (String i : palavra) {
@@ -51,6 +48,11 @@ public class ExecutarArtigos {
 
                 }
                 return p;
+            case 5:
+                return PreencheArtigo.preencheResumo();
+            case 6:
+                return PreencheArtigo.preencheAbstract();
+
             case 7:
                 return PreencheArtigo.preencheSituacao();
         }
@@ -136,6 +138,11 @@ public class ExecutarArtigos {
 
     }
 
+    /**
+     * cria um artigo usando a classe que tem metodos para preencher o objeto
+     *
+     * @return um objeto do tipo artigo
+     */
     public static Artigo criaArtigo() {
         //Artigo artigo = new Artigo();
         String tituloSubmissao = PreencheArtigo.preencheTitulo();
@@ -156,10 +163,22 @@ public class ExecutarArtigos {
 
     public void principal() {
         Scanner entrada = new Scanner(System.in);
+        List<String> autores = new ArrayList();
+        List<String> instituicoes = new ArrayList();
+        List<String> palavrachave = new ArrayList();
 
-        String[] autores = {"autor1", "autor2"};
-        String[] instituicoes = {"Unipampa"};
-        String[] palavrachave = {"ENGENHARIA DE SOFTWARE", "SEMESTRE2"};
+        autores.add("Homem de ferro");
+        autores.add("Popeye");
+        autores.add("A Pantera Cor-de-Rosa");
+        autores.add("Os Flinstones");
+        autores.add("Zé Colmeia");
+        instituicoes.add("Fenda Do Biquini");
+        instituicoes.add("Disney");
+        instituicoes.add("Pixar");
+        palavrachave.add("Animações");
+        palavrachave.add("Pokemon");
+        controller.incluir(new Artigo("Mickey Mouse", "Minnie Mouse", "WAlT Disney", Situacao.aprovado, autores, 8, instituicoes, palavrachave, 4, 8));
+
         int opcao;
         do {
             System.out.println("                             ");
