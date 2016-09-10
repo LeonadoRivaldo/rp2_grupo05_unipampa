@@ -285,15 +285,25 @@ public class ExececutorDeMonografias {
                     } while (monografia == null);
                     break;
                 case 3:
+                    entrada.nextLine();
+                    monografia = null;
                     do {
                         System.out.println("========================================");
                         System.out.println("Digite o nome do autor que você quer pesquisar: ");
                         submissoes = controller.consultarAutor(entrada.nextLine());
-                        monografia = listaPorAutor(controller, submissoes);
-                        if (monografia != null) {
-                            exibir(monografia);
+                        if (submissoes != null) {
+                            monografia = listaPorAutor(controller, submissoes);
+                            if (monografia != null) {
+                                exibir(monografia);
+                            } else {
+                                msg("monografia não encontrada");
+                                System.out.println("Deseja pesquisar novamente?");
+                                if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                    break;
+                                }
+                            }
                         } else {
-                            msg("monografia não encontrada");
+                            msg("Autor não encontrado");
                             System.out.println("Deseja pesquisar novamente?");
                             if (!entrada.nextLine().equalsIgnoreCase("sim")) {
                                 break;
@@ -302,6 +312,7 @@ public class ExececutorDeMonografias {
                     } while (monografia == null);
                     break;
                 case 4:
+                    entrada.nextLine();
                     boolean excluida = false;
                     do {
                         System.out.println("================================================");
@@ -319,6 +330,7 @@ public class ExececutorDeMonografias {
                     } while (!excluida);
                     break;
                 case 5:
+
                     monografia = consultarMonografia(controller, "Qual monografia você deseja editar:");
                     int fim = 0;
                     boolean editada = false;
