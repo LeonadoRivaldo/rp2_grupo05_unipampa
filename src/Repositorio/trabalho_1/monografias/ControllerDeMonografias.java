@@ -46,9 +46,8 @@ public class ControllerDeMonografias {
      * @param indice da monografia dentro da lista
      * @return
      */
-    public boolean excluir(int indice) {
-        monografias.remove(indice);
-        return true;
+    public boolean excluir(String titulo) {
+        return monografias.excluir(titulo);
     }
 
     /**

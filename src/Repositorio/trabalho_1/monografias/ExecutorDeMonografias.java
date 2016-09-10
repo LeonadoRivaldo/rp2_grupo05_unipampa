@@ -85,39 +85,14 @@ public class ExecutorDeMonografias {
 
     /**
      * faz uma lista por autor
-     * @deprecated não to usando ainda
+     *
      * @param autor recebe o autor
      * @param c o controller
      * @param frase string que vai aparecer na interface
      * @return retorna um inteiro com o indice da monografia
      */
-    @Deprecated
-    private static int listaPorAutor(String autor, ControllerDeMonografias c, String frase) {
-        int i = 0;
-        int in = -1;
-        Scanner entrada = new Scanner(System.in);
-        for (Monografia monografia : c.monografias) {
-            List<String> autores = monografia.getAutor();
-            for (String a : autores) {
-                if (a.contains(autor)) {
-                    i++;
-                    int pos = c.monografias.indexOf(monografia);
-                    System.out.println(pos + "- " + monografia.getTituloSubmissao());
-                    break;
-                }
-            }
-        }
-        if (i > 0) {
-            do {
-                System.out.println("------------------------------");
-                System.out.print(frase + ": ");
-                in = entrada.nextInt();
-            } while (in < 1 || in > c.monografias.size());
-            return in;
-        } else {
-            msg("Nenhuma monografia encontrada com esse autor");
-        }
-        return --in;
+    private static void listaPorAutor(String autor, ControllerDeMonografias c, String frase) {
+        System.out.println("TODO");
     }
 
     /**
@@ -125,6 +100,7 @@ public class ExecutorDeMonografias {
      * pesquisar por titulo ou por autor ou ter uma lista de todas as
      * monografias pelo titulo
      *
+     * @deprecated old - refazer
      * @param c controler de monografia
      * @param frase String que vai aparecer para o usuario
      * @return
@@ -202,6 +178,11 @@ public class ExecutorDeMonografias {
             }
         }
         return --in;
+    }
+
+    public static Monografia consultarMonografia(ControllerDeMonografias c, String frase) {
+        System.out.println("TODO");
+        return null;
     }
 
     /**
@@ -336,8 +317,9 @@ public class ExecutorDeMonografias {
             System.out.println("Gerenciamento de monograficas");
             System.out.println("1- incluir");
             System.out.println("2- consultar");
-            System.out.println("3- excluir");
-            System.out.println("4- editar");
+            System.out.println("3- consultar por autor");
+            System.out.println("4- excluir");
+            System.out.println("5- editar");
             System.out.println("0- sair");
             System.out.print("Opção: ");
             opcao = entrada.nextInt();
@@ -355,20 +337,20 @@ public class ExecutorDeMonografias {
                     System.out.println("");
                     break;
                 case 2:
-                    System.out.println("========================================");
-                    System.out.println("Lista:");
-                    if (controller.monografias.size() <= 0) {
-                        System.out.println("A lista está vazia!");
-                    } else {
-                        int index = ConsultarMonografia(controller, "Qual monografia você quer visualizar");
-                        if (index > -1) {
-                            exibir(controller.consultar(index));
+                    Monografia mono = consultarMonografia(controller, "Digite o titulo que você quer pesquisar: ");
+                    do {
+                        if (mono != null) {
+                            exibir(mono);
                         } else {
-                            System.out.println("nenhuma monografia encontrada");
+                            msg("MONOGRAFIA NÃO ENCONTRADA");
+                            System.out.println("Deseja pesquisar novamente?");
+                            if (entrada.nextLine().equalsIgnoreCase("sim")) {
+                                mono = consultarMonografia(controller, "Digite o titulo que você quer pesquisar: ");
+                            }
                         }
-                    }
+                    } while (mono == null);
                     break;
-                case 3:
+                case 4:
                     System.out.println("========================================");
                     if (controller.monografias.size() <= 0) {
                         System.out.println("A lista está vazia!");
@@ -378,7 +360,7 @@ public class ExecutorDeMonografias {
                         }
                     }
                     break;
-                case 4:
+                case 5:
                     int index = ConsultarMonografia(controller, "Qual monografia você deseja editar:");
                     Monografia mono = controller.consultar(index);
                     int fim = 0;
