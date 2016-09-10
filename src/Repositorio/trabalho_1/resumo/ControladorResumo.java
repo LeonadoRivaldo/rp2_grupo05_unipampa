@@ -1,6 +1,8 @@
 package Repositorio.trabalho_1.resumo;
 
+import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
+import Repositorio.trabalho_1.Submissao;
 import Repositorio.trabalho_1.monografias.Monografia;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +10,11 @@ import java.util.Scanner;
 
 public class ControladorResumo {
 
-    private static ArrayList<Resumo> resumos = new ArrayList();
+    //private static ArrayList<Resumo> resumos = new ArrayList();
+    private static ListaSubmissao resumo = new ListaSubmissao();
 
-    public ArrayList<Resumo> getResumos() {
-        return resumos;
+    public List<Submissao> getResumos() {
+        return resumo.getSubmissoes();
     }
     private Resumo open;
 
@@ -20,40 +23,45 @@ public class ControladorResumo {
      *
      * @param titulo
      * @param situacao
-     * @param autor
+     * @param autor5
      * @param instituicao
-
-     * @param palavraschave 
-     * 
-=======
+     *
      * @param palavraschave
-
+     *
+     * =======
+     * @param palavraschave
+     *
      */
     public void incluir(String titulo, Situacao situacao, ArrayList<String> autor, ArrayList<String> instituicao, ArrayList<String> palavraschave) {
         open = new Resumo(titulo, situacao, autor, 8, instituicao, palavraschave, 4, 8);
-        resumos.add(open);
+        resumo.incluir(open);
     }
 
     /**
      *
      * @param titulo
-
-     * @return 
-     * Função para excluir um resumo usando seu titulo
-=======
+     *
+     * @return Função para excluir um resumo usando seu titulo =======
      * @return
-
+     *
      */
     public boolean excluir(String titulo) {
-        for (int i = 0; i < resumos.size(); i++) {
-            if (resumos.get(i).getTituloSubmissao().equalsIgnoreCase(titulo)) {
-                resumos.remove(resumos.get(i));
-                return true;
-            }
-        }
-        return false;
+        return resumo.excluir(titulo);
+
+    }
+    
+    public Resumo consulta  (String titulo){
+        return (Resumo)resumo.consultarTitulo(titulo);
     }
 
+    /**
+     *
+     * @param autor
+     * @return
+     */
+    public List<Submissao> consultaAutor(String autor){
+        return resumo.consultarAutor(autor);
+    }
     /**
      *
      * @param atributo

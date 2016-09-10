@@ -13,12 +13,13 @@ import java.util.Scanner;
 
 public class ClassePrincipalResumo {
 
-    private static ControladorResumo resumo = new ControladorResumo();
+    private static ControladorResumo controle = new ControladorResumo();
 
     public static void main(String[] args) {
         principal();
     }
 
+        
 
 /** 
  * 
@@ -83,24 +84,22 @@ public class ClassePrincipalResumo {
             opcao = e.nextInt();
             palavraschave.add(palavrachave);
         } while (opcao != 2);
-        resumo.incluir(titulo, s, autores, instituicoes, palavraschave);
+        controle.incluir(titulo, s, autores, instituicoes, palavraschave);
     }
 
     /**
      * Consulta pelo titulo
      *
      * @param titulo
-     * 
+2     * 
      * Nessse metodo o usuario pode fazer a consulta usando o titulo do resumo desejado
      * 
      * 
      */
     public static void consulta(String titulo) {
         Scanner e = new Scanner(System.in);
-        boolean naoAcho = true;
-        for (Resumo resumo : resumo.getResumos()) {
-
-            if (resumo.getTituloSubmissao().trim().equalsIgnoreCase(titulo)) {
+        Resumo resumo = controle.consulta(titulo);
+        if(controle.consulta(titulo)!=null){
 
                 System.out.println("DADOS");
                 System.out.println("Titulo: " + resumo.getTituloSubmissao());
@@ -120,13 +119,8 @@ public class ClassePrincipalResumo {
                     System.out.print(palavrachave + ", ");
                 }
                 System.out.println("");
-                naoAcho = false;
-                break;
-            }
-        }
-        if (naoAcho) {
-            System.out.println("===============================================\nNenhum Resumo encontrado\n===============================================");
-        }
+        }   
+       
     }
 
     /**
@@ -136,41 +130,32 @@ public class ClassePrincipalResumo {
      */
     public static void consultaAutores(String autor) {
         Scanner e = new Scanner(System.in);
-        boolean naoAcho = true;
-
-        for (Resumo resumo : resumo.getResumos()) {
-            List<String> listaAutores = resumo.getAutor();
-            for (String aut : listaAutores) {
-                if (aut.equalsIgnoreCase(autor)) {
+        
+        List<Submissao> submissoes = controle.consultaAutor(autor);
+        for (Submissao resumo : submissoes ) {
+            
+             Resumo r =(Resumo) resumo;
                     System.out.println("DADOS");
-                    System.out.println("Titulo: " + resumo.getTituloSubmissao());
-                    System.out.println("Situação: " + resumo.getSituacaoSubmissao().getNome());
+                    System.out.println("Titulo: " + r.getTituloSubmissao());
+                    System.out.println("Situação: " + r.getSituacaoSubmissao().getNome());
                     System.out.print("Autor: ");
                     for (String autor1 : resumo.getAutor()) {
                         System.out.print(autor1 + " ");
                     }
                     System.out.println("");
                     System.out.print("Instituição:");
-                    for (String instituicao : resumo.getInstituicao()) {
+                    for (String instituicao : r.getInstituicao()) {
                         System.out.print(instituicao + " ,");
                     }
                     System.out.println("");
                     System.out.print("palavra chave: ");
-                    for (String palavrachave : resumo.getPalavrasChave()) {
+                    for (String palavrachave : r.getPalavrasChave()) {
                         System.out.print(palavrachave + ", ");
                     }
-
+            System.out.println("");
                 }
-                System.out.println("");
-                naoAcho = false;
-                break;
-            }
-        }
-        if (naoAcho == true) {
-            System.out.println("Nenhum resumo ");
-        }
+               
     }
-
     /**
      * 
      *
@@ -211,12 +196,9 @@ public class ClassePrincipalResumo {
         Scanner e = new Scanner(System.in);
         System.out.println("Qual titulo vc quer editar ?");
         String titulo = e.nextLine();
-        Resumo r = null;
-        for (Resumo resumo : resumo.getResumos()) {
-            if (resumo.getTituloSubmissao().trim().equalsIgnoreCase(titulo)) {
-                r = resumo;
-            }
-        }
+        Resumo r = controle.consulta(titulo);
+        
+           
 
         int atributo = pegarAtributo(r);
         String situacao;
@@ -233,7 +215,7 @@ public class ClassePrincipalResumo {
                 int o;
                 System.out.println("Voce quer adicionar ou refazer a lista de autores ?");
 
-                if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                if (e.nextLine().equalsIgnoreCase("add")) {
                     System.out.println("novo autor: ");
                     r.addAutor(e.nextLine());
                 } else {
@@ -251,7 +233,7 @@ public class ClassePrincipalResumo {
                 break;
             case 3:
                 System.out.println("Voce quer adicionar ou refazer a lista de instituicoes?");
-                if (e.nextLine().equalsIgnoreCase("adicionar")) {
+                if (e.nextLine().equalsIgnoreCase("add")) {
                     System.out.println("nova instituicao:");
                     r.addInstituicao(e.nextLine());
                 } else {
@@ -280,7 +262,7 @@ public class ClassePrincipalResumo {
             case 5:
                 System.out.println("Voce quer adicionar ou refazer a lista de palavras chaves?");
                 String escolha = e.nextLine();
-                if (escolha.equalsIgnoreCase("adicionar")) {
+                if (escolha.equalsIgnoreCase("add")) {
                     System.out.println("Nova palavra chave:");
                     r.addPalavraChave(e.nextLine());
                 } else {
@@ -338,7 +320,7 @@ public class ClassePrincipalResumo {
                 case 4:
                     System.out.println("Digite o titulo do resumo  a ser deletado:");
                     titulo = e.nextLine();
-                    if (resumo.excluir(titulo)) {
+                    if (controle.excluir(titulo)) {
                         System.out.println("Excluido com sucesso!");
                     } else {
                         System.out.println("Resumo não encontrado");
