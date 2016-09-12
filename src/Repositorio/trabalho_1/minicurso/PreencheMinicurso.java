@@ -1,16 +1,27 @@
 package Repositorio.trabalho_1.minicurso;
 
-import Repositorio.trabalho_1.minicurso.InOut;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que auxilia na entrada de informações
+ * @author gilis
+ */
 public class PreencheMinicurso {
 
+    /**
+     * 
+     * @return String contendo o que foi inserido pelo usuario 
+     */
     public static String preencheTitulo() {
         InOut.div();
         return InOut.inString("Digite o titulo: ");
     }
 
+    /**
+     * 
+     * @return List<String> do que foi inserido pelo usuário 
+     */
     public static List<String> preencheAutores() {
         int nAutores = 0;
         List<String> autores = new ArrayList();
@@ -31,6 +42,10 @@ public class PreencheMinicurso {
         return autores;
     }
 
+    /**
+     * 
+     * @return int contendo o que foi inserido pelo usuario 
+     */
     public static int preencheSituacao() {
         int nSituacao = 0;
 
@@ -44,26 +59,46 @@ public class PreencheMinicurso {
         return nSituacao;
     }
 
+    /**
+     * 
+     * @return String contendo o que foi inserido pelo usuario 
+     */
     public static String preencheResumo() {
         InOut.div();
         return InOut.inString("Digite o resumo:");
     }
 
+    /**
+     * 
+     * @return String contendo o que foi inserido pelo usuario 
+     */
     public static String preencheAbstrac() {
         InOut.div();
         return InOut.inString("Digite o abstract: ");
     }
 
+    /**
+     * 
+     * @return String contendo o que foi inserido pelo usuario 
+     */
     public static String preencheMetodologia() {
         InOut.div();
         return InOut.inString("Digite a metodologia: ");
     }
 
+    /**
+     * 
+     * @return String contendo o que foi inserido pelo usuario 
+     */
     public static String preencheRecursos() {
         InOut.div();
         return InOut.inString("Digite os recursos:");
     }
 
+    /**
+     * 
+     * @return int contendo o que foi inserido pelo usuario 
+     */
     public static int preencheDuracao() {
         int h = -1, m = -1;
         InOut.div();

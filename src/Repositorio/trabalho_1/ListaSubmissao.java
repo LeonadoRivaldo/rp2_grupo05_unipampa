@@ -32,7 +32,7 @@ public class ListaSubmissao implements ListaSubmissoes {
      *
      * @param submissao um objeto submissao de qualquer tipo para ser adicionado
      * na lista
-     * @return
+     * @return true se objeto foi incluido false para não
      */
     @Override
     public boolean incluir(Submissao submissao) {
@@ -118,9 +118,8 @@ public class ListaSubmissao implements ListaSubmissoes {
      * Enviar o titulo da submissao que vai ser excluida
      *
      * @param titulo titulo da submissao
-     * @return true se encontrar o objeto e excluir
-     * @retrun false caso haja mais de um objeto com o mesmo titulo ou se a
-     * achão falhar
+     * @return true se encontrar o objeto e excluir false caso haja mais 
+     * de um objeto com o mesmo titulo ou se ação falhar
      */
     @Override
     public boolean excluir(String titulo) {

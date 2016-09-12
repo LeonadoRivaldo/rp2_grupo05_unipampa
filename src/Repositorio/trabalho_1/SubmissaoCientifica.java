@@ -50,11 +50,8 @@ public abstract class SubmissaoCientifica extends Submissao {
      * @return
      */
     public boolean setInstituicao(List<String> instituicoes) {
-        if (instituicoes.size() < this.MAX_INSTITUICOES) {
-            this.instituicoes = instituicoes;
-            return true;
-        }
-        return false;
+        this.instituicoes = instituicoes;
+        return true;
     }
 
     /**
@@ -83,11 +80,8 @@ public abstract class SubmissaoCientifica extends Submissao {
      * @return
      */
     public boolean setPalavrasChave(List<String> palavrasChave) {
-        if (palavrasChave.size() < this.MAX_PALAVRASCHAVES) {
-            this.palavrasChave = palavrasChave;
-            return true;
-        }
-        return false;
+        this.palavrasChave = palavrasChave;
+        return true;
     }
 
     /**
@@ -122,7 +116,5 @@ public abstract class SubmissaoCientifica extends Submissao {
         }
         return string;
     }
-    
-
 
 }
