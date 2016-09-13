@@ -109,7 +109,7 @@ public class ExececutorDeMonografias {
      * @param frase string que mostra para o usuario
      * @return objeto monografia ou null se não achar
      */
-    public static Monografia consultarMonografia(ControllerDeMonografias controller, String frase) {
+    private static Monografia consultarMonografia(ControllerDeMonografias controller, String frase) {
         System.out.println("====================================================");
         Scanner entrada = new Scanner(System.in);
         System.out.println(frase);
@@ -121,8 +121,7 @@ public class ExececutorDeMonografias {
      *
      * @return objeto monografia
      */
-    public static Monografia criaMonografia() {
-        System.out.println("===============================================");
+    private static Monografia criaMonografia() {
         String tituloSubmissao = PreencheMonografia.preencheTitulo();
         List<String> autores = PreencheMonografia.preencheAutor();
         Situacao situacaoSubmissao = null;
@@ -160,7 +159,7 @@ public class ExececutorDeMonografias {
      *
      * @param s mensagem que vai ser exibida para o usuario
      */
-    public static void msg(String s) {
+    private static void msg(String s) {
         System.out.println("\n===========================================================\n");
         System.out.println(s.toUpperCase());
         System.out.println("\n===========================================================\n");
@@ -171,7 +170,7 @@ public class ExececutorDeMonografias {
      *
      * @param controle
      */
-    public static void baseDeDados(ControllerDeMonografias controle) {
+    private static void baseDeDados(ControllerDeMonografias controle) {
         List<String> palavras = new ArrayList();
         List<String> autor = new ArrayList();
         List<String> institucao = new ArrayList();
@@ -197,7 +196,7 @@ public class ExececutorDeMonografias {
      * @param atributo
      * @return
      */
-    public static String PegarValor(int atributo) {
+    private static String PegarValor(int atributo) {
         switch (atributo) {
             case 1:
                 return PreencheMonografia.preencheTitulo();
@@ -238,7 +237,7 @@ public class ExececutorDeMonografias {
     }
 
     /**
-     * menu do sistem
+     * menu principal da sessao de monografias
      */
     public void principal() {
         Scanner entrada = new Scanner(System.in);
@@ -247,14 +246,18 @@ public class ExececutorDeMonografias {
         baseDeDados(controller);
         int opcao = 0;
         do {
-            System.out.println("###################################################");
-            System.out.println("Gerenciamento de monograficas");
-            System.out.println("1- incluir");
-            System.out.println("2- consultar");
-            System.out.println("3- consultar por autor");
-            System.out.println("4- excluir");
-            System.out.println("5- editar");
-            System.out.println("0- sair");
+            System.out.println("#########################################");
+            System.out.println("#                                       #");
+            System.out.println("#   Gerenciamento de monograficas       #");
+            System.out.println("#   -----------------------------       #");
+            System.out.println("#   1- incluir                          #");
+            System.out.println("#   2- consultar                        #");
+            System.out.println("#   3- consultar por autor              #");
+            System.out.println("#   4- excluir                          #");
+            System.out.println("#   5- editar                           #");
+            System.out.println("#   0- sair                             #");
+            System.out.println("#                                       #");
+            System.out.println("#########################################");
             System.out.print("Opção: ");
             opcao = entrada.nextInt();
 

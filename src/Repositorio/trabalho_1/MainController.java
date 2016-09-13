@@ -31,14 +31,14 @@ public class MainController {
         Scanner entrada = new Scanner(System.in);
         System.out.println("##############################################");
         System.out.println("Bem vindo ao sistema de envio de publicações!");
-        System.out.println("-------------------");
-        System.out.println("0 - Sair");
-        System.out.println("1 - Monografia");
-        System.out.println("2 - Resumo");
-        System.out.println("3 - Palestra");
-        System.out.println("4 - Minucurso");
-        System.out.println("5 - Artigo");
-        System.out.println("------------------");
+        System.out.println("======================");
+        System.out.println("||  0 - Sair        ||");
+        System.out.println("||  1 - Monografia  ||");
+        System.out.println("||  2 - Resumo      ||");
+        System.out.println("||  3 - Palestra    ||");
+        System.out.println("||  4 - Minucurso   ||");
+        System.out.println("||  5 - Artigo      ||");
+        System.out.println("======================");
         System.out.print("Opção: ");
         return entrada.nextInt();
     }
