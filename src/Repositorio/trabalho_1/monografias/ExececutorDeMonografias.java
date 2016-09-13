@@ -173,20 +173,20 @@ public class ExececutorDeMonografias {
      */
     public static void baseDeDados(ControllerDeMonografias controle) {
         List<String> palavras = new ArrayList();
-        List<String> palavras1 = new ArrayList();
-        List<String> palavras2 = new ArrayList();
+        List<String> autor = new ArrayList();
+        List<String> institucao = new ArrayList();
         palavras.add("Um");
         palavras.add("Doi");
         palavras.add("tres");
         palavras.add("quatro");
-        palavras1.add("tres");
-        palavras2.add("quatro");
+        autor.add("tres");
+        institucao.add("quatro");
         String resumo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit\n";
         resumo += "in ligula est, placerat quis maximus vel, imperdiet eu sapien.\n";
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
         resumo += "enim ultrices, in interdum lacus blandit. Class aptent taciti.\n";
-        for (int i = 0; i < 50; i++) {
-            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, 1, palavras1, palavras2, 4, 1));
+        for (int i = 0; i < 10; i++) {
+            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, autor, 1, institucao, palavras, 4, 1));
 
         }
     }
@@ -372,19 +372,4 @@ public class ExececutorDeMonografias {
         ExececutorDeMonografias ex = new ExececutorDeMonografias();
         ex.principal();
     }
-
-    /* deprecated METHODS */
-    /**
-     * Consulta monografias, por pequista ou lista, dando ao usuario opçao de
-     * pesquisar por titulo ou por autor ou ter uma lista de todas as
-     * monografias pelo titulo
-     *
-     * @deprecated old - refazer
-     * @param c controler de monografia
-     * @param frase String que vai aparecer para o usuario
-     * @return
-     *
-     * public static int ConsultarMonografia(ControllerDeMonografias c, String
-     * frase) {
-     */
 }

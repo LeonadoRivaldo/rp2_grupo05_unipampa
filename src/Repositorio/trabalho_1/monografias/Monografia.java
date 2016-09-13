@@ -14,7 +14,7 @@ import java.util.List;
  * @author leona_000
  */
 public class Monografia extends SubmissaoCientifica {
-    
+
     //private String tipo;
     protected Tipo tipo;
     private String orientador;
@@ -23,8 +23,9 @@ public class Monografia extends SubmissaoCientifica {
     private int numeroDePaginas;
     private String resumo;
     private String Abstract;
+
     /**
-     * 
+     *
      * @param orientador
      * @param curso
      * @param ano
@@ -38,7 +39,7 @@ public class Monografia extends SubmissaoCientifica {
      * @param instituicoes
      * @param palavrasChave
      * @param MAX_PALAVRASCHAVES
-     * @param MAX_INSTITUICOES 
+     * @param MAX_INSTITUICOES
      */
     public Monografia(Tipo tipo, String orientador, String curso, int ano, int numeroDePaginas, String resumo, String Abstract, String tituloSubmissao, Situacao situacaoSubmissao, List<String> autores, int MAX_AUTORES, List<String> instituicoes, List<String> palavrasChave, int MAX_PALAVRASCHAVES, int MAX_INSTITUICOES) {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
@@ -49,7 +50,7 @@ public class Monografia extends SubmissaoCientifica {
         this.resumo = resumo;
         this.Abstract = Abstract;
         this.tipo = tipo;
-        
+
     }
 
     /**
@@ -149,7 +150,17 @@ public class Monografia extends SubmissaoCientifica {
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
-    
-    
-    
+
+    public String toString() {
+        String str = "";
+        str += super.toString();
+        str += "\nTipo: " + tipo.getNome();
+        str += "\nOrientador: " + orientador;
+        str += "\nCurso: " + curso;
+        str += "\nAno: " + ano;
+        str += "\nNumero De Paginas: " + numeroDePaginas;
+        str += "\nResumo: " + resumo;
+        str += "\nAbstract: " + Abstract;
+        return str;
+    }
 }
