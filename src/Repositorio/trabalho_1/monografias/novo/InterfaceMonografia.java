@@ -9,7 +9,7 @@ import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.ListaSubmissoes;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
-import Repositorio.trabalho_1.interfaceSistema;
+import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.PreencheSubmissao;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.Scanner;
  *
  * @author leona_000
  */
-public class InterfaceMonografia extends interfaceSistema {
+public class InterfaceMonografia extends InterfaceSistema {
 
     private ListaSubmissao lista = new ListaSubmissao();
     private Monografia monografia;
@@ -29,6 +29,7 @@ public class InterfaceMonografia extends interfaceSistema {
         int opcao = 0;
         do {
             opcao = menu();
+            
             switch (opcao) {
                 case 0:
                     break;
@@ -46,9 +47,9 @@ public class InterfaceMonografia extends interfaceSistema {
                     break;
                 case 3:
                     String s = "Digite o titulo da monografia que você quer visualizar:";
-                    List<Submissao> submissoes = consultarListaSubmissoesAutor("Digite o nome do autor que você quer pesquisar", this.lista);
+                    List<Submissao> submissoes = consultarListaSubmissoesAutor(this.lista);
                     do {
-                        if (lista != null) {
+                        if (submissoes != null) {
                             monografia = (Monografia) listaPorAutor(submissoes, this.lista, s);
                             if (monografia != null) {
                                 exibirSubmissao(monografia);

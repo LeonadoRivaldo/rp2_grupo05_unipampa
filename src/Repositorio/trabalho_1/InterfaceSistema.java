@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * @author leona_000
  */
-public abstract class interfaceSistema {
+public abstract class InterfaceSistema {
     protected Submissao submissao;
     protected static final Scanner entrada = new Scanner(System.in);
     /**
@@ -72,9 +72,10 @@ public abstract class interfaceSistema {
      * @return lista das submissoes relacionadas aquele autor ou null se não
      * houver nenhuma submissao daquele autor
      */
-    public List<Submissao> consultarListaSubmissoesAutor(String mensagem, ListaSubmissoes lista) {
+    public List<Submissao> consultarListaSubmissoesAutor(ListaSubmissoes lista){
         System.out.println("====================================================");
-        System.out.println(mensagem);
+        System.out.println("Digite o nome do autor que você quer pesquisar: ");
+        entrada.nextLine();
         return lista.consultarAutor(entrada.nextLine());
     }
     /**
@@ -82,7 +83,7 @@ public abstract class interfaceSistema {
      * @param submissao objeto de submissao a ser exibido
      */
     protected void exibirSubmissao(Submissao submissao) {
-        System.out.println("====================================================");
+        System.out.print("====================================================");
         System.out.println(submissao.toString());
         System.out.println("====================================================");
     }
