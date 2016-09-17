@@ -5,6 +5,9 @@
  */
 package Repositorio.trabalho_1.monografias;
 
+import Repositorio.trabalho_1.PreencheSubmissao;
+import Repositorio.trabalho_1.monografias.novo.Tipo;
+import Repositorio.trabalho_1.monografias.novo.Monografia;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
@@ -16,9 +19,7 @@ import java.util.Scanner;
  * @author leona_000
  */
 public class ExececutorDeMonografias {
-
     ControllerDeMonografias controller = new ControllerDeMonografias();
-
     /**
      * Mostra as informações da monografia
      *
@@ -44,7 +45,6 @@ public class ExececutorDeMonografias {
         System.out.println("Abstract: " + monografia.getAbstract());
         System.out.println("===================================================");
     }
-
     /**
      * permite o usuario a selecionar qual atributo ele quer editar
      *
@@ -82,7 +82,6 @@ public class ExececutorDeMonografias {
         } while (in > 12 || in < 1);
         return in;
     }
-
     /**
      * faz uma lista por autor
      *
@@ -101,7 +100,6 @@ public class ExececutorDeMonografias {
         System.out.println("Digite o titulo da monografia a ser exibida: ");
         return controller.consultar(entrada.nextLine());
     }
-
     /**
      * Faz pesquisa pelo titulo!
      *
@@ -115,36 +113,35 @@ public class ExececutorDeMonografias {
         System.out.println(frase);
         return controller.consultar(entrada.nextLine());
     }
-
     /**
      * cria um objeto de monografia
      *
      * @return objeto monografia
      */
     private static Monografia criaMonografia() {
-        String tituloSubmissao = PreencheMonografia.preencheTitulo();
-        List<String> autores = PreencheMonografia.preencheAutor();
+        String tituloSubmissao = PreencheSubmissao.preencheTitulo();
+        List<String> autores = PreencheSubmissao.preencheAutor();
         Situacao situacaoSubmissao = null;
         do {
-            String situacao = PreencheMonografia.preencheSituacao();
+            String situacao = PreencheSubmissao.preencheSituacao();
             situacaoSubmissao = Submissao.verificaSituacao(situacao);
         } while (situacaoSubmissao == null);
         Tipo tipoMonografia = null;
         do {
-            String tipo = PreencheMonografia.preencheTipo();
+            String tipo = PreencheSubmissao.preencheTipo();
             tipoMonografia = Submissao.verificaTipo(tipo);
         } while (tipoMonografia == null);
 
-        String instituicao = PreencheMonografia.preencheInstituicao();
+        String instituicao = PreencheSubmissao.preencheInstituicao();
         List<String> instituicoes = new ArrayList();
         instituicoes.add(instituicao);
-        String orientador = PreencheMonografia.preencheOrientador();
-        String curso = PreencheMonografia.preencheCurso();
-        int ano = Integer.parseInt(PreencheMonografia.preencheAno());
-        int numeroDePaginas = Integer.parseInt(PreencheMonografia.preencheNroPaginas());
-        List<String> palavrasChave = PreencheMonografia.preenchePalavrasChaves();
-        String resumo = PreencheMonografia.preencheResumo();
-        String Abstract = PreencheMonografia.preencheAbstract();
+        String orientador = PreencheSubmissao.preencheOrientador();
+        String curso = PreencheSubmissao.preencheCurso();
+        int ano = Integer.parseInt(PreencheSubmissao.preencheAno());
+        int numeroDePaginas = Integer.parseInt(PreencheSubmissao.preencheNroPaginas());
+        List<String> palavrasChave = PreencheSubmissao.preenchePalavrasChaves();
+        String resumo = PreencheSubmissao.preencheResumo();
+        String Abstract = PreencheSubmissao.preencheAbstract();
 
         int MAX_AUTORES = 1;
         int MAX_PALAVRASCHAVES = 4;
@@ -153,7 +150,6 @@ public class ExececutorDeMonografias {
         Monografia monografia = new Monografia(tipoMonografia, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
         return monografia;
     }
-
     /**
      * função para exibir mensagens no sistema
      *
@@ -164,7 +160,6 @@ public class ExececutorDeMonografias {
         System.out.println(s.toUpperCase());
         System.out.println("\n===========================================================\n");
     }
-
     /**
      * cria objetos para colocar na lista
      *
@@ -189,7 +184,6 @@ public class ExececutorDeMonografias {
 
         }
     }
-
     /**
      * pega o novo valor que o usuario quer para preencher o novo objeto
      *
@@ -199,43 +193,42 @@ public class ExececutorDeMonografias {
     private static String PegarValor(int atributo) {
         switch (atributo) {
             case 1:
-                return PreencheMonografia.preencheTitulo();
+                return PreencheSubmissao.preencheTitulo();
             case 2:
-                return PreencheMonografia.preencheSituacao();
+                return PreencheSubmissao.preencheSituacao();
             case 3:
-                return PreencheMonografia.preencheTipo();
+                return PreencheSubmissao.preencheTipo();
             case 4:
-                List<String> autores = PreencheMonografia.preencheAutor();
+                List<String> autores = PreencheSubmissao.preencheAutor();
                 String frase1 = "";
                 for (String s : autores) {
                     frase1 += s + "-";
                 }
                 return frase1;
             case 5:
-                return PreencheMonografia.preencheInstituicao();
+                return PreencheSubmissao.preencheInstituicao();
             case 6:
-                return PreencheMonografia.preencheOrientador();
+                return PreencheSubmissao.preencheOrientador();
             case 7:
-                return PreencheMonografia.preencheCurso();
+                return PreencheSubmissao.preencheCurso();
             case 8:
-                return PreencheMonografia.preencheAno();
+                return PreencheSubmissao.preencheAno();
             case 9:
-                return PreencheMonografia.preencheNroPaginas();
+                return PreencheSubmissao.preencheNroPaginas();
             case 10:
-                List<String> palavras = PreencheMonografia.preenchePalavrasChaves();
+                List<String> palavras = PreencheSubmissao.preenchePalavrasChaves();
                 String frase = "";
                 for (String s : palavras) {
                     frase += s + "-";
                 }
                 return frase;
             case 11:
-                return PreencheMonografia.preencheAbstract();
+                return PreencheSubmissao.preencheAbstract();
             case 12:
-                return PreencheMonografia.preencheAbstract();
+                return PreencheSubmissao.preencheAbstract();
         }
         return null;
     }
-
     /**
      * menu principal da sessao de monografias
      */
@@ -365,7 +358,6 @@ public class ExececutorDeMonografias {
 
         } while (opcao != 0);
     }
-
     /**
      * main executavel do sistema
      *
