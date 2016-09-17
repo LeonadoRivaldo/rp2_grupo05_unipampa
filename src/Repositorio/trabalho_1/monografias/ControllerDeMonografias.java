@@ -5,6 +5,9 @@
  */
 package Repositorio.trabalho_1.monografias;
 
+import Repositorio.trabalho_1.PreencheSubmissao;
+import Repositorio.trabalho_1.monografias.novo.Tipo;
+import Repositorio.trabalho_1.monografias.novo.Monografia;
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
@@ -106,7 +109,7 @@ public class ControllerDeMonografias {
                 Tipo tipoMonografia = null;
                 tipoMonografia = Submissao.verificaTipo(valor);
                 while (tipoMonografia == null) {
-                    tipoMonografia = Submissao.verificaTipo(PreencheMonografia.preencheTipo());
+                    tipoMonografia = Submissao.verificaTipo(PreencheSubmissao.preencheTipo());
                 }
                 monografia.setTipo(tipoMonografia);
                 break;
@@ -114,7 +117,7 @@ public class ControllerDeMonografias {
                 Situacao situacao = null;
                 situacao = Submissao.verificaSituacao(valor);
                 while (situacao == null) {
-                    situacao = Submissao.verificaSituacao(PreencheMonografia.preencheSituacao());
+                    situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
                 }
                 monografia.setSituacaoSubmissao(situacao);
                 break;

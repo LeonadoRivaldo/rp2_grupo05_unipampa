@@ -1,7 +1,7 @@
 package Repositorio.trabalho_1.resumo;
 
 import Repositorio.trabalho_1.Situacao;
-import Repositorio.trabalho_1.monografias.Monografia;
+import Repositorio.trabalho_1.monografias.novo.Monografia;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
