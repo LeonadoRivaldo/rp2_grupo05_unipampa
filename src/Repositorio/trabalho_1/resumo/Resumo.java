@@ -22,6 +22,7 @@ public class Resumo extends SubmissaoCientifica {
         super(tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
     }
     
+    @Override
      public String toString() {
         
         return super.toString();

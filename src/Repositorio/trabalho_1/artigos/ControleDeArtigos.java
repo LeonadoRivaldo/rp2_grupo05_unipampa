@@ -5,6 +5,7 @@
  */
 package Repositorio.trabalho_1.artigos;
 
+import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import java.util.ArrayList;
@@ -17,32 +18,48 @@ import java.util.Scanner;
  */
 public class ControleDeArtigos {
 
-    ArrayList<Artigo> artigos = new ArrayList<Artigo>();
+    // ArrayList<Artigo> artigos = new ArrayList<Artigo>();
+    private ListaSubmissao listaControle;
 
-    /**
-     * Método para incluir um artigo
-     */
-    public void incluir(Artigo artigo) {
-        artigos.add(artigo);
+    public ControleDeArtigos() {
+        this.listaControle = new ListaSubmissao();
     }
 
     /**
-     * Método para consultar um artigo passando por parâmetro um inteiro
+     * Método para incluir um objeto artigo dentro da lista
      */
-    public Artigo consultar(int y) {
-        return artigos.get(y);
+    public void incluir(Artigo artigo) {
+        listaControle.incluir(artigo);
+    }
 
+    /**
+     * Método para consultar um artigo passando por parâmetro uma String titulo
+     * Consulta por titulo
+     */
+    public Artigo consultar(String titulo) {
+        return (Artigo) listaControle.consultarTitulo(titulo);
+
+    }
+
+    /**
+     * Método para consultar um artigo por autor passando por parâmetro uma
+     * String Consulta por autor
+     */
+    public List<Submissao> consultarAutor(String autor) {
+        return listaControle.consultarAutor(autor);
     }
 
     /**
      * Método para editar uma artigo 1 - String titulo, 2 - String[] autor, 3 -
      * String[] instituicao, 4 - String[] palavrachave, 5 - String resumo, 6 -
      * String Abstract
+     *
      * @param atributo
      * @param valor
      * @param artigo
      */
-    public void editar(int atributo, String valor, Artigo artigo) {
+    public boolean editar(int atributo, String valor, Artigo artigo) {
+        String oldTitulo = artigo.getTituloSubmissao();
         switch (atributo) {
             case 1:
                 artigo.setTituloSubmissao(valor);
@@ -86,14 +103,15 @@ public class ControleDeArtigos {
                 artigo.setSituacaoSubmissao(situacao);
                 break;
         }
-
+       return listaControle.editar(oldTitulo, artigo);
     }
 
     /**
-     * Método para excluir uma artigo passando por parâmentro um inteito e removendo da lista
+     * @param titulo Método para excluir uma artigo passando por parâmentro uma
+     * String e removendo da lista
      */
-    public void excluir(int y) {
-        artigos.remove(y);
+    public boolean excluir(String titulo) {
+        return listaControle.excluir(titulo);
 
     }
 

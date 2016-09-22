@@ -19,6 +19,43 @@ public class ExecutarArtigos {
 
     private ControleDeArtigos controller = new ControleDeArtigos();
 
+    /**
+     * função para exibir mensagens no sistema
+     *
+     * @param s mensagem que vai ser exibida para o usuário
+     */
+    public static void msg(String s) {
+        System.out.println(
+                "\n=============================================================\n"
+                + s
+                + "\n===========================================================\n"
+        );
+    }
+
+    /**
+     * Pesquisa pelo nome do autor 
+     * O método que lista as submissões pelo nome do autor
+     *
+     * @param controller
+     * @param submissoes
+     * @return
+     */
+    private static Artigo listaPorAutor(ControleDeArtigos controller, List<Submissao> submissoes) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("=================================================================");
+        for (Submissao artigo : submissoes) {
+            System.out.println(artigo.getTituloSubmissao());
+        }
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("Digite o titulo do artigo a ser exibido: ");
+        return controller.consultar(entrada.nextLine());
+    }
+
+    /**
+     * Método que pega o valor do atributo a ser editado pelo usuário
+     * @param atributo
+     * @return 
+     */
     public static String PegarValor(int atributo) {
         switch (atributo) {
             case 1:
@@ -59,6 +96,10 @@ public class ExecutarArtigos {
         return null;
     }
 
+    /**
+     * Método que passa por parâmetro um objeto artigo para a exibir o mesmo 
+     * @param artigo 
+     */
     public static void exibir(Artigo artigo) {
         System.out.println("====================================");
         System.out.println("");
@@ -89,6 +130,11 @@ public class ExecutarArtigos {
         System.out.println("");
         System.out.println("====================================");
     }
+    /**
+     * Método que passa um objeto artigo por parâmetro e pergunta qual atributo ele vai editar
+     * @param artigo
+     * @return 
+     */
 
     public static int editar(Artigo artigo) {
         System.out.println("====================================");
@@ -125,21 +171,21 @@ public class ExecutarArtigos {
 
     }
 
-    public static int consultarArtigo(ControleDeArtigos x) {
+    /**
+     * Método que recebe o controle e a partir do que  o usuário digitar ele faz uma pesquisa
+     * @param controle
+     * @param frase
+     * @return 
+     */
+    public static Artigo consultarArtigo(ControleDeArtigos controle, String frase) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("====================================");
-
-        for (int i = 0; i < x.artigos.size(); i++) {
-            System.out.println((i + 1) + "  " + x.artigos.get(i).getTituloSubmissao());
-        }
-
-        System.out.print("Selecione o artigo : ");
-        return (entrada.nextInt() - 1);
+        System.out.println(frase);
+        return controle.consultar(entrada.nextLine());
 
     }
 
     /**
-     * cria um artigo usando a classe que tem metodos para preencher o objeto
+     * cria um artigo usando a classe que tem métodos para preencher o objeto
      *
      * @return um objeto do tipo artigo
      */
@@ -166,6 +212,8 @@ public class ExecutarArtigos {
         List<String> autores = new ArrayList();
         List<String> instituicoes = new ArrayList();
         List<String> palavrachave = new ArrayList();
+        Artigo artigo;
+        List<Submissao> submissoes;
 
         autores.add("Homem de ferro");
         autores.add("Popeye");
@@ -177,7 +225,7 @@ public class ExecutarArtigos {
         instituicoes.add("Pixar");
         palavrachave.add("Animações");
         palavrachave.add("Pokemon");
-        controller.incluir(new Artigo("Mickey Mouse", "Minnie Mouse", "WAlT Disney", Situacao.aprovado, autores, 8, instituicoes, palavrachave, 4, 8));
+        controller.incluir(new Artigo("Mickey Mouse", "Minnie Mouse", "amanda", Situacao.aprovado, autores, 8, instituicoes, palavrachave, 4, 8));
 
         int opcao;
         do {
@@ -185,9 +233,10 @@ public class ExecutarArtigos {
             System.out.println("Selecione uma opção : ");
             System.out.println("0 - Sair");
             System.out.println("1 - Incluir");
-            System.out.println("2 - Exibir");
-            System.out.println("3 - Excluir");
-            System.out.println("4 - Editar");
+            System.out.println("2 - Consultar");
+            System.out.println("3 - Consultar por Autor");
+            System.out.println("4 - Excluir");
+            System.out.println("5 - Editar");
 
             System.out.print("Opção :");
             opcao = entrada.nextInt();
@@ -200,16 +249,86 @@ public class ExecutarArtigos {
 
                     break;
                 case 2:
-                    exibir(controller.consultar(consultarArtigo(controller)));
+                    artigo = consultarArtigo(controller, "Digite o titulo que você quer consultar:");
+                    do {
+                        if (artigo != null) {
+                            exibir(artigo);
+                        } else {
+                            msg("O ARTIGO NÃO FOI ENCONTRADO");
+                            System.out.println("Deseja pesquisar novamente?");
+
+                            if (!entrada.nextLine().equalsIgnoreCase("Sim")) {
+                                break;
+                            }
+                        }
+                    } while (artigo == null);
                     break;
                 case 3:
-                    controller.excluir(consultarArtigo(controller));
+                    entrada.nextLine();
+                    artigo = null;
+                    do {
+                        System.out.println("=================================================");
+                        System.out.println("Digite o nome do autor que você deseja pesquisar:");
+                        submissoes = controller.consultarAutor(entrada.nextLine());
+                        if (submissoes != null) {
+                            artigo = listaPorAutor(controller, submissoes);
+
+                            if (artigo != null) {
+                                exibir(artigo);
+                            } else {
+                                msg("O ARTIGO NÃO FOI ENCONTRADO");
+                                if (!entrada.nextLine().equalsIgnoreCase("Sim")) {
+                                    break;
+                                }
+                            }
+                        }
+                    } while (artigo == null);
                     break;
                 case 4:
-                    int index = consultarArtigo(controller);
-                    Artigo a = controller.consultar(index);
-                    int atributo = editar(a);
-                    controller.editar(atributo, PegarValor(atributo), a);
+                    entrada.nextLine();
+                    boolean excluido = false;
+                    do {
+                        System.out.println("================================================");
+                        System.out.println("Qual é o titulo do artigo que você quer excluir: ");
+                        excluido = controller.excluir(entrada.nextLine());
+                        if (excluido) {
+                            msg("Artigo excluido com sucesso");
+                        } else {
+                            msg("O ARTIGO NÃO FOI ENCONTRADO");
+                            System.out.print("Pesquisar novamente?");
+                            if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                excluido = true;
+                            }
+                        }
+                    } while (!excluido);
+
+                    break;
+                case 5:
+                    artigo = consultarArtigo(controller, "Qual artigo você quer editar:");
+                    int fim = 0;
+                    boolean editado = false;
+                    do {
+                        if (artigo != null) {
+                            do {
+                                int atributo = editar(artigo);
+                                editado = controller.editar(atributo, PegarValor(atributo), artigo);
+                                if (editado) {
+                                    msg("ARTIGO EDITADO COM SUCESSO");
+                                }
+                                System.out.println("==============================================");
+                                System.out.println("Deseja editar outro atributo? 1- sim | 2- não ");
+                                fim = entrada.nextInt();
+                            } while (fim != 2);
+                        } else {
+                            msg("ARTIGO NÃO ENCONTRADO");
+                            if (!entrada.nextLine().equalsIgnoreCase("sim")) {
+                                break;
+                            }
+                        }
+                    } while (!editado);
+                    break;
+                default:
+                    msg("Opção inválida");
 
                     break;
 

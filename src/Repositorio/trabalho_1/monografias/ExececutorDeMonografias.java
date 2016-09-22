@@ -109,7 +109,7 @@ public class ExececutorDeMonografias {
      * @param frase string que mostra para o usuario
      * @return objeto monografia ou null se não achar
      */
-    public static Monografia consultarMonografia(ControllerDeMonografias controller, String frase) {
+    private static Monografia consultarMonografia(ControllerDeMonografias controller, String frase) {
         System.out.println("====================================================");
         Scanner entrada = new Scanner(System.in);
         System.out.println(frase);
@@ -121,8 +121,7 @@ public class ExececutorDeMonografias {
      *
      * @return objeto monografia
      */
-    public static Monografia criaMonografia() {
-        System.out.println("===============================================");
+    private static Monografia criaMonografia() {
         String tituloSubmissao = PreencheMonografia.preencheTitulo();
         List<String> autores = PreencheMonografia.preencheAutor();
         Situacao situacaoSubmissao = null;
@@ -160,7 +159,7 @@ public class ExececutorDeMonografias {
      *
      * @param s mensagem que vai ser exibida para o usuario
      */
-    public static void msg(String s) {
+    private static void msg(String s) {
         System.out.println("\n===========================================================\n");
         System.out.println(s.toUpperCase());
         System.out.println("\n===========================================================\n");
@@ -171,22 +170,22 @@ public class ExececutorDeMonografias {
      *
      * @param controle
      */
-    public static void baseDeDados(ControllerDeMonografias controle) {
+    private static void baseDeDados(ControllerDeMonografias controle) {
         List<String> palavras = new ArrayList();
-        List<String> palavras1 = new ArrayList();
-        List<String> palavras2 = new ArrayList();
+        List<String> autor = new ArrayList();
+        List<String> institucao = new ArrayList();
         palavras.add("Um");
         palavras.add("Doi");
         palavras.add("tres");
         palavras.add("quatro");
-        palavras1.add("tres");
-        palavras2.add("quatro");
+        autor.add("tres");
+        institucao.add("quatro");
         String resumo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit\n";
         resumo += "in ligula est, placerat quis maximus vel, imperdiet eu sapien.\n";
         resumo += "Quisque aliquet placerat neque. Aenean auctor lacus sit amet,\n";
         resumo += "enim ultrices, in interdum lacus blandit. Class aptent taciti.\n";
-        for (int i = 0; i < 50; i++) {
-            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, palavras, 1, palavras1, palavras2, 4, 1));
+        for (int i = 0; i < 10; i++) {
+            controle.incluir(new Monografia(Tipo.graduacao, "Aline", "ES", 2020 + i, i, resumo, resumo + "Abstract" + i, "Leonardo" + i, Situacao.sobAvaliacao, autor, 1, institucao, palavras, 4, 1));
 
         }
     }
@@ -197,7 +196,7 @@ public class ExececutorDeMonografias {
      * @param atributo
      * @return
      */
-    public static String PegarValor(int atributo) {
+    private static String PegarValor(int atributo) {
         switch (atributo) {
             case 1:
                 return PreencheMonografia.preencheTitulo();
@@ -238,7 +237,7 @@ public class ExececutorDeMonografias {
     }
 
     /**
-     * menu do sistem
+     * menu principal da sessao de monografias
      */
     public void principal() {
         Scanner entrada = new Scanner(System.in);
@@ -247,14 +246,18 @@ public class ExececutorDeMonografias {
         baseDeDados(controller);
         int opcao = 0;
         do {
-            System.out.println("###################################################");
-            System.out.println("Gerenciamento de monograficas");
-            System.out.println("1- incluir");
-            System.out.println("2- consultar");
-            System.out.println("3- consultar por autor");
-            System.out.println("4- excluir");
-            System.out.println("5- editar");
-            System.out.println("0- sair");
+            System.out.println("#########################################");
+            System.out.println("#                                       #");
+            System.out.println("#   Gerenciamento de monograficas       #");
+            System.out.println("#   -----------------------------       #");
+            System.out.println("#   1- incluir                          #");
+            System.out.println("#   2- consultar                        #");
+            System.out.println("#   3- consultar por autor              #");
+            System.out.println("#   4- excluir                          #");
+            System.out.println("#   5- editar                           #");
+            System.out.println("#   0- sair                             #");
+            System.out.println("#                                       #");
+            System.out.println("#########################################");
             System.out.print("Opção: ");
             opcao = entrada.nextInt();
 
@@ -372,19 +375,4 @@ public class ExececutorDeMonografias {
         ExececutorDeMonografias ex = new ExececutorDeMonografias();
         ex.principal();
     }
-
-    /* deprecated METHODS */
-    /**
-     * Consulta monografias, por pequista ou lista, dando ao usuario opçao de
-     * pesquisar por titulo ou por autor ou ter uma lista de todas as
-     * monografias pelo titulo
-     *
-     * @deprecated old - refazer
-     * @param c controler de monografia
-     * @param frase String que vai aparecer para o usuario
-     * @return
-     *
-     * public static int ConsultarMonografia(ControllerDeMonografias c, String
-     * frase) {
-     */
 }
