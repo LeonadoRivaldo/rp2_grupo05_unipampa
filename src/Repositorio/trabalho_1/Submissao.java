@@ -145,9 +145,9 @@ public abstract class Submissao {
     @Override
     public String toString() {
         String string = "";
-        string += "\nTitulo: " + getTituloSubmissao();
-        string += "\nSituacao: " + getSituacaoSubmissao().getNome();
-        string += "\nAutores: ";
+        string += "\n1- Titulo: " + getTituloSubmissao();
+        string += "\n2- Situacao: " + getSituacaoSubmissao().getNome();
+        string += "\n3- Autores: ";
         for (String s : autores) {
             string += s + ", ";
         }

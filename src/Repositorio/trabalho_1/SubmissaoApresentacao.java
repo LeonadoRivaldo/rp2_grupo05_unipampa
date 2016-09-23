@@ -89,9 +89,9 @@ public abstract class SubmissaoApresentacao extends Submissao {
     public String toString() {
         String string = "";
         string = super.toString()
-                + "\nResumo: " + getResumo()
-                + "\nAbstract: " + getAbstrac()
-                + "\nDuração: " + duracaoToString() + " horas";
+                + "\n4- Resumo: " + getResumo()
+                + "\n5- Abstract: " + getAbstrac()
+                + "\n6- Duração: " + duracaoToString() + " horas";
         return string;
     }
 

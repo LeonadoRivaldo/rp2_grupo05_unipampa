@@ -51,8 +51,8 @@ public class MainController {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         ExececutorDeMonografias exeMonografias = new ExececutorDeMonografias();
-        Executor palestra = new Executor();
-        PMinicurso minicurso = new PMinicurso();
+       // Executor palestra = new Executor();
+        InterfaceMinicurso minicurso = new InterfaceMinicurso();
         ExecutarArtigos artigos = new ExecutarArtigos();
         ControladorResumo resumo = new ControladorResumo();
         int opcao = -1;
@@ -69,10 +69,10 @@ public class MainController {
                     ClassePrincipalResumo.principal();
                     break;
                 case 3:
-                    palestra.principal();
+                  //  palestra.principal();
                     break;
                 case 4:
-                    PMinicurso.principal();
+                    minicurso.principal();
                     break;
                 case 5:
                     artigos.principal();

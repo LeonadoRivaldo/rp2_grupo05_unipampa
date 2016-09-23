@@ -1,4 +1,5 @@
 package Repositorio.trabalho_1.minicurso;
+
 import java.util.Scanner;
 
 /**
@@ -8,6 +9,8 @@ import java.util.Scanner;
  */
 public class InOut {
 
+    private static Scanner input = new Scanner(System.in);
+
     /**
      * Metodo que exibie uma mensagem recebida por parâmetro para o usuario e
      * captura o proximo int que será digitado
@@ -16,10 +19,16 @@ public class InOut {
      * @return Retorna o int inserido pelo usuário
      */
     public static int inInt(String mensagem) {
-        Scanner input = new Scanner(System.in);
         System.out.println(mensagem);
-        int in = input.nextInt();
-        input.nextLine();
+        int in;
+        try {
+            in = input.nextInt();
+            input.nextLine();
+        } catch (Exception e) {
+            System.out.println("Ocorreu algum erro, tente novamente");
+            System.out.println("");
+            return inInt(mensagem);
+        }
         return in;
     }
 
@@ -31,19 +40,10 @@ public class InOut {
      * @return Retorna a String inserido pelo usuário
      */
     public static String inString(String mensagem) {
-        Scanner input = new Scanner(System.in);
+        String in;
         System.out.println(mensagem);
-        String in = input.nextLine();
+        in = input.nextLine();
         return in;
-    }
-
-    /**
-     * Metodo que exibie uma mensagem recebida por parâmetro para o usuario
-     *
-     * @param mensagem Recebe a mensagem que será exibida ao usuário
-     */
-    public static void outL(String mensagem) {
-        System.out.println(mensagem);
     }
 
     /**

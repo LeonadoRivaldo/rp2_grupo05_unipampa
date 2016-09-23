@@ -8,7 +8,7 @@ import Repositorio.trabalho_1.Submissao;
 /**
  * Classe que cria e modela objetos do tipo Minicurso
  */
-public class Minicursos {
+public class MinicursosOBSOLETO {
 
     //private ArrayList<Minicurso> listaMinicursos;
     private ListaSubmissao listaMinicursos = new ListaSubmissao();
