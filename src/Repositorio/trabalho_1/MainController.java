@@ -4,7 +4,7 @@ import java.util.Scanner;
 import Repositorio.trabalho_1.minicurso.*;
 import Repositorio.trabalho_1.artigos.*;
 import Repositorio.trabalho_1.monografias.*;
-import Repositorio.trabalho_1.palestra.*;
+import Repositorio.trabalho_1.palestra.InterfacePalestra;
 import Repositorio.trabalho_1.resumo.*;
 
 /*
@@ -51,7 +51,7 @@ public class MainController {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         ExececutorDeMonografias exeMonografias = new ExececutorDeMonografias();
-       // Executor palestra = new Executor();
+        InterfacePalestra palestra = new InterfacePalestra();
         InterfaceMinicurso minicurso = new InterfaceMinicurso();
         ExecutarArtigos artigos = new ExecutarArtigos();
         ControladorResumo resumo = new ControladorResumo();
@@ -69,7 +69,7 @@ public class MainController {
                     ClassePrincipalResumo.principal();
                     break;
                 case 3:
-                  //  palestra.principal();
+                    palestra.principal();
                     break;
                 case 4:
                     minicurso.principal();

@@ -23,7 +23,7 @@ public class InterfacePalestra extends InterfaceSistema {
     private ListaSubmissao palestras = new ListaSubmissao();
 
     @Override
-    protected void principal() {
+    public void principal() {
         Scanner entrada = new Scanner(System.in);
         ArrayList<String> autores = new ArrayList();
         autores.add("Colega Amanda");
@@ -146,7 +146,7 @@ public class InterfacePalestra extends InterfaceSistema {
     }
 
     @Override
-    protected void editarSubmissao(){
+    protected void editarSubmissao() {
         System.out.println("Qual titulo da palestra voce quer pesquisar: ");
         entrada.nextLine();
         String ti = entrada.nextLine();
@@ -155,12 +155,12 @@ public class InterfacePalestra extends InterfaceSistema {
             int atributo = this.escolherAtributo(palestra);
             Scanner entrada = new Scanner(System.in);
             /* String titulo,
-         String situacao,
-         String autor, 
-         String resumo,
-         String Abstract,
-         int duracao,
-         String curriculo*/
+             String situacao,
+             String autor, 
+             String resumo,
+             String Abstract,
+             int duracao,
+             String curriculo*/
 
             String oldTitulo = palestra.getTituloSubmissao();
             switch (atributo) {
