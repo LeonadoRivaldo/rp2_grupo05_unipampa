@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author Giliardi Schmidt
  */
-public class EntradasTeclado {
+public abstract class EntradasTeclado {
 
     private static Scanner input = new Scanner(System.in);
 

@@ -171,7 +171,7 @@ public class InterfacePalestra extends InterfaceSistema {
                     palestra.setSituacaoSubmissao(situacao);
                     break;
                 case 3:
-                    List<String> autor = PreencheSubmissao.preencheAutor();
+                    List<String> autor = PreencheSubmissao.preencheAutor(1);
                     palestra.setAutor(autor);
                     break;
                 case 4:
