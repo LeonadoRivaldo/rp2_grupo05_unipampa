@@ -7,6 +7,7 @@ package Repositorio.trabalho_1;
 
 import java.util.List;
 import java.util.Scanner;
+import static Repositorio.trabalho_1.EntradasTeclado.*;
 
 /**
  * @author leona_000
@@ -61,7 +62,7 @@ public abstract class InterfaceSistema {
     protected Submissao consultarSubmissaoTitulo(String mensagem, ListaSubmissoes lista) {
         System.out.println("====================================================");
         System.out.println(mensagem);
-        return lista.consultarTitulo(entrada.nextLine());
+        return lista.consultarTitulo(inString(mensagem));
     }
     /**
      * Faz consulta utilizando uma string de autor
@@ -76,9 +77,13 @@ public abstract class InterfaceSistema {
         System.out.println(entrada.nextLine());
         System.out.println("====================================================");
         System.out.println("Digite o nome do autor que você quer pesquisar: ");
+<<<<<<< HEAD
+        return lista.consultarAutor(entrada.nextLine());
+=======
         String autor = entrada.nextLine();
         List<Submissao> listaA =  lista.consultarAutor(autor);
         return listaA;
+>>>>>>> b214e331eccee835cb80a29b83df5f3a14242412
     }
     /**
      * metodo vai receber uma submissao e exibila utilizando
