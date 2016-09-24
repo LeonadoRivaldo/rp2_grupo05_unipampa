@@ -41,9 +41,6 @@ public class InterfacePalestra extends InterfaceSistema {
                     exibeMensagem("PALETRA INCLUIDA");
                     break;
                 case 2:
-                    /* System.out.println("Autor:");
-                     String autor = entrada.nextLine();
-                     */
                     System.out.println("Qual titulo da palestra voce quer pesquisar: ");
                     String titulo = entrada.nextLine();
                     Palestra p = (Palestra) palestras.consultarTitulo(titulo);
@@ -54,7 +51,6 @@ public class InterfacePalestra extends InterfaceSistema {
                     }
                     break;
                 case 3:
-                    //consultarAutor("Digite o titulo para ser consultado: ", palestras);
                     List<Submissao> submissoesAutor = consultarListaSubmissoesAutor(palestras);
                     if (submissoesAutor != null) {
                         Palestra p1 = (Palestra) this.listaPorAutor(submissoesAutor, palestras, "palestra");
@@ -63,9 +59,7 @@ public class InterfacePalestra extends InterfaceSistema {
                         }
 
                     }
-
                     break;
-
                 case 4:
                     System.out.println("Qual titulo da palestra voce quer excluir: ");
                     String t = entrada.nextLine();
