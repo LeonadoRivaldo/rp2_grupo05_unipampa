@@ -41,7 +41,7 @@ public class InterfaceArtigo extends InterfaceSistema {
                     if (artigo != null) {
                         exibirSubmissao(sub);
                     } else {
-                        exibeMensagem("Artigo não encontrada!");
+                        exibeMensagem("Artigo não encontrado!");
                     }
 
                     break;
@@ -73,7 +73,7 @@ public class InterfaceArtigo extends InterfaceSistema {
                     System.out.println("Qual titulo do artigo vocë quer excluir: ");
                     String t = entrada.nextLine();
                     if (lista.excluir(t)) {
-                        exibeMensagem("ARTIGO EXCLUIDA");
+                        exibeMensagem("ARTIGO EXCLUIDO");
                     } else {
                         exibeMensagem("NAO FOI ENCONTRAD0 NENHUM ARTIGO");
                     }
@@ -126,7 +126,7 @@ public class InterfaceArtigo extends InterfaceSistema {
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
-        List<String> autores = PreencheSubmissao.preencheAutor(0);
+        List<String> autores = PreencheSubmissao.preencheAutor(8);
         List<String> instituicoes = PreencheSubmissao.preencheInstituicaoArtigo(8);
         String resumo = PreencheSubmissao.preencheResumo();
         String Abstract = PreencheSubmissao.preencheAbstract();
@@ -136,6 +136,7 @@ public class InterfaceArtigo extends InterfaceSistema {
             situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
         } while (situacao == null);
         Artigo artigo = new Artigo(resumo, Abstract, tituloSubmissao, situacao, autores, 8, instituicoes, palavrasChave, 4, 8);
+     
         lista.incluir(artigo);
 
     }

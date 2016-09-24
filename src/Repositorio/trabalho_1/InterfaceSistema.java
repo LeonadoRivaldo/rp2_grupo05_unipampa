@@ -61,7 +61,6 @@ public abstract class InterfaceSistema {
      */
     protected Submissao consultarSubmissaoTitulo(String mensagem, ListaSubmissoes lista) {
         System.out.println("====================================================");
-        System.out.println(mensagem);
         return lista.consultarTitulo(inString(mensagem));
     }
     /**
