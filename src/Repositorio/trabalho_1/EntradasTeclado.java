@@ -1,4 +1,4 @@
-package Repositorio.trabalho_1.minicurso;
+package Repositorio.trabalho_1;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author Giliardi Schmidt
  */
-public class InOut {
+public class EntradasTeclado {
 
     private static Scanner input = new Scanner(System.in);
 
@@ -20,13 +20,14 @@ public class InOut {
      */
     public static int inInt(String mensagem) {
         System.out.println(mensagem);
-        int in;
+        int in = 1;
         try {
             in = input.nextInt();
             input.nextLine();
         } catch (Exception e) {
             System.out.println("Ocorreu algum erro, tente novamente");
             System.out.println("");
+            input.nextLine();
             return inInt(mensagem);
         }
         return in;
@@ -50,7 +51,6 @@ public class InOut {
      * Metodo que exibie um separador (####) para o usuario
      */
     public static void div() {
-        System.out.println("\n###################################################"
-                + "#####################################\n");
+        System.out.println("----------------------------------------------------");
     }
 }
