@@ -17,7 +17,7 @@ public abstract class InterfaceSistema {
     /**
      * Metodo que carega todos os outros metodos da sessao do sistema
      */
-    protected abstract void principal();
+    public abstract void principal();
     /**
      * Metodo para o menu
      *
@@ -73,10 +73,16 @@ public abstract class InterfaceSistema {
      * houver nenhuma submissao daquele autor
      */
     public List<Submissao> consultarListaSubmissoesAutor(ListaSubmissoes lista){
+        entrada.nextLine();
         System.out.println("====================================================");
         System.out.println("Digite o nome do autor que você quer pesquisar: ");
-        entrada.nextLine();
+<<<<<<< HEAD
         return lista.consultarAutor(entrada.nextLine());
+=======
+        String autor = entrada.nextLine();
+        List<Submissao> listaA =  lista.consultarAutor(autor);
+        return listaA;
+>>>>>>> b214e331eccee835cb80a29b83df5f3a14242412
     }
     /**
      * metodo vai receber uma submissao e exibila utilizando

@@ -6,7 +6,6 @@
 package Repositorio.trabalho_1.monografias.novo;
 
 import Repositorio.trabalho_1.ListaSubmissao;
-import Repositorio.trabalho_1.ListaSubmissoes;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
 import Repositorio.trabalho_1.InterfaceSistema;
@@ -25,7 +24,7 @@ public class InterfaceMonografia extends InterfaceSistema {
     private Monografia monografia;
 
     @Override
-    protected void principal() {
+    public void principal() {
         int opcao = 0;
         do {
             opcao = menu();
@@ -68,6 +67,9 @@ public class InterfaceMonografia extends InterfaceSistema {
                             }
                         }
                     } while (monografia == null);
+                    break;
+                case 4:
+                    
                     break;
                 default:
                     throw new AssertionError();
