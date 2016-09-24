@@ -83,8 +83,19 @@ public abstract class InterfaceSistema {
      * @param submissao objeto de submissao a ser exibido
      */
     protected void exibirSubmissao(Submissao submissao) {
+        String  sub = submissao.toString();
+        String sss = "";
+        String[] submissaoVetor = sub.split("\n");
+        for( String s : submissaoVetor ){
+            if( s.contains("-") ){
+                String[] ss = s.split("-");
+                sss += "\n"+ss[1].substring(1);
+            }else{
+                sss += "\n"+s;
+            }
+        }
         System.out.print("====================================================");
-        System.out.println(submissao.toString());
+        System.out.print(sss);
         System.out.println("====================================================");
     }
     /**

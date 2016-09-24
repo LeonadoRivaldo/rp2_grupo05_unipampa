@@ -40,6 +40,8 @@ public class PreencheSubmissao {
         div();
         for (int i = 0; i < nroAutores; i++) {
             autores.add(inString("Digite o nome do autor " + (i + 1) + ": "));
+            div();
+            if( !inString("Quer inserir uma novo autor?").equalsIgnoreCase("sim") ) break;
         }
         return autores;
     }
@@ -83,7 +85,6 @@ public class PreencheSubmissao {
 
     public static int preencheNroPaginas() {
         div();
-        System.out.println("Quantidade de paginas?");
         return inInt("Quantidade de paginas?");
     }
 

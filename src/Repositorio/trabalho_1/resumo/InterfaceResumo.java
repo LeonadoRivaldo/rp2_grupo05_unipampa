@@ -4,7 +4,7 @@ import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
-import Repositorio.trabalho_1.monografias.novo.InterfaceMonografia;
+import Repositorio.trabalho_1.monografias.InterfaceMonografia;
 
 import java.util.ArrayList;
 import java.util.List;
