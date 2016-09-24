@@ -17,7 +17,7 @@ public abstract class InterfaceSistema {
     /**
      * Metodo que carega todos os outros metodos da sessao do sistema
      */
-    protected abstract void principal();
+    public abstract void principal();
     /**
      * Metodo para o menu
      *

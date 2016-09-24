@@ -3,7 +3,7 @@ package Repositorio.trabalho_1;
 import java.util.Scanner;
 import Repositorio.trabalho_1.minicurso.*;
 import Repositorio.trabalho_1.artigos.*;
-import Repositorio.trabalho_1.monografias.*;
+import Repositorio.trabalho_1.monografias.novo.InterfaceMonografia;
 import Repositorio.trabalho_1.palestra.InterfacePalestra;
 import Repositorio.trabalho_1.resumo.*;
 
@@ -50,7 +50,7 @@ public class MainController {
      */
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        ExececutorDeMonografias exeMonografias = new ExececutorDeMonografias();
+        InterfaceMonografia monografia = new InterfaceMonografia();
         InterfacePalestra palestra = new InterfacePalestra();
         InterfaceMinicurso minicurso = new InterfaceMinicurso();
         ExecutarArtigos artigos = new ExecutarArtigos();
@@ -63,7 +63,7 @@ public class MainController {
                 case 0:
                     break;
                 case 1:
-                    exeMonografias.principal();
+                    monografia.principal();
                     break;
                 case 2:
                     ClassePrincipalResumo.principal();
