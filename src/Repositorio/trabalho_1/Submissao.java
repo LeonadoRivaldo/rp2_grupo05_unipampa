@@ -31,7 +31,6 @@ public abstract class Submissao {
         this.autores = autores;
         this.MAX_AUTORES = MAX_AUTORES;
     }
-
     /**
      * Chama o metodo que verifica a situação das submissões
      *
@@ -41,7 +40,6 @@ public abstract class Submissao {
     public static Situacao verificaSituacao(String situacao) {
         return Situacao.verifica(situacao);
     }
-
     /**
      * chama o metodo que verifica se o tipo da monografia ta correto
      *
@@ -51,42 +49,36 @@ public abstract class Submissao {
     public static Tipo verificaTipo(String tipo) {
         return Tipo.verifica(tipo);
     }
-
     /**
      * @return the tituloSubmissao
      */
     public String getTituloSubmissao() {
         return tituloSubmissao;
     }
-
     /**
      * @param tituloSubmissao the tituloSubmissao to set
      */
     public void setTituloSubmissao(String tituloSubmissao) {
         this.tituloSubmissao = tituloSubmissao;
     }
-
     /**
      * @return the situacaoSubmissao
      */
     public Situacao getSituacaoSubmissao() {
         return situacaoSubmissao;
     }
-
     /**
      * @param situacaoSubmissao the situacaoSubmissao to set
      */
     public void setSituacaoSubmissao(Situacao situacaoSubmissao) {
         this.situacaoSubmissao = situacaoSubmissao;
     }
-
     /**
      * @return the autor
      */
     public List<String> getAutor() {
         return autores;
     }
-
     /**
      * @param autores the autor to set
      * @return true quando a lista de autores é menor q o maximo / false quando
@@ -99,7 +91,6 @@ public abstract class Submissao {
         }
         return false;
     }
-
     /**
      * Adiciona um autor sempre q lista de autores não estiver cheia
      *
@@ -113,7 +104,6 @@ public abstract class Submissao {
         }
         return false;
     }
-
     public boolean isAutor(String procuraAutor) {
         for (String autor : autores) {
             if (autor.equalsIgnoreCase(procuraAutor)) {
@@ -122,23 +112,20 @@ public abstract class Submissao {
         }
         return false;
     }
-
     /**
      * @return the MAX_AUTORES
      */
     public int getMAX_AUTORES() {
         return MAX_AUTORES;
     }
-
     /**
      * @param MAX_AUTORES the MAX_AUTORES to set
      */
     public void setMAX_AUTORES(int MAX_AUTORES) {
         this.MAX_AUTORES = MAX_AUTORES;
     }
-
     /**
-     * Estruturoda "\nNomeDoAtributo: " + atributo
+     * Estrutura  "\nNomeDoAtributo: " + atributo
      *
      * @return
      */

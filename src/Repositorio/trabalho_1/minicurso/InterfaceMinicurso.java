@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Repositorio.trabalho_1.minicurso;
-
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.Situacao;
@@ -12,15 +11,12 @@ import Repositorio.trabalho_1.Submissao;
 import static Repositorio.trabalho_1.EntradasTeclado.*;
 import static Repositorio.trabalho_1.PreencheSubmissao.*;
 import java.util.List;
-
 /**
  *
  * @author gilis
  */
 public class InterfaceMinicurso extends InterfaceSistema {
-
     private ListaSubmissao lista = new ListaSubmissao();
-
     @Override
     public void principal() {
         int opcao;
@@ -51,11 +47,9 @@ public class InterfaceMinicurso extends InterfaceSistema {
 
         } while (opcao != 0);
     }
-
     @Override
     protected int menu() {
         int aux = 0;
-
         div();
         String mensagem = "Gerenciamento de minicursos"
                 + "\nDigite:"
@@ -71,7 +65,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
         return aux;
     }
-
     @Override
     protected int escolherAtributo(Submissao submissao) {
         int aux = 0;
@@ -86,7 +79,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
         return aux;
     }
-
     @Override
     protected void criarSubmissao() {
         String titulo, resumo, abstrac, metodologia, recursos, situacaoString;
@@ -119,7 +111,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
             System.out.println("Ja existe um minicurso com este nome, por favor tente novamente");
         }
     }
-
     @Override
     protected void editarSubmissao() {
         int atributo, nroAutores = 0;
@@ -174,7 +165,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
 
     }
-
     private void exibir() {
         List<Submissao> m = lista.getSubmissoes();
 
@@ -191,7 +181,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
             System.out.println("Nenhum minicurso cadastrado");
         }
     }
-
     private void pesquisar() {
         String desejado = "";
         int tipo;
@@ -238,7 +227,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
         } while (tipo != 1 && tipo
                 != 2);
     }
-
     private void menuDeletar() {
         int opcao = 0;
 
@@ -260,7 +248,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
                 break;
         }
     }
-
     /**
      * Metodo responsavel pelo menu ao deletar um minicurso por titulo
      */
@@ -300,7 +287,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
             System.out.println("Nenhum minicurso encontrado com este nome!");
         }
     }
-
     /**
      * Metodo responsavel pelo menu ao deletar um minicurso por lista
      */
@@ -343,7 +329,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
             System.out.println("Nenhum minicurso encontrdo com este titulo!");
         }
     }
-
     /**
      * Metodo que transforma a List de autores do minicurso, na posição recebida
      * por parametro, em String
@@ -363,7 +348,6 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
         return dados;
     }
-
     private void menuMinicurso() {
         String desejado;
 

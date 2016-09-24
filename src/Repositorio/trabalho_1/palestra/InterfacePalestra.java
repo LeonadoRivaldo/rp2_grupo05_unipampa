@@ -19,9 +19,7 @@ import java.util.Scanner;
  * @author luh-l
  */
 public class InterfacePalestra extends InterfaceSistema {
-
     private ListaSubmissao palestras = new ListaSubmissao();
-
     @Override
     public void principal() {
         Scanner entrada = new Scanner(System.in);
@@ -78,7 +76,6 @@ public class InterfacePalestra extends InterfaceSistema {
         } while (opcao != 0);
 
     }
-
     @Override
     protected int menu() {
         System.out.println("################################");
@@ -92,7 +89,6 @@ public class InterfacePalestra extends InterfaceSistema {
         System.out.println("Opcao: ");
         return entrada.nextInt();
     }
-
     @Override
     protected int escolherAtributo(Submissao submissao) {
         Palestra palestra = (Palestra) submissao;
@@ -108,7 +104,6 @@ public class InterfacePalestra extends InterfaceSistema {
         System.out.println("==================================");
         return (entrada.nextInt());
     }
-
     @Override
     protected void criarSubmissao() {
         Scanner entrada = new Scanner(System.in);
@@ -139,7 +134,6 @@ public class InterfacePalestra extends InterfaceSistema {
         Palestra palestra = new Palestra(curriculo, resumo, abstrac, duracao, tituloSubmissao, situacao, autores, 1);
         this.palestras.incluir(palestra);
     }
-
     @Override
     protected void editarSubmissao() {
         System.out.println("Qual titulo da palestra voce quer pesquisar: ");
@@ -196,7 +190,6 @@ public class InterfacePalestra extends InterfaceSistema {
             this.exibeMensagem("NAO FOI ENCONTRADA NENHUMA PALESTRA");
         }
     }
-
     public static void main(String[] args) {
         InterfacePalestra i = new InterfacePalestra();
         i.principal();

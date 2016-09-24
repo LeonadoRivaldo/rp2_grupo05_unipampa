@@ -22,7 +22,6 @@ public class InterfaceMonografia extends InterfaceSistema {
 
     private ListaSubmissao lista = new ListaSubmissao();
     private Monografia monografia;
-
     @Override
     public void principal() {
         int opcao = 0;
@@ -85,7 +84,6 @@ public class InterfaceMonografia extends InterfaceSistema {
             }
         } while (opcao != 0);
     }
-
     @Override
     protected int menu() {
         System.out.println("====================================");
@@ -101,7 +99,6 @@ public class InterfaceMonografia extends InterfaceSistema {
         System.out.print("Opção: ");
         return entrada.nextInt();
     }
-
     @Override
     protected int escolherAtributo(Submissao submissao) {
         Scanner entrada = new Scanner(System.in);
@@ -135,7 +132,6 @@ public class InterfaceMonografia extends InterfaceSistema {
         } while (in > 12 || in < 1);
         return in;
     }
-
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
@@ -172,7 +168,6 @@ public class InterfaceMonografia extends InterfaceSistema {
             monografia = null;
         }
     }
-
     @Override
     protected void editarSubmissao() {
         monografia = (Monografia) consultarSubmissaoTitulo("Digite o titulo da monografia que você quer pesquisar:", lista);
@@ -242,7 +237,6 @@ public class InterfaceMonografia extends InterfaceSistema {
         }
 
     }
-
     public static void main(String[] args) {
         InterfaceMonografia i = new InterfaceMonografia();
         i.principal();
