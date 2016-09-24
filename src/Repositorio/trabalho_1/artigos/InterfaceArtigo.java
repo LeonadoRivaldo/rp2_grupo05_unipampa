@@ -24,7 +24,7 @@ public class InterfaceArtigo extends InterfaceSistema {
     @Override
     public void principal() {
 
-        System.out.print("Opção :");
+        
         int opcao = 0;
         do {
             opcao = menu();
@@ -37,7 +37,7 @@ public class InterfaceArtigo extends InterfaceSistema {
                 case 2:
                     entrada.nextLine();
                     Submissao sub = super.consultarSubmissaoTitulo("Digite o titulo que você quer pesquisar:", lista);
-                    if (artigo != null) {
+                    if (sub != null) {
                         exibirSubmissao(sub);
                     } else {
                         exibeMensagem("Artigo não encontrado!");
@@ -69,6 +69,7 @@ public class InterfaceArtigo extends InterfaceSistema {
                     } while (artigo == null);
                     break;
                 case 4:
+                    entrada.nextLine();
                     System.out.println("Qual titulo do artigo vocë quer excluir: ");
                     String t = entrada.nextLine();
                     if (lista.excluir(t)) {
@@ -78,6 +79,7 @@ public class InterfaceArtigo extends InterfaceSistema {
                     }
                     break;
                 case 5:
+                    entrada.nextLine();
                     editarSubmissao();
                     break;
             }
@@ -158,13 +160,13 @@ public class InterfaceArtigo extends InterfaceSistema {
 
                     artigo.setAutor(autores);
                     break;
-                case 3:
+                case 4:
 
                     List<String> instituicoes = PreencheSubmissao.preencheInstituicaoArtigo(8);
 
                     artigo.setInstituicao(instituicoes);
                     break;
-                case 4:
+                case 7:
 
                     List<String> palavras = PreencheSubmissao.preenchePalavrasChaves();
 
@@ -176,7 +178,7 @@ public class InterfaceArtigo extends InterfaceSistema {
                 case 6:
                     artigo.setAbstract(PreencheSubmissao.preencheAbstract());
                     break;
-                case 7:
+                case 3:
                     Situacao situacao = null;
                     situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
                     while (situacao == null) {

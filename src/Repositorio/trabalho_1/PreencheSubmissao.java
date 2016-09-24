@@ -61,7 +61,7 @@ public class PreencheSubmissao {
     public static List<String> preencheInstituicaoArtigo(int n){
         List<String> inst = new ArrayList<>();
         for( int i = 0; i<n; i++ ){
-            inst.add(inString("Digite o nome da instituação"));
+            inst.add(inString("Digite o nome da instituição"));
             if( !inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim") ) break;
         }
         
