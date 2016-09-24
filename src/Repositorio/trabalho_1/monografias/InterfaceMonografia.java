@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repositorio.trabalho_1.monografias.novo;
+package Repositorio.trabalho_1.monografias;
 
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
@@ -130,7 +130,7 @@ public class InterfaceMonografia extends InterfaceSistema {
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
-        List<String> autores = PreencheSubmissao.preencheAutor();
+        List<String> autores = PreencheSubmissao.preencheAutor(1);
         Situacao situacaoSubmissao = null;
         do {
             String situacao = PreencheSubmissao.preencheSituacao();
@@ -147,8 +147,8 @@ public class InterfaceMonografia extends InterfaceSistema {
         instituicoes.add(instituicao);
         String orientador = PreencheSubmissao.preencheOrientador();
         String curso = PreencheSubmissao.preencheCurso();
-        int ano = Integer.parseInt(PreencheSubmissao.preencheAno());
-        int numeroDePaginas = Integer.parseInt(PreencheSubmissao.preencheNroPaginas());
+        int ano = PreencheSubmissao.preencheAno();
+        int numeroDePaginas = PreencheSubmissao.preencheNroPaginas();
         List<String> palavrasChave = PreencheSubmissao.preenchePalavrasChaves();
         String resumo = PreencheSubmissao.preencheResumo();
         String Abstract = PreencheSubmissao.preencheAbstract();
@@ -189,7 +189,7 @@ public class InterfaceMonografia extends InterfaceSistema {
                 monografia.setSituacaoSubmissao(situacao);
                 break;
             case 4:
-                List<String> autor = PreencheSubmissao.preencheAutor();
+                List<String> autor = PreencheSubmissao.preencheAutor(1);
                 monografia.setAutor(autor);
                 break;
             case 5:
@@ -205,10 +205,10 @@ public class InterfaceMonografia extends InterfaceSistema {
                 monografia.setCurso(PreencheSubmissao.preencheCurso());
                 break;
             case 8:
-                monografia.setAno(Integer.parseInt(PreencheSubmissao.preencheAno()));
+                monografia.setAno(PreencheSubmissao.preencheAno());
                 break;
             case 9:
-                monografia.setNumeroDePaginas(Integer.parseInt(PreencheSubmissao.preencheAno()));
+                monografia.setNumeroDePaginas(PreencheSubmissao.preencheAno());
                 break;
             case 10:
                 List<String> palavras = PreencheSubmissao.preenchePalavrasChaves();
