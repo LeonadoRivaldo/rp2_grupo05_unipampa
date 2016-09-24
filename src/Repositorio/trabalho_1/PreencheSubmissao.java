@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repositorio.trabalho_1.monografias;
+package Repositorio.trabalho_1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author leona_000
  */
-public class PreencheMonografia {
+public class PreencheSubmissao {
 
     private static Scanner entrada = new Scanner(System.in);
 

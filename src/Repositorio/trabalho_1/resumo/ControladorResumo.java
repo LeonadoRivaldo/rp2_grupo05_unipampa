@@ -2,8 +2,12 @@ package Repositorio.trabalho_1.resumo;
 
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
+<<<<<<< HEAD
 import Repositorio.trabalho_1.Submissao;
 import Repositorio.trabalho_1.monografias.Monografia;
+=======
+import Repositorio.trabalho_1.monografias.novo.Monografia;
+>>>>>>> 97e058a6b2f2ff41b35cafab6ddd61309e68d239
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

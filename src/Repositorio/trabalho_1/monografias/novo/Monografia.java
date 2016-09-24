@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repositorio.trabalho_1.monografias;
+package Repositorio.trabalho_1.monografias.novo;
 
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.SubmissaoCientifica;
