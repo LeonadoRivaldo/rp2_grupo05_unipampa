@@ -85,7 +85,6 @@ public class PreencheSubmissao {
 
     public static int preencheNroPaginas() {
         div();
-        System.out.println("Quantidade de paginas?");
         return inInt("Quantidade de paginas?");
     }
 

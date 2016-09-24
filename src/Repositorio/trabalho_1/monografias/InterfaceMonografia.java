@@ -158,7 +158,7 @@ public class InterfaceMonografia extends InterfaceSistema {
         int MAX_INSTITUICOES = 1;
         System.out.println("===============================================");
         monografia = new Monografia(tipoMonografia, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
-        if (lista.incluir(submissao)) {
+        if (lista.incluir(monografia)) {
             exibeMensagem("Monografia criada com sucesso!");
         }
     }
