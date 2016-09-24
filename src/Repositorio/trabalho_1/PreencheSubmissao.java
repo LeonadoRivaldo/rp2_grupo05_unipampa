@@ -19,27 +19,27 @@ public class PreencheSubmissao {
 
     public static String preencheSituacao() {
         System.out.println("----------------------------------------------------");
-        System.out.println("Informe a situação da monografia : Aprovado/Reprovado/SobAvaliação");
+        System.out.println("Informe a situação da submissao : Aprovado/Reprovado/SobAvaliação");
         return entrada.nextLine();
     }
 
     public static String preencheTitulo() {
         System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o titulo da sua monografia? ");
+        System.out.println("Qual é o titulo da sua submissao? ");
         return entrada.nextLine();
     }
 
     public static List<String> preencheAutor() {
         List<String> autor = new ArrayList();
         System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o autor da sua monografia? ");
+        System.out.println("Qual é o autor da sua submissao? ");
         autor.add(entrada.nextLine());
         return autor;
     }
 
     public static String preencheTipo() {
         System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o tipo da sua monografia: ");
+        System.out.println("Qual é o tipo da sua submissao: ");
         System.out.println("Graduação, Especialização, Mestrado, Doutorado");
         System.out.print("Digite: ");
         return entrada.nextLine();
@@ -98,13 +98,13 @@ public class PreencheSubmissao {
 
     public static String preencheResumo() {
         System.out.println("----------------------------------------------------");
-        System.out.println("Digite o resumo da sua monografia?");
+        System.out.println("Digite o resumo da sua submissao?");
         return entrada.nextLine();
     }
 
     public static String preencheAbstract() {
         System.out.println("----------------------------------------------------");
-        System.out.println("Digite o abstract da sua monografia?");
+        System.out.println("Digite o abstract da sua submissao?");
         return entrada.nextLine();
     }
 

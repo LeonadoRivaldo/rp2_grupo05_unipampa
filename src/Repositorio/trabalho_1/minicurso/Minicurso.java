@@ -70,8 +70,8 @@ public class Minicurso extends SubmissaoApresentacao {
     public String toString() {
         String string;
         string = (super.toString()
-                + "\nRecursos: " + recursos
-                + "\nMetodologia: " + metodologia);
+                + "\n7- Recursos: " + recursos
+                + "\n8-Metodologia: " + metodologia);
         return string;
     }
 }
