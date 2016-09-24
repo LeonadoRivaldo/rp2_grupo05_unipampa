@@ -68,6 +68,9 @@ public class InterfaceMonografia extends InterfaceSistema {
                         }
                     } while (monografia == null);
                     break;
+                case 4:
+                    
+                    break;
                 default:
                     throw new AssertionError();
             }
