@@ -60,7 +60,7 @@ public class PreencheSubmissao {
         List<String> inst = new ArrayList<>();
         for( int i = 0; i<n; i++ ){
             inst.add(inString("Digite o nome da instituação"));
-            if( inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim") ) break;
+            if( !inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim") ) break;
         }
         
         return inst;
