@@ -7,11 +7,10 @@ package Repositorio.trabalho_1.artigos;
 
 import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.ListaSubmissao;
+import Repositorio.trabalho_1.PreencheSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
-import Repositorio.trabalho_1.monografias.novo.Monografia;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -111,7 +110,7 @@ public class InterfaceArtigo extends InterfaceSistema {
         System.out.println("1-Titulo: " + artigo.getTituloSubmissao());
         System.out.println("2-Autor: " + artigo.getAutor().get(0));
         System.out.println("3-Situacao: " + artigo.getSituacaoSubmissao().getNome());
-        System.out.println("4-Instituicoes:"+artigo.getInstituicao());   
+        System.out.println("4-Instituicoes:" + artigo.getInstituicao());
         System.out.println("5-Resumo: " + artigo.getResumo());
         System.out.println("6-Abstract: " + artigo.getAbstract());
         System.out.print("7-Palavras-chaves: ");
@@ -126,27 +125,72 @@ public class InterfaceArtigo extends InterfaceSistema {
 
     @Override
     protected void criarSubmissao() {
-        String tituloSubmissao = PreencheArtigo.preencheTitulo();
-        List<String> autores = PreencheArtigo.preencheAutor();
-        List<String> instituicoes = PreencheArtigo.preencheInstituicao();
-        String resumo = PreencheArtigo.preencheResumo();
-        String Abstract = PreencheArtigo.preencheAbstract();
-        List<String> palavrasChave = PreencheArtigo.preenchePalavrachave();
+        String tituloSubmissao = PreencheSubmissao.preencheTitulo();
+        List<String> autores = PreencheSubmissao.preencheAutor(0);
+        List<String> instituicoes = PreencheSubmissao.preencheInstituicaoArtigo(8);
+        String resumo = PreencheSubmissao.preencheResumo();
+        String Abstract = PreencheSubmissao.preencheAbstract();
+        List<String> palavrasChave = PreencheSubmissao.preenchePalavrasChaves();
         Situacao situacao = null;
         do {
-            situacao = Submissao.verificaSituacao(PreencheArtigo.preencheSituacao());
+            situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
         } while (situacao == null);
         Artigo artigo = new Artigo(resumo, Abstract, tituloSubmissao, situacao, autores, 8, instituicoes, palavrasChave, 4, 8);
+        lista.incluir(artigo);
 
-        
     }
 
     @Override
     protected void editarSubmissao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Qual titulo do artigo vocë quer editar: ");
+        String t = entrada.nextLine();
+        artigo = (Artigo) lista.consultarTitulo(t);
+        if (artigo != null) {
+            int atributo = escolherAtributo(artigo);
+            String oldTitulo = artigo.getTituloSubmissao();
+            switch (atributo) {
+                case 1:
+                    artigo.setTituloSubmissao(PreencheSubmissao.preencheTitulo());
+                    break;
+                case 2:
+
+                    List<String> autores = PreencheSubmissao.preencheAutor(8);
+
+                    artigo.setAutor(autores);
+                    break;
+                case 3:
+
+                    List<String> instituicoes = PreencheSubmissao.preencheInstituicaoArtigo(8);
+
+                    artigo.setInstituicao(instituicoes);
+                    break;
+                case 4:
+
+                    List<String> palavras = PreencheSubmissao.preenchePalavrasChaves();
+
+                    artigo.setPalavrasChave(palavras);
+                    break;
+                case 5:
+                    artigo.setResumo(PreencheSubmissao.preencheResumo());
+                    break;
+                case 6:
+                    artigo.setAbstract(PreencheSubmissao.preencheAbstract());
+                    break;
+                case 7:
+                    Situacao situacao = null;
+                    situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
+                    while (situacao == null) {
+                        situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
+                    }
+                    artigo.setSituacaoSubmissao(situacao);
+                    break;
+            }
+            lista.editar(oldTitulo, artigo);
+        }
+
+    }
+    public static void main(String[] args) {
+        InterfaceArtigo a = new InterfaceArtigo();
+        a.principal();
     }
 }
-
-
-
-
