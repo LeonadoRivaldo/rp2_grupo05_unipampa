@@ -61,6 +61,7 @@ public class InterfacePalestra extends InterfaceSistema {
                     }
                     break;
                 case 4:
+                    
                     System.out.println("Qual titulo da palestra voce quer excluir: ");
                     String t = entrada.nextLine();
                     if (palestras.excluir(t)) {

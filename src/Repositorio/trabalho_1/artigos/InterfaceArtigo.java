@@ -33,7 +33,6 @@ public class InterfaceArtigo extends InterfaceSistema {
                     break;
                 case 1:
                     criarSubmissao();
-
                     break;
                 case 2:
                     entrada.nextLine();
@@ -136,7 +135,7 @@ public class InterfaceArtigo extends InterfaceSistema {
             situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
         } while (situacao == null);
         Artigo artigo = new Artigo(resumo, Abstract, tituloSubmissao, situacao, autores, 8, instituicoes, palavrasChave, 4, 8);
-     
+
         lista.incluir(artigo);
 
     }
@@ -190,6 +189,7 @@ public class InterfaceArtigo extends InterfaceSistema {
         }
 
     }
+
     public static void main(String[] args) {
         InterfaceArtigo a = new InterfaceArtigo();
         a.principal();

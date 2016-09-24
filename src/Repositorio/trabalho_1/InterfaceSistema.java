@@ -96,7 +96,7 @@ public abstract class InterfaceSistema {
         }
         System.out.print("====================================================");
         System.out.print(sss);
-        System.out.println("====================================================");
+        System.out.println("\n====================================================");
     }
     /**
      * faz uma lista por autor
