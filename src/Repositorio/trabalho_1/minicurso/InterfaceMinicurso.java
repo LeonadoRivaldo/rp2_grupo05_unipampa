@@ -5,12 +5,12 @@
  */
 package Repositorio.trabalho_1.minicurso;
 
-import static Repositorio.trabalho_1.minicurso.PreencheSubmissao.*;
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
-import static Repositorio.trabalho_1.minicurso.InOut.*;
+import static Repositorio.trabalho_1.EntradasTeclado.*;
+import static Repositorio.trabalho_1.PreencheSubmissao.*;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
 
     @Override
     public void principal() {
-        int opcao = 1;
+        int opcao;
         do {
             opcao = menu();
             switch (opcao) {
@@ -89,7 +89,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
 
     @Override
     protected void criarSubmissao() {
-        String titulo, resumo, abstrac, metodologia, recursos;
+        String titulo, resumo, abstrac, metodologia, recursos, situacaoString;
         int duracao, nroAutores = 0;
         List<String> autores;
         Situacao situacao;
@@ -99,20 +99,21 @@ public class InterfaceMinicurso extends InterfaceSistema {
             while (nroAutores < 1 || nroAutores > 3) {
                 nroAutores = inInt("Digite o numero de autores, NO MAXIMO 3:");
             }
-            autores = preencheAutores(nroAutores);
+            autores = preencheAutor(nroAutores);
 
-            situacao = PreencheSubmissao.preencheSituacao();
-            resumo = PreencheSubmissao.preencheResumo();
-            abstrac = PreencheSubmissao.preencheAbstrac();
-            metodologia = PreencheSubmissao.preencheMetodologia();
-            recursos = PreencheSubmissao.preencheRecursos();
-            duracao = PreencheSubmissao.preencheDuracao();
+            situacaoString = preencheSituacao();
+            situacao = Situacao.verifica(situacaoString);
+            resumo = preencheResumo();
+            abstrac = preencheAbstract();
+            metodologia = preencheMetodologia();
+            recursos = preencheRecursos();
+            duracao = preencheDuracao();
 
             Minicurso minicurso = new Minicurso(titulo, autores, resumo, situacao, abstrac,
                     metodologia, recursos, duracao);
 
             lista.incluir(minicurso);
-            InOut.div();
+            div();
             System.out.println("Minicurso criado com sucesso!");
         } else {
             System.out.println("Ja existe um minicurso com este nome, por favor tente novamente");
@@ -121,7 +122,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
 
     @Override
     protected void editarSubmissao() {
-        int atributo = 1, nroAutores = 0;
+        int atributo, nroAutores = 0;
         String oldTitulo;
 
         exibir();
@@ -141,19 +142,21 @@ public class InterfaceMinicurso extends InterfaceSistema {
                         e.setTituloSubmissao(preencheTitulo());
                         break;
                     case 2:
-                        e.setSituacaoSubmissao(preencheSituacao());
+                        String aux = preencheSituacao();
+                        Situacao situacao = Situacao.verifica(aux);
+                        e.setSituacaoSubmissao(situacao);
                         break;
                     case 3:
                         while (nroAutores < 1 || nroAutores > 3) {
                             nroAutores = inInt("Digite o numero de autores, NO MAXIMO 3:");
                         }
-                        e.setAutor(preencheAutores(nroAutores));
+                        e.setAutor(preencheAutor(nroAutores));
                         break;
                     case 4:
                         e.setResumo(preencheResumo());
                         break;
                     case 5:
-                        e.setAbstrac(preencheAbstrac());
+                        e.setAbstrac(preencheAbstract());
                         break;
                     case 6:
                         e.setDuracao(preencheDuracao());
@@ -175,7 +178,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
     private void exibir() {
         List<Submissao> m = lista.getSubmissoes();
 
-        InOut.div();
+        div();
         System.out.println("Minicursos cadastrados:\n");
 
         if (m != null) {
@@ -194,16 +197,16 @@ public class InterfaceMinicurso extends InterfaceSistema {
         int tipo;
 
         do {
-            InOut.div();
+            div();
             tipo = inInt("Digite:"
                     + "\n 1 - Para pesquisar por autor"
                     + "\n 2 - Para pesquiasr por título");
-            InOut.div();
+            div();
 
             switch (tipo) {
                 case 1:
-                    desejado = InOut.inString("Digite o autor desejado:");
-                    InOut.div();
+                    desejado = inString("Digite o autor desejado:");
+                    div();
                     System.out.println("Resultado da busca:");
 
                     List<Submissao> m = lista.consultarAutor(desejado);
@@ -220,8 +223,8 @@ public class InterfaceMinicurso extends InterfaceSistema {
                     break;
 
                 case 2:
-                    desejado = InOut.inString("Digite o título desejado:");
-                    InOut.div();
+                    desejado = inString("Digite o título desejado:");
+                    div();
                     System.out.println("Resultado da busca:");
                     if (lista.consultarTitulo(desejado) != null) {
                         System.out.println(lista.consultarTitulo(desejado).toString());
@@ -239,9 +242,9 @@ public class InterfaceMinicurso extends InterfaceSistema {
     private void menuDeletar() {
         int opcao = 0;
 
-        InOut.div();
+        div();
         while (opcao != 1 && opcao != 2) {
-            opcao = InOut.inInt("Digite:"
+            opcao = inInt("Digite:"
                     + "\n 1 - Para exibir a lista de minicursos e selecionar qual deseja deletar"
                     + "\n 2 - Para inserir o titulo que deseja deletar");
         }
@@ -265,14 +268,14 @@ public class InterfaceMinicurso extends InterfaceSistema {
         String desejado;
         int opcao = 0;
 
-        InOut.div();
-        desejado = InOut.inString("Digite o título desejado:");
+        div();
+        desejado = inString("Digite o título desejado:");
         if (lista.consultarTitulo(desejado) != null) {
             System.out.println(lista.consultarTitulo(desejado).toString());
             System.out.println("");
-            InOut.div();
+            div();
             while (opcao != 1 && opcao != 2) {
-                opcao = InOut.inInt("Você tem certeza que deseja excluir este minicurso?"
+                opcao = inInt("Você tem certeza que deseja excluir este minicurso?"
                         + "Digite:"
                         + "\n 1 - Para excluir"
                         + "\n 2 - Para cancelar");
@@ -285,8 +288,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
                     } else {
                         System.out.println("Ocorreu algum erro. Verifique o que digitou");
                     }
-                    InOut.div();
-                    opcao = 2;
+                    div();
                     break;
                 case 2:
                     break;
@@ -307,16 +309,16 @@ public class InterfaceMinicurso extends InterfaceSistema {
         String desejado;
 
         exibir();
-        InOut.div();
-        desejado = InOut.inString("Digite o titulo do minicurso que deseja excluir:");
-        InOut.div();
+        div();
+        desejado = inString("Digite o titulo do minicurso que deseja excluir:");
+        div();
         if (lista.consultarTitulo(desejado) != null) {
             System.out.println(lista.consultarTitulo(desejado).toString());
             System.out.println("");
-            InOut.div();
+            div();
 
             while (opcao != 1 && opcao != 2) {
-                opcao = InOut.inInt("Você tem certeza que deseja excluir este minicurso?"
+                opcao = inInt("Você tem certeza que deseja excluir este minicurso?"
                         + "Digite:"
                         + "\n 1 - Para excluir"
                         + "\n 2 - Para cancelar");
@@ -324,7 +326,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
 
             switch (opcao) {
                 case 1:
-                    InOut.div();
+                    div();
                     if (lista.excluir(desejado)) {
                         System.out.println("Minicurso deletado com sucesso!");
                     } else {
@@ -366,18 +368,18 @@ public class InterfaceMinicurso extends InterfaceSistema {
         String desejado;
 
         System.out.println("");
-        desejado = InOut.inString("Digite:"
+        desejado = inString("Digite:"
                 + "\n Para exibir mais informações sobre um minicurso, digite o"
                 + " titulo correspondente"
                 + "\n DIGITE SAIR PARA SAIR");
 
         if (!desejado.equalsIgnoreCase("sair")) {
             System.out.println(desejado);
-            String aux = lista.consultarTitulo(desejado).toString();
-            if (aux == null) {
+            Minicurso e = (Minicurso) lista.consultarTitulo(desejado);
+            if (e == null) {
                 System.out.println("Nenhum minicurso encontrado. Verifique o que voce digitou");
             } else {
-                System.out.println(aux);
+                System.out.println(e.toString());
             }
         }
     }
