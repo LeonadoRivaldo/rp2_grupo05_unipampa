@@ -73,10 +73,12 @@ public abstract class InterfaceSistema {
      * houver nenhuma submissao daquele autor
      */
     public List<Submissao> consultarListaSubmissoesAutor(ListaSubmissoes lista){
+        entrada.nextLine();
         System.out.println("====================================================");
         System.out.println("Digite o nome do autor que você quer pesquisar: ");
-        entrada.nextLine();
-        return lista.consultarAutor(entrada.nextLine());
+        String autor = entrada.nextLine();
+        List<Submissao> listaA =  lista.consultarAutor(autor);
+        return listaA;
     }
     /**
      * metodo vai receber uma submissao e exibila utilizando
