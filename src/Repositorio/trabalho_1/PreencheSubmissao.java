@@ -55,6 +55,16 @@ public class PreencheSubmissao {
         div();
         return inString("Qual é o nome da sua instituição? ");
     }
+    
+    public static List<String> preencheInstituicaoArtigo(int n){
+        List<String> inst = new ArrayList<>();
+        for( int i = 0; i<n; i++ ){
+            inst.add(inString("Digite o nome da instituação"));
+            if( inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim") ) break;
+        }
+        
+        return inst;
+    }
 
     public static String preencheOrientador() {
         div();
