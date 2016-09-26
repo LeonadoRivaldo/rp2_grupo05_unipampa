@@ -35,13 +35,23 @@ public class PreencheSubmissao {
         return inString("Qual é o titulo da sua submissao? ");
     }
 
+    /**
+     *
+     * @param nroAutores RECEBE COMO PARAMETRO O NUMERO DE AUTORES QUE QUER
+     * PREENCHER, NAO O NUMERO TOTAL DE AUTORES DA SUA SUBMISSAO!!!!!!!!!!!
+     * @return List dos autores
+     */
     public static List<String> preencheAutor(int nroAutores) {
         List<String> autores = new ArrayList();
         div();
         for (int i = 0; i < nroAutores; i++) {
             autores.add(inString("Digite o nome do autor " + (i + 1) + ": "));
             div();
-            if( !inString("Quer inserir uma novo autor?").equalsIgnoreCase("sim") ) break;
+            if (!inString("Quer inserir uma novo autor?"
+                    + "\n DIGITE SIM PARA INSERIR"
+                    + "\n DIGITE QUALQUER COISA PARA CONTINUAR").equalsIgnoreCase("sim")) {
+                break;
+            }
         }
         return autores;
     }
@@ -57,14 +67,16 @@ public class PreencheSubmissao {
         div();
         return inString("Qual é o nome da sua instituição? ");
     }
-    
-    public static List<String> preencheInstituicaoArtigo(int n){
+
+    public static List<String> preencheInstituicaoArtigo(int n) {
         List<String> inst = new ArrayList<>();
-        for( int i = 0; i<n; i++ ){
+        for (int i = 0; i < n; i++) {
             inst.add(inString("Digite o nome da instituição"));
-            if( !inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim") ) break;
+            if (!inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim")) {
+                break;
+            }
         }
-        
+
         return inst;
     }
 

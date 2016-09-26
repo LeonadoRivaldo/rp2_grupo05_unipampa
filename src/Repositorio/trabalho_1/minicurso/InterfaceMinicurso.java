@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Repositorio.trabalho_1.minicurso;
+
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.Situacao;
@@ -11,12 +12,23 @@ import Repositorio.trabalho_1.Submissao;
 import static Repositorio.trabalho_1.EntradasTeclado.*;
 import static Repositorio.trabalho_1.PreencheSubmissao.*;
 import java.util.List;
+
 /**
  *
- * @author gilis
+ * @author Giliardi Schmidt
+ */
+/**
+ * Classe responsável pela parte do Minicurso
+ *
+ * @author Giliardi Schmidt
  */
 public class InterfaceMinicurso extends InterfaceSistema {
+
     private ListaSubmissao lista = new ListaSubmissao();
+
+    /**
+     * Menu que deve ser chamado para acessar as opções dos minicursos
+     */
     @Override
     public void principal() {
         int opcao;
@@ -36,7 +48,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
                     pesquisar();
                     break;
                 case 4:
-                    menuDeletar();
+                    deletar();
                     break;
                 case 5:
                     editarSubmissao();
@@ -47,6 +59,16 @@ public class InterfaceMinicurso extends InterfaceSistema {
 
         } while (opcao != 0);
     }
+
+    /**
+     * Menu principal contendo todas as opções para modificar a lista de
+     * minicursos
+     *
+     * @return int da opção selecionada pelo usuario:
+     *
+     * 1 - incluir, 2 - exibir todos os minicursos, 3 - pesquisar, 4 - excluir,
+     * 5 - editar, 0 - sair
+     */
     @Override
     protected int menu() {
         int aux = 0;
@@ -65,9 +87,20 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
         return aux;
     }
+
+    /**
+     * Metodo que exibe um minicurso e pede ao usuario para digitar um int
+     * correspondente ao atributo do minicurso, usando o metodo .toString
+     *
+     * @param submissao Submissão que será exibida
+     * @return int do atributo selecionado:
+     *
+     * 1 - titulo, 2 - situação, 3 - autores, 4 - resumo, 5 - abstract, 6 -
+     * duração, 7 - recursos, 8 - metodologia
+     */
     @Override
     protected int escolherAtributo(Submissao submissao) {
-        int aux = 0;
+        int aux = -1;
         Minicurso e = (Minicurso) submissao;
         String mensagem = "Digite o numero correspondente para editar:"
                 + "\n" + e.toString()
@@ -79,6 +112,11 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
         return aux;
     }
+
+    /**
+     * Metodo responsavel por criar uma submissao. Pede ao usuario para inserir
+     * todas as informações, cria e salva o minicurso na lista
+     */
     @Override
     protected void criarSubmissao() {
         String titulo, resumo, abstrac, metodologia, recursos, situacaoString;
@@ -111,6 +149,11 @@ public class InterfaceMinicurso extends InterfaceSistema {
             System.out.println("Ja existe um minicurso com este nome, por favor tente novamente");
         }
     }
+
+    /**
+     * Metodo responsavel pela edição de um minicurso. Pede ao usuario qual
+     * atributo deseja editar, edita e salva as mudanças na lista.
+     */
     @Override
     protected void editarSubmissao() {
         int atributo, nroAutores = 0;
@@ -120,11 +163,9 @@ public class InterfaceMinicurso extends InterfaceSistema {
         div();
         Minicurso e = (Minicurso) lista.consultarTitulo(inString("Digite o titulo do minicurso que deseja editar"));
 
-        if (e == null) {
-            System.out.println("Nao existe nenhum minicurso cadastrado com este titulo!");
-        } else {
-            oldTitulo = e.getTituloSubmissao();
+        if (e != null) {
             do {
+                oldTitulo = e.getTituloSubmissao();
                 atributo = escolherAtributo(e);
                 switch (atributo) {
                     case 0:
@@ -159,30 +200,41 @@ public class InterfaceMinicurso extends InterfaceSistema {
                         e.setMetodologia(preencheMetodologia());
                         break;
                     default:
+                        break;
                 }
+                lista.editar(oldTitulo, e);
             } while (atributo != 0);
-            lista.editar(oldTitulo, e);
-        }
 
+        } else {
+            System.out.println("Nao existe nenhum minicurso cadastrado com este titulo!");
+        }
     }
+
+    /**
+     * Metodo responsavel por exibir todos os minicursos cadastrados.
+     */
     private void exibir() {
         List<Submissao> m = lista.getSubmissoes();
 
         div();
         System.out.println("Minicursos cadastrados:\n");
 
-        if (m != null) {
+        if (m == null) {
+            System.out.println("Nenhum minicurso cadastrado");
+        } else {
             for (int i = 0; i < m.size(); i++) {
                 Minicurso e = (Minicurso) m.get(i);
                 System.out.println("\n" + i + " - Titulo: " + e.getTituloSubmissao()
                         + "      \tAutor(es): " + autoresToString(e.getTituloSubmissao()));
             }
-        } else {
-            System.out.println("Nenhum minicurso cadastrado");
         }
     }
+
+    /**
+     * Metodo responsavel pela pesquisa. A pesquisa pode ser por autor ou por
+     * titulo, como o usuario escolher
+     */
     private void pesquisar() {
-        String desejado = "";
         int tipo;
 
         do {
@@ -190,33 +242,26 @@ public class InterfaceMinicurso extends InterfaceSistema {
             tipo = inInt("Digite:"
                     + "\n 1 - Para pesquisar por autor"
                     + "\n 2 - Para pesquiasr por título");
-            div();
-
             switch (tipo) {
                 case 1:
-                    desejado = inString("Digite o autor desejado:");
-                    div();
-                    System.out.println("Resultado da busca:");
-
-                    List<Submissao> m = lista.consultarAutor(desejado);
+                    List<Submissao> m = super.consultarListaSubmissoesAutor(lista);
                     if (m != null) {
-                        for (int i = 0; i < m.size(); i++) {
-                            Minicurso e = (Minicurso) m.get(i);
-                            System.out.println("\n" + i + " - Titulo: " + e.getTituloSubmissao()
+                        int cont = 0;
+                        for (Submissao s : m) {
+                            Minicurso e = (Minicurso) s;
+                            System.out.println("\n" + cont + " - Titulo: " + e.getTituloSubmissao()
                                     + "      \tAutor(es): " + autoresToString(e.getTituloSubmissao()));
+                            cont++;
                         }
                         menuMinicurso();
                     } else {
                         System.out.println("Nenhum minicurso cadastrado");
                     }
                     break;
-
                 case 2:
-                    desejado = inString("Digite o título desejado:");
-                    div();
-                    System.out.println("Resultado da busca:");
-                    if (lista.consultarTitulo(desejado) != null) {
-                        System.out.println(lista.consultarTitulo(desejado).toString());
+                    Minicurso resultadoBuscaTitulo = (Minicurso) super.consultarSubmissaoTitulo("Digite o titulo desejado", lista);
+                    if (resultadoBuscaTitulo != null) {
+                        System.out.println(resultadoBuscaTitulo.toString());
                     } else {
                         System.out.println("Nenhum minicurso encontrado");
                     }
@@ -224,10 +269,13 @@ public class InterfaceMinicurso extends InterfaceSistema {
                 default:
                     System.out.println("Você digitou uma opção incorreta!");
             }
-        } while (tipo != 1 && tipo
-                != 2);
+        } while (tipo != 1 && tipo != 2);
     }
-    private void menuDeletar() {
+
+    /**
+     * Metodo responsavel pelo menu de deletar
+     */
+    private void deletar() {
         int opcao = 0;
 
         div();
@@ -236,99 +284,20 @@ public class InterfaceMinicurso extends InterfaceSistema {
                     + "\n 1 - Para exibir a lista de minicursos e selecionar qual deseja deletar"
                     + "\n 2 - Para inserir o titulo que deseja deletar");
         }
-
         switch (opcao) {
             case 1:
-                deletarPorLista();
+                exibir();
+                div();
+                super.excluirSubmissao(lista, "Digite o titulo do minicurso que deseja excluir:");
                 break;
             case 2:
-                deletarPorTitulo();
+                super.excluirSubmissao(lista, "Digite o titulo do minicurso que deseja excluir");
                 break;
             default:
                 break;
         }
     }
-    /**
-     * Metodo responsavel pelo menu ao deletar um minicurso por titulo
-     */
-    private void deletarPorTitulo() {
-        String desejado;
-        int opcao = 0;
 
-        div();
-        desejado = inString("Digite o título desejado:");
-        if (lista.consultarTitulo(desejado) != null) {
-            System.out.println(lista.consultarTitulo(desejado).toString());
-            System.out.println("");
-            div();
-            while (opcao != 1 && opcao != 2) {
-                opcao = inInt("Você tem certeza que deseja excluir este minicurso?"
-                        + "Digite:"
-                        + "\n 1 - Para excluir"
-                        + "\n 2 - Para cancelar");
-            }
-
-            switch (opcao) {
-                case 1:
-                    if (lista.excluir(desejado)) {
-                        System.out.println("Minicurso deletado com sucesso!");
-                    } else {
-                        System.out.println("Ocorreu algum erro. Verifique o que digitou");
-                    }
-                    div();
-                    break;
-                case 2:
-                    break;
-                default:
-                    System.out.println("Opçao incorreta!");
-                    break;
-            }
-        } else {
-            System.out.println("Nenhum minicurso encontrado com este nome!");
-        }
-    }
-    /**
-     * Metodo responsavel pelo menu ao deletar um minicurso por lista
-     */
-    private void deletarPorLista() {
-        int opcao = 0;
-        String desejado;
-
-        exibir();
-        div();
-        desejado = inString("Digite o titulo do minicurso que deseja excluir:");
-        div();
-        if (lista.consultarTitulo(desejado) != null) {
-            System.out.println(lista.consultarTitulo(desejado).toString());
-            System.out.println("");
-            div();
-
-            while (opcao != 1 && opcao != 2) {
-                opcao = inInt("Você tem certeza que deseja excluir este minicurso?"
-                        + "Digite:"
-                        + "\n 1 - Para excluir"
-                        + "\n 2 - Para cancelar");
-            }
-
-            switch (opcao) {
-                case 1:
-                    div();
-                    if (lista.excluir(desejado)) {
-                        System.out.println("Minicurso deletado com sucesso!");
-                    } else {
-                        System.out.println("Ocorreu algum erro. Verifique o que digitou");
-                    }
-                    break;
-                case 2:
-                    break;
-                default:
-                    System.out.println("Opçao incorreta!");
-                    break;
-            }
-        } else {
-            System.out.println("Nenhum minicurso encontrdo com este titulo!");
-        }
-    }
     /**
      * Metodo que transforma a List de autores do minicurso, na posição recebida
      * por parametro, em String
@@ -348,6 +317,10 @@ public class InterfaceMinicurso extends InterfaceSistema {
         }
         return dados;
     }
+
+    /**
+     * Metodo responsavel por exibir um menu ao usuario nas listas de minicursos
+     */
     private void menuMinicurso() {
         String desejado;
 

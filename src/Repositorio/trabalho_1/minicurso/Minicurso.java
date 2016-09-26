@@ -5,6 +5,11 @@ import Repositorio.trabalho_1.SubmissaoApresentacao;
 import java.util.List;
 
 /**
+ *
+ * @author Giliardi Schmidt
+ */
+
+/**
  * Classe para objetos do tipo Minicurso que contem os atributos e operações do
  * mesmo
  */
@@ -23,8 +28,8 @@ public class Minicurso extends SubmissaoApresentacao {
      * @param abstrac String abstract
      * @param metodologia String metodologia
      * @param recursos String recursos
-     * @param duracao int duracão, este onde o numero de horas deve ser
-     * envia em minutos
+     * @param duracao int duracão, este onde o numero de horas deve ser envia em
+     * minutos
      */
     public Minicurso(String titulo, List autores, String resumo, Situacao situacao,
             String abstrac, String metodologia, String recursos, int duracao) {
@@ -71,7 +76,7 @@ public class Minicurso extends SubmissaoApresentacao {
         String string;
         string = (super.toString()
                 + "\n7- Recursos: " + recursos
-                + "\n8-Metodologia: " + metodologia);
+                + "\n8- Metodologia: " + metodologia);
         return string;
     }
 }
