@@ -147,6 +147,11 @@ public class InterfaceMonografia extends InterfaceSistema {
         } while (in > 12 || in < 1);
         return in;
     }
+    /**
+     * cria a submissao, pegando os valores que o usuario digitar na interface e criando o objeto de
+     * monografia com base nisso
+     *
+     */
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
