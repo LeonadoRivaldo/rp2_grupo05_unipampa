@@ -113,7 +113,7 @@ public class ListaSubmissao implements ListaSubmissoes {
         }
         return false;
     }
-
+    
     /**
      * Enviar o titulo da submissao que vai ser excluida
      *
