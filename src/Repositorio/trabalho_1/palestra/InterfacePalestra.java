@@ -24,7 +24,7 @@ public class InterfacePalestra extends InterfaceSistema {
     public void principal() {
         Scanner entrada = new Scanner(System.in);
         ArrayList<String> autores = new ArrayList();
-        autores.add("Colega Amanda");
+        autores.add("lucielee");
         palestras.incluir(new Palestra("CC", "doce", "jdhk", 35, "Palestra2", Situacao.sobAvaliacao, autores, 1));
         palestras.incluir(new Palestra("ES", "comida", "gfgjjk", 50, "Palestra1", Situacao.sobAvaliacao, autores, 1));
 

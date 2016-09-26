@@ -14,13 +14,16 @@ import java.util.List;
 
 /**
  *
- * @author Amanda Gobus
+ * @author Amanda Lopes
  */
 public class InterfaceArtigo extends InterfaceSistema {
 
     private ListaSubmissao lista = new ListaSubmissao();
     private Artigo artigo;
-
+    
+/**
+ * Método que gerencia a sessao de artigo 
+ */
     @Override
     public void principal() {
 
@@ -87,6 +90,11 @@ public class InterfaceArtigo extends InterfaceSistema {
         } while (opcao != 0);
 
     }
+    /**
+     * Método que pede para o usuário escolher uma opção e retorna um inteiro
+     * @return 
+     */
+    
 
     @Override
     protected int menu() {
@@ -103,7 +111,12 @@ public class InterfaceArtigo extends InterfaceSistema {
         System.out.print("Opção: ");
         return entrada.nextInt();
     }
-
+    
+/**
+ * Método escolhe o atributo a ser editado e retorna um inteiro
+ * @param submissao
+ * @return 
+ */
     @Override
     protected int escolherAtributo(Submissao submissao) {
         Artigo artigo = (Artigo) submissao;
@@ -123,7 +136,10 @@ public class InterfaceArtigo extends InterfaceSistema {
         System.out.println("==================================");
         return (entrada.nextInt());
     }
-
+    
+    /**
+     * Método que é utilizado para criar uma submissão
+     */
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
@@ -141,8 +157,10 @@ public class InterfaceArtigo extends InterfaceSistema {
         lista.incluir(artigo);
 
     }
-
-    @Override
+    /**
+     * Método é utilizado para editar uma Submissao
+     */
+        @Override
     protected void editarSubmissao() {
         System.out.println("Qual titulo do artigo vocë quer editar: ");
         String t = entrada.nextLine();
@@ -191,6 +209,10 @@ public class InterfaceArtigo extends InterfaceSistema {
         }
 
     }
+    /**
+     * 
+     * @param args 
+     */
 
     public static void main(String[] args) {
         InterfaceArtigo a = new InterfaceArtigo();

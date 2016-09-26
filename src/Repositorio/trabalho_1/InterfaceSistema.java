@@ -7,7 +7,6 @@ package Repositorio.trabalho_1;
 
 import java.util.List;
 import java.util.Scanner;
-import static Repositorio.trabalho_1.EntradasTeclado.*;
 
 /**
  * @author leona_000
@@ -61,7 +60,8 @@ public abstract class InterfaceSistema {
      */
     protected Submissao consultarSubmissaoTitulo(String mensagem, ListaSubmissoes lista) {
         System.out.println("====================================================");
-        return lista.consultarTitulo(inString(mensagem));
+        System.out.println(mensagem);
+        return lista.consultarTitulo(entrada.nextLine());
     }
     /**
      * Faz consulta utilizando uma string de autor
@@ -73,30 +73,25 @@ public abstract class InterfaceSistema {
      * houver nenhuma submissao daquele autor
      */
     public List<Submissao> consultarListaSubmissoesAutor(ListaSubmissoes lista){
-        System.out.println(entrada.nextLine());
+        entrada.nextLine();
         System.out.println("====================================================");
         System.out.println("Digite o nome do autor que você quer pesquisar: ");
+
         return lista.consultarAutor(entrada.nextLine());
+
+        String autor = entrada.nextLine();
+        List<Submissao> listaA =  lista.consultarAutor(autor);
+        return listaA;
+
     }
     /**
      * metodo vai receber uma submissao e exibila utilizando
      * @param submissao objeto de submissao a ser exibido
      */
     protected void exibirSubmissao(Submissao submissao) {
-        String  sub = submissao.toString();
-        String sss = "";
-        String[] submissaoVetor = sub.split("\n");
-        for( String s : submissaoVetor ){
-            if( s.contains("-") ){
-                String[] ss = s.split("-");
-                sss += "\n"+ss[1].substring(1);
-            }else{
-                sss += "\n"+s;
-            }
-        }
         System.out.print("====================================================");
-        System.out.print(sss);
-        System.out.println("\n====================================================");
+        System.out.println(submissao.toString());
+        System.out.println("====================================================");
     }
     /**
      * faz uma lista por autor
