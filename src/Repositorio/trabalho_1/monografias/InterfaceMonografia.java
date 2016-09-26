@@ -22,6 +22,10 @@ public class InterfaceMonografia extends InterfaceSistema {
 
     private ListaSubmissao lista = new ListaSubmissao();
     private Monografia monografia;
+    
+    /**
+     * Metodo principal, que gerencia a sessao das monografias.
+     */
     @Override
     public void principal() {
         int opcao = 0;
@@ -84,6 +88,11 @@ public class InterfaceMonografia extends InterfaceSistema {
             }
         } while (opcao != 0);
     }
+    /**
+     * menu da sessao do sistema, que mostrar as opções e quando o usuario digitar
+     * um numero esse numero é retornado para o metodo principal
+     * @return 
+     */
     @Override
     protected int menu() {
         System.out.println("====================================");
@@ -99,6 +108,12 @@ public class InterfaceMonografia extends InterfaceSistema {
         System.out.print("Opção: ");
         return entrada.nextInt();
     }
+    /**
+     * recebendo uma submissao é mostrando todos os atributos e seus valores para
+     * o usuario definir o atributo que vai ser editado.
+     * @param submissao
+     * @return retorna um inteiro que representa o atributo
+     */
     @Override
     protected int escolherAtributo(Submissao submissao) {
         Scanner entrada = new Scanner(System.in);
