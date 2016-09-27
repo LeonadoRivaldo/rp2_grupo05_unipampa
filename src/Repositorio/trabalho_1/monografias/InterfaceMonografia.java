@@ -188,6 +188,12 @@ public class InterfaceMonografia extends InterfaceSistema {
             monografia = null;
         }
     }
+    /**
+     * utiliza um conjunto de metodos para editar uma submissao com base no titulo
+     * que o usuario digitou para a busca da monografia, se for encontrado, o metodo vai chamar
+     * o que escolheatributo e apartir dai vai cptar a entrada conforme o atirubto escolhido e editar 
+     * a submissao enviando ela dvolta pra lista!
+     */
     @Override
     protected void editarSubmissao() {
         monografia = (Monografia) consultarSubmissaoTitulo("Digite o titulo da monografia que você quer pesquisar:", lista);
