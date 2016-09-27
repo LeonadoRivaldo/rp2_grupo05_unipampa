@@ -242,13 +242,8 @@ public class InterfaceMinicurso extends InterfaceSistema {
             tipo = inInt("Digite:"
                     + "\n 1 - Para pesquisar por autor"
                     + "\n 2 - Para pesquiasr por título");
-            div();
-
             switch (tipo) {
                 case 1:
-                    div();
-                    System.out.println("Resultado da busca:");
-
                     List<Submissao> m = super.consultarListaSubmissoesAutor(lista);
                     if (m != null) {
                         int cont = 0;
@@ -264,9 +259,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
                     }
                     break;
                 case 2:
-                    div();
-                    System.out.println("Resultado da busca:");
-                    Minicurso resultadoBuscaTitulo = (Minicurso) super.consultarSubmissaoTitulo("Digite o autor desejado", lista);
+                    Minicurso resultadoBuscaTitulo = (Minicurso) super.consultarSubmissaoTitulo("Digite o titulo desejado", lista);
                     if (resultadoBuscaTitulo != null) {
                         System.out.println(resultadoBuscaTitulo.toString());
                     } else {
