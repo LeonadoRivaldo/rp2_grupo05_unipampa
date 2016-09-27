@@ -71,7 +71,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
      */
     @Override
     protected int menu() {
-        int aux = 0;
+        int aux = -1;
         div();
         String mensagem = "Gerenciamento de minicursos"
                 + "\nDigite:"
@@ -82,7 +82,7 @@ public class InterfaceMinicurso extends InterfaceSistema {
                 + "\n 5- Para editar"
                 + "\n 0- Para sair";
 
-        while (aux < 1 || aux > 6) {
+        while (aux < 0 || aux > 6) {
             aux = inInt(mensagem);
         }
         return aux;
