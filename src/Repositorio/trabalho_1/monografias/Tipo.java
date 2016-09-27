@@ -1,5 +1,5 @@
 
-package Repositorio.trabalho_1.monografias.novo;
+package Repositorio.trabalho_1.monografias;
 
 
 public enum Tipo {

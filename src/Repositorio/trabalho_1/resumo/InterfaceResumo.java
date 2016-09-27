@@ -4,7 +4,7 @@ import Repositorio.trabalho_1.InterfaceSistema;
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
 import Repositorio.trabalho_1.Submissao;
-import Repositorio.trabalho_1.monografias.novo.InterfaceMonografia;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,11 @@ public class InterfaceResumo extends InterfaceSistema {
     private ListaSubmissao lista = new ListaSubmissao();
     private Resumo resumo;
 
+    /**
+     * Metodo principal que carrega todos os metodos do sistema 
+     */
     @Override
+    
     public void principal() {
         String titulo = null;
         int situacao;
@@ -98,7 +102,10 @@ public class InterfaceResumo extends InterfaceSistema {
             }
         } while (n != 0);
     }
-
+/**
+ * Metodo que exibe o menu da classe resumo
+ * @return 
+ */
     @Override
     protected int menu() {
         System.out.println("====================================");
@@ -116,6 +123,13 @@ public class InterfaceResumo extends InterfaceSistema {
 
     }
 
+    /**
+     * 
+     * @param submissao
+     * @return 
+     * Metodo que recebe o objeto que contem na lista de submissões
+     */
+    
     @Override
     protected int escolherAtributo(Submissao submissao) {
         Scanner e = new Scanner(System.in);
@@ -142,6 +156,11 @@ public class InterfaceResumo extends InterfaceSistema {
         System.out.println("Opcao: ");
         return e.nextInt();
     }
+    
+    /**
+     * Metodo que cria um novo resumo, pedindo os dados necessarios ao usuario final do sistema
+     * como por exemplo , o titulo , a situação , os autores, as instituições e as palavras-chave
+     */
 
     @Override
     protected void criarSubmissao() {
@@ -198,6 +217,9 @@ public class InterfaceResumo extends InterfaceSistema {
         lista.incluir(new Resumo(titulo, s, autores, 8, instituicoes, palavraschave, 4, 8));
     }
 
+    /**
+     * Metodo que edita informações do resumo , podendo adicionar informações ou até mesmo as refazer
+     */
     @Override
     protected void editarSubmissao() {
         Scanner e = new Scanner(System.in);

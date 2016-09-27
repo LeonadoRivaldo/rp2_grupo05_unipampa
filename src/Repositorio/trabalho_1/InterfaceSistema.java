@@ -76,13 +76,13 @@ public abstract class InterfaceSistema {
         entrada.nextLine();
         System.out.println("====================================================");
         System.out.println("Digite o nome do autor que você quer pesquisar: ");
-<<<<<<< HEAD
+
         return lista.consultarAutor(entrada.nextLine());
-=======
+
         String autor = entrada.nextLine();
         List<Submissao> listaA =  lista.consultarAutor(autor);
         return listaA;
->>>>>>> b214e331eccee835cb80a29b83df5f3a14242412
+
     }
     /**
      * metodo vai receber uma submissao e exibila utilizando

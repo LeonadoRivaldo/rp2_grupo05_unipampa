@@ -7,7 +7,7 @@ package Repositorio.trabalho_1;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import static Repositorio.trabalho_1.EntradasTeclado.*;
 
 /**
  *
@@ -15,74 +15,86 @@ import java.util.Scanner;
  */
 public class PreencheSubmissao {
 
-    private static Scanner entrada = new Scanner(System.in);
-
     public static String preencheSituacao() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Informe a situação da submissao : Aprovado/Reprovado/SobAvaliação");
-        return entrada.nextLine();
+        int nSituacao = 0;
+
+        EntradasTeclado.div();
+        while (nSituacao < 1 || nSituacao > 3) {
+            nSituacao = EntradasTeclado.inInt("Digite a situação da submissao:"
+                    + "\n 1 - Sob Avaliação"
+                    + "\n 2 - Aprovado"
+                    + "\n 3 - Não aprovado");
+        }
+        String pSituacao = situacaoToString(nSituacao);
+        return pSituacao;
     }
 
     public static String preencheTitulo() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o titulo da sua submissao? ");
-        return entrada.nextLine();
+        div();
+        System.out.println();
+        return inString("Qual é o titulo da sua submissao? ");
     }
 
-    public static List<String> preencheAutor() {
-        List<String> autor = new ArrayList();
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o autor da sua submissao? ");
-        autor.add(entrada.nextLine());
-        return autor;
+    public static List<String> preencheAutor(int nroAutores) {
+        List<String> autores = new ArrayList();
+        div();
+        for (int i = 0; i < nroAutores; i++) {
+            autores.add(inString("Digite o nome do autor " + (i + 1) + ": "));
+            div();
+            if( !inString("Quer inserir uma novo autor?").equalsIgnoreCase("sim") ) break;
+        }
+        return autores;
     }
 
     public static String preencheTipo() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o tipo da sua submissao: ");
-        System.out.println("Graduação, Especialização, Mestrado, Doutorado");
-        System.out.print("Digite: ");
-        return entrada.nextLine();
+        div();
+        return inString("Qual é o tipo da sua submissao:"
+                + "\nGraduação, Especialização, Mestrado, Doutorado"
+                + "\nDigite:");
     }
 
     public static String preencheInstituicao() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o nome da sua instituição? ");
-        return entrada.nextLine();
+        div();
+        return inString("Qual é o nome da sua instituição? ");
+    }
+    
+    public static List<String> preencheInstituicaoArtigo(int n){
+        List<String> inst = new ArrayList<>();
+        for( int i = 0; i<n; i++ ){
+            inst.add(inString("Digite o nome da instituição"));
+            if( !inString("Quer inserir uma nova instituição?").equalsIgnoreCase("sim") ) break;
+        }
+        
+        return inst;
     }
 
     public static String preencheOrientador() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o nome do seu orientador? ");
-        return entrada.nextLine();
+        div();
+        return inString("Qual é o nome do seu orientador? ");
     }
 
     public static String preencheCurso() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o nome do seu curso? ");
-        return entrada.nextLine();
+        div();
+        return inString("Qual é o nome do seu curso? ");
     }
 
-    public static String preencheAno() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Qual é o Ano da publicação? ");
-        return entrada.nextLine();
+    public static int preencheAno() {
+        div();
+        return inInt("Qual é o Ano da publicação? ");
     }
 
-    public static String preencheNroPaginas() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Quantidade de paginas?");
-        return entrada.nextLine();
+    public static int preencheNroPaginas() {
+        div();
+        return inInt("Quantidade de paginas?");
     }
 
     public static List<String> preenchePalavrasChaves() {
-        System.out.println("----------------------------------------------------");
+        div();
         List<String> palavras = new ArrayList();
         boolean parar = false;
         int x = 0;
         for (x = 0; x < 4; x++) {
-            System.out.printf("Digite a palavra-chave: ");
-            String palavra = entrada.nextLine();
+            String palavra = inString("Digite a palavra-chave: ");
             if (!palavra.equalsIgnoreCase("sair") && x < 4) {
                 System.out.println("========== (digite sair para parar) ==========");
                 palavras.add(palavra);
@@ -90,22 +102,74 @@ public class PreencheSubmissao {
                 break;
             }
         }
-        if ( x >= 4) {
+        if (x >= 4) {
             System.out.println("nº limite de palavras chave foi atingido!");
         }
         return palavras;
     }
 
     public static String preencheResumo() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Digite o resumo da sua submissao?");
-        return entrada.nextLine();
+        div();
+        return inString("Qual o resumo da sua submissao?");
     }
 
     public static String preencheAbstract() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Digite o abstract da sua submissao?");
-        return entrada.nextLine();
+        div();
+        return inString("Qual o abstract da sua submissao?");
+    }
+
+    /**
+     *
+     * @return String contendo o que foi inserido pelo usuario
+     */
+    public static String preencheMetodologia() {
+        div();
+        return EntradasTeclado.inString("Qual a metodologia da sua submissao? ");
+    }
+
+    /**
+     *
+     * @return String contendo o que foi inserido pelo usuario
+     */
+    public static String preencheRecursos() {
+        div();
+        return EntradasTeclado.inString("Quais são os recursos da sua submissao?");
+    }
+
+    /**
+     *
+     * @return int contendo o que foi inserido pelo usuario, transformando o
+     * total em MINUTOS Ex: caso o usuario insira 1:30, o metodo retornara 90
+     */
+    public static int preencheDuracao() {
+        int h = -1, m = -1;
+        div();
+        System.out.println("Digite a duração a seguir, seguindo conforme exigido:");
+        while (h < 0 || h > 24) {
+            h = inInt("Digite o numero de horas:");
+        }
+        while (m < 0 || m > 60) {
+            m = inInt("Digite os minutos:");
+        }
+        return h * 60 + m;
+    }
+
+    public static String situacaoToString(int situacao) {
+        String pSituacao;
+        switch (situacao) {
+            case 1:
+                pSituacao = "sob avaliacao";
+                break;
+            case 2:
+                pSituacao = "aprovado";
+                break;
+            case 3:
+                pSituacao = "reprovado";
+                break;
+            default:
+                pSituacao = "sob avaliacao";
+        }
+        return pSituacao;
     }
 
 }

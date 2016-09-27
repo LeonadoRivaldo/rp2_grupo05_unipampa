@@ -26,7 +26,7 @@ public class InterfacePalestra extends InterfaceSistema {
     public void principal() {
         Scanner entrada = new Scanner(System.in);
         ArrayList<String> autores = new ArrayList();
-        autores.add("Colega Amanda");
+        autores.add("lucielee");
         palestras.incluir(new Palestra("CC", "doce", "jdhk", 35, "Palestra2", Situacao.sobAvaliacao, autores, 1));
         palestras.incluir(new Palestra("ES", "comida", "gfgjjk", 50, "Palestra1", Situacao.sobAvaliacao, autores, 1));
 
@@ -61,6 +61,7 @@ public class InterfacePalestra extends InterfaceSistema {
                     }
                     break;
                 case 4:
+                    
                     System.out.println("Qual titulo da palestra voce quer excluir: ");
                     String t = entrada.nextLine();
                     if (palestras.excluir(t)) {
@@ -171,7 +172,7 @@ public class InterfacePalestra extends InterfaceSistema {
                     palestra.setSituacaoSubmissao(situacao);
                     break;
                 case 3:
-                    List<String> autor = PreencheSubmissao.preencheAutor();
+                    List<String> autor = PreencheSubmissao.preencheAutor(1);
                     palestra.setAutor(autor);
                     break;
                 case 4:

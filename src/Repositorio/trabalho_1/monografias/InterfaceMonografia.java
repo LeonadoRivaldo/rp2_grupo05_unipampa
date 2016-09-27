@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repositorio.trabalho_1.monografias.novo;
+package Repositorio.trabalho_1.monografias;
 
 import Repositorio.trabalho_1.ListaSubmissao;
 import Repositorio.trabalho_1.Situacao;
@@ -28,7 +28,7 @@ public class InterfaceMonografia extends InterfaceSistema {
         int opcao = 0;
         do {
             opcao = menu();
-            
+
             switch (opcao) {
                 case 0:
                     break;
@@ -38,7 +38,7 @@ public class InterfaceMonografia extends InterfaceSistema {
                 case 2:
                     entrada.nextLine();
                     Submissao sub = super.consultarSubmissaoTitulo("Digite o titulo que você quer pesquisar:", lista);
-                    if (monografia != null) {
+                    if (sub != null) {
                         exibirSubmissao(sub);
                     } else {
                         exibeMensagem("Monografia não encontrada!");
@@ -69,10 +69,19 @@ public class InterfaceMonografia extends InterfaceSistema {
                     } while (monografia == null);
                     break;
                 case 4:
-                    
+                    entrada.nextLine();
+                    System.out.println("Qual titulo da monografia voce quer excluir: ");
+                    String t = entrada.nextLine();
+                    if (lista.excluir(t)) {
+                        exibeMensagem("monografia EXCLUIDA");
+                    } else {
+                        exibeMensagem("NAO FOI ENCONTRADA NENHUMA monografia");
+                    }
                     break;
-                default:
-                    throw new AssertionError();
+                case 5:
+                    entrada.nextLine();
+                    editarSubmissao();
+                    break;
             }
         } while (opcao != 0);
     }
@@ -130,7 +139,7 @@ public class InterfaceMonografia extends InterfaceSistema {
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
-        List<String> autores = PreencheSubmissao.preencheAutor();
+        List<String> autores = PreencheSubmissao.preencheAutor(1);
         Situacao situacaoSubmissao = null;
         do {
             String situacao = PreencheSubmissao.preencheSituacao();
@@ -147,8 +156,8 @@ public class InterfaceMonografia extends InterfaceSistema {
         instituicoes.add(instituicao);
         String orientador = PreencheSubmissao.preencheOrientador();
         String curso = PreencheSubmissao.preencheCurso();
-        int ano = Integer.parseInt(PreencheSubmissao.preencheAno());
-        int numeroDePaginas = Integer.parseInt(PreencheSubmissao.preencheNroPaginas());
+        int ano = PreencheSubmissao.preencheAno();
+        int numeroDePaginas = PreencheSubmissao.preencheNroPaginas();
         List<String> palavrasChave = PreencheSubmissao.preenchePalavrasChaves();
         String resumo = PreencheSubmissao.preencheResumo();
         String Abstract = PreencheSubmissao.preencheAbstract();
@@ -158,69 +167,80 @@ public class InterfaceMonografia extends InterfaceSistema {
         int MAX_INSTITUICOES = 1;
         System.out.println("===============================================");
         monografia = new Monografia(tipoMonografia, orientador, curso, ano, numeroDePaginas, resumo, Abstract, tituloSubmissao, situacaoSubmissao, autores, MAX_AUTORES, instituicoes, palavrasChave, MAX_PALAVRASCHAVES, MAX_INSTITUICOES);
-        if (lista.incluir(submissao)) {
+        if (lista.incluir(monografia)) {
             exibeMensagem("Monografia criada com sucesso!");
+            monografia = null;
         }
     }
 
     @Override
     protected void editarSubmissao() {
         monografia = (Monografia) consultarSubmissaoTitulo("Digite o titulo da monografia que você quer pesquisar:", lista);
-        String oldTitulo = monografia.getTituloSubmissao();
-        int atributo = escolherAtributo(monografia);
-        switch (atributo) {
-            case 1:
-                monografia.setTituloSubmissao(PreencheSubmissao.preencheTitulo());
-                break;
-            case 3:
-                Tipo tipoMonografia = null;
-                tipoMonografia = Submissao.verificaTipo(PreencheSubmissao.preencheTipo());
-                while (tipoMonografia == null) {
+        if (monografia != null) {
+
+            String oldTitulo = monografia.getTituloSubmissao();
+            int atributo = escolherAtributo(monografia);
+            switch (atributo) {
+                case 1:
+                    monografia.setTituloSubmissao(PreencheSubmissao.preencheTitulo());
+                    break;
+                case 3:
+                    Tipo tipoMonografia = null;
                     tipoMonografia = Submissao.verificaTipo(PreencheSubmissao.preencheTipo());
-                }
-                monografia.setTipo(tipoMonografia);
-                break;
-            case 2:
-                Situacao situacao = null;
-                situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
-                while (situacao == null) {
+                    while (tipoMonografia == null) {
+                        tipoMonografia = Submissao.verificaTipo(PreencheSubmissao.preencheTipo());
+                    }
+                    monografia.setTipo(tipoMonografia);
+                    break;
+                case 2:
+                    Situacao situacao = null;
                     situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
-                }
-                monografia.setSituacaoSubmissao(situacao);
-                break;
-            case 4:
-                List<String> autor = PreencheSubmissao.preencheAutor();
-                monografia.setAutor(autor);
-                break;
-            case 5:
-                String s = PreencheSubmissao.preencheInstituicao();
-                List<String> insti = new ArrayList<String>();
-                insti.add(s);
-                monografia.setInstituicao(insti);
-                break;
-            case 6:
-                monografia.setOrientador(PreencheSubmissao.preencheOrientador());
-                break;
-            case 7:
-                monografia.setCurso(PreencheSubmissao.preencheCurso());
-                break;
-            case 8:
-                monografia.setAno(Integer.parseInt(PreencheSubmissao.preencheAno()));
-                break;
-            case 9:
-                monografia.setNumeroDePaginas(Integer.parseInt(PreencheSubmissao.preencheAno()));
-                break;
-            case 10:
-                List<String> palavras = PreencheSubmissao.preenchePalavrasChaves();
-                monografia.setPalavrasChave(palavras);
-                break;
-            case 11:
-                monografia.setResumo(PreencheSubmissao.preencheResumo());
-                break;
-            case 12:
-                monografia.setAbstract(PreencheSubmissao.preencheAbstract());
-                break;
+                    while (situacao == null) {
+                        situacao = Submissao.verificaSituacao(PreencheSubmissao.preencheSituacao());
+                    }
+                    monografia.setSituacaoSubmissao(situacao);
+                    break;
+                case 4:
+                    List<String> autor = PreencheSubmissao.preencheAutor(1);
+                    monografia.setAutor(autor);
+                    break;
+                case 5:
+                    String s = PreencheSubmissao.preencheInstituicao();
+                    List<String> insti = new ArrayList<String>();
+                    insti.add(s);
+                    monografia.setInstituicao(insti);
+                    break;
+                case 6:
+                    monografia.setOrientador(PreencheSubmissao.preencheOrientador());
+                    break;
+                case 7:
+                    monografia.setCurso(PreencheSubmissao.preencheCurso());
+                    break;
+                case 8:
+                    monografia.setAno(PreencheSubmissao.preencheAno());
+                    break;
+                case 9:
+                    monografia.setNumeroDePaginas(PreencheSubmissao.preencheAno());
+                    break;
+                case 10:
+                    List<String> palavras = PreencheSubmissao.preenchePalavrasChaves();
+                    monografia.setPalavrasChave(palavras);
+                    break;
+                case 11:
+                    monografia.setResumo(PreencheSubmissao.preencheResumo());
+                    break;
+                case 12:
+                    monografia.setAbstract(PreencheSubmissao.preencheAbstract());
+                    break;
+            }
+            if (lista.editar(oldTitulo, monografia)) {
+                exibeMensagem("monografia editada com sucesso!");
+                monografia = null;
+            }
+        }else{
+            exibeMensagem("nenhuma monografia encontrada");
         }
+
     }
 
     public static void main(String[] args) {

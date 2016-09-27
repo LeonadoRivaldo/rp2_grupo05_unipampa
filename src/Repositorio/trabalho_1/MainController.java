@@ -3,7 +3,7 @@ package Repositorio.trabalho_1;
 import java.util.Scanner;
 import Repositorio.trabalho_1.minicurso.*;
 import Repositorio.trabalho_1.artigos.*;
-import Repositorio.trabalho_1.monografias.novo.InterfaceMonografia;
+import Repositorio.trabalho_1.monografias.InterfaceMonografia;
 import Repositorio.trabalho_1.palestra.InterfacePalestra;
 import Repositorio.trabalho_1.resumo.*;
 
