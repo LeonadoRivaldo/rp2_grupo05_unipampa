@@ -22,7 +22,10 @@ public class InterfaceMonografia extends InterfaceSistema {
 
     private ListaSubmissao lista = new ListaSubmissao();
     private Monografia monografia;
-
+    
+    /**
+     * Metodo principal, que gerencia a sessao das monografias.
+     */
     @Override
     public void principal() {
         int opcao = 0;
@@ -85,7 +88,11 @@ public class InterfaceMonografia extends InterfaceSistema {
             }
         } while (opcao != 0);
     }
-
+    /**
+     * menu da sessao do sistema, que mostrar as opções e quando o usuario digitar
+     * um numero esse numero é retornado para o metodo principal
+     * @return 
+     */
     @Override
     protected int menu() {
         System.out.println("====================================");
@@ -101,7 +108,12 @@ public class InterfaceMonografia extends InterfaceSistema {
         System.out.print("Opção: ");
         return entrada.nextInt();
     }
-
+    /**
+     * recebendo uma submissao é mostrando todos os atributos e seus valores para
+     * o usuario definir o atributo que vai ser editado.
+     * @param submissao
+     * @return retorna um inteiro que representa o atributo
+     */
     @Override
     protected int escolherAtributo(Submissao submissao) {
         Scanner entrada = new Scanner(System.in);
@@ -135,7 +147,11 @@ public class InterfaceMonografia extends InterfaceSistema {
         } while (in > 12 || in < 1);
         return in;
     }
-
+    /**
+     * cria a submissao, pegando os valores que o usuario digitar na interface e criando o objeto de
+     * monografia com base nisso
+     *
+     */
     @Override
     protected void criarSubmissao() {
         String tituloSubmissao = PreencheSubmissao.preencheTitulo();
@@ -172,7 +188,12 @@ public class InterfaceMonografia extends InterfaceSistema {
             monografia = null;
         }
     }
-
+    /**
+     * utiliza um conjunto de metodos para editar uma submissao com base no titulo
+     * que o usuario digitou para a busca da monografia, se for encontrado, o metodo vai chamar
+     * o que escolheatributo e apartir dai vai cptar a entrada conforme o atirubto escolhido e editar 
+     * a submissao enviando ela dvolta pra lista!
+     */
     @Override
     protected void editarSubmissao() {
         monografia = (Monografia) consultarSubmissaoTitulo("Digite o titulo da monografia que você quer pesquisar:", lista);
@@ -242,7 +263,6 @@ public class InterfaceMonografia extends InterfaceSistema {
         }
 
     }
-
     public static void main(String[] args) {
         InterfaceMonografia i = new InterfaceMonografia();
         i.principal();
