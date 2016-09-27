@@ -5,7 +5,7 @@
  */
 package Repositorio.trabalho_1;
 
-import Repositorio.trabalho_1.monografias.novo.Tipo;
+import Repositorio.trabalho_1.monografias.Tipo;
 import java.util.List;
 
 /**

@@ -52,6 +52,7 @@ public class Artigo extends SubmissaoCientifica {
     public void setAbstract(String Abstract) {
         this.Abstract = Abstract;
     }
+    @Override
     public String toString(){
         return super.toString()+"\nResumo "+resumo+"\nAbstract "+Abstract;
     }
